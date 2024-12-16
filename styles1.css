@@ -1,0 +1,76 @@
+body {
+  background-color: #bfd202;
+  background-image: url("lunch box.jpeg") ;
+  background-repeat: no-repeat;
+  background-position:right center;
+  background-size: 45% 100%;
+  font-family: "cooper";
+  margin: 0;
+  height: 100vh;
+  margin-right: 200px;
+
+}
+
+h3 {
+
+  text-align: center ;
+  color: #0a5247;
+  font-size: 50px;
+  margin-right: 350px;
+}
+
+h4 {
+  text-align: center ;
+  color: #0a5247;
+  font-size: 30px;
+  margin-right: 350px;
+}
+
+h1 {
+  text-align: center;
+  color: #0a5247;
+  font-size: 70px;
+  margin-right: 350px;
+}
+
+button{
+    text-align: center;
+    background-color: #ffc643;
+    color: black;
+    width: 250px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-width: 0px;
+}
+
+ button:hover {
+      background-color: darkorange;
+    }
+
+.signup-text{
+  text-align: center;
+  margin-right: 350px;
+}
+
+form{
+  text-align: center;
+  margin-right: 350px;
+  border-radius: 20px;
+
+}
+
+.signup-btn{
+  text-align: center;
+margin-left: 585px;
+   background-color: #e7ed76;
+    color: black;
+    width: 180px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-width: 0px;
+}
+.signup-btn:hover {
+    background: green;
+}
