@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Post A New Lunch Box</title>
+     <link rel="stylesheet" href="post.css">
 </head>
 <body>
+
+    <h3>Post A New Lunch Box</h3>
+    <br>
+    <form action="#" id = 'post-form' class = "post" method="GET">
+        <div>
+            <label> Title </label>
+            <input type="text" id = "title" placeholder="add lunchbox name/title" required>
+        </div>
+
+        <div>
+            <label> Description </label>
+            <input type="text" id = "description" placeholder="add lunchbox description">
+        </div>
+
+        <div>
+            <label> Ingredients </label>
+            <input type="text" id = "ingredients" placeholder="add lunchbox list and amounts of ingredients" class="input-field" required>
+        </div>
+
+        <div>
+            <label> Recipe </label>
+            <input type="text" id = "recipe" placeholder="add lunchbox recipe and instructions">
+         </div>
+
+        <div>
+            <label> Dietry Tags </label>
+            <input type="text" id = "dietryTags" placeholder="add lunchbox dietry tags if exists">
+        </div>
+
+        <div class="photo">
+            <label>Choose a photo from camera roll</label>
+            <input type="file" id="photoInput" accept="image/*">
+        </div>
+
+        <button type="submit" class="post-btn">Click to share!</button>
+
+    </form>
 
 </body>
 </html>

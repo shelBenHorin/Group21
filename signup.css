@@ -17,3 +17,32 @@ h1{
 text-align: left;
     margin-left: 100px;
 }
+
+h2{
+    text-align: center;
+}
+.signin{
+    margin-left: 600px;
+    border-radius: 50px;
+    border-width: 0.1px;
+    padding: 8px;
+    border-spacing: 10px;
+    background-color: lightgreen;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.signup{
+    margin-left: 200px;
+    background-color: #ffc643;
+    border-radius: 50px;
+    border-width: 0.1px;
+    padding: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signup:hover{
+    background: orange;
+}
+
+.signin:hover{
+    background-color: green;
+}
