@@ -22,7 +22,7 @@ h2{
     text-align: center;
 }
 .signin{
-    margin-left: 600px;
+    text-align: center;
     border-radius: 50px;
     border-width: 0.1px;
     padding: 8px;
@@ -31,7 +31,7 @@ h2{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .signup{
-    margin-left: 200px;
+    align-items: center;
     background-color: #ffc643;
     border-radius: 50px;
     border-width: 0.1px;
@@ -45,4 +45,7 @@ h2{
 
 .signin:hover{
     background-color: green;
+}
+.personal-area{
+    width: 50%;
 }
