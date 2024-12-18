@@ -1,0 +1,70 @@
+body {
+    background-color: antiquewhite;
+    background-image: url("lunch box.jpeg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 45% 100%;
+    font-family: "cooper";
+    margin: 0;
+    height: 100vh;
+    margin-right: 200px;
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+.right-section {
+    /*margin-right: 0px;*/
+    margin-left: 55%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*margin-right: auto;*/
+    background-color: #bfd202;
+    color: #0a5247; /* Dark Green for Text */
+    padding: 30px;
+    border-radius: 10px;
+    width: 40%; /* Adjust card width */
+    font-family: "Segoe UI";
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+.title {
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: auto;
+}
+
+    .subheading {
+     font-size: larger;
+     font-weight: bold;
+
+    }
+
+.user {
+    margin-top: -35px;
+    font-size: larger;
+}
+.timestamp {
+    font-size: small;
+
+}
+
+.ingredients {
+        margin-top: -18px;
+
+}
+.recipe {
+        margin-top: -18px;
+
+}
+    .icons {
+        background-color: #0a5247;
+        padding: 20px;
+    }
+
+}

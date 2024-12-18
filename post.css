@@ -52,6 +52,9 @@ body {
         color: #0a5247;
         font-size: 70px;
         font-family: "Cooper";
+        background-color: #bfd202;
+        padding: 50px 100px;
+        margin-top: 0px;
     }
 
 }
