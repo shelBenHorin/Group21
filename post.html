@@ -8,7 +8,6 @@
 <body>
 
     <h3>Post A New Lunch Box</h3>
-    <br>
     <form action="#" id = 'post-form' class = "post" method="GET">
         <div>
             <label> Title </label>
@@ -30,9 +29,15 @@
             <input type="text" id = "recipe" placeholder="add lunchbox recipe and instructions">
          </div>
 
-        <div>
-            <label> Dietry Tags </label>
+        <div class = dietryTags>
+            <label for ="dietry_tags"> Dietry Tags </label>
+            <div id=" "dietry-tags" class="tags-container">
+                <label class = "tag-option"></label>
+                    <input type="checkbox" name="dietry-tags" value="vegan">
             <input type="text" id = "dietryTags" placeholder="add lunchbox dietry tags if exists">
+
+
+            </div>
         </div>
 
         <div class="photo">
