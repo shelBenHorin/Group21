@@ -1,0 +1,60 @@
+body{
+    background-color: #e7ed76;
+
+}
+h1{
+ text-align: left ;
+  color: #0a5247;
+  font-size: 50px;
+    background-color: #bfd202;
+   padding: 50px 60px;
+    width: 80%;
+    margin-top: 0px;
+    margin-left: 0px;
+    font-family: "cooper", Serif;
+}
+.left{
+   width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: "Segoe UI";
+    gap: 10px;
+    position: fixed;
+
+}
+.nickname{
+    font-size: 30px;
+}
+.edit{
+
+        background-color: #0a5247;
+        color: antiquewhite;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        width: 180px;
+        padding: 10px;
+        border-radius: 10px; ;
+}
+.divider {
+    position: fixed; /* Keeps the line in place */
+    top: 0; /* Starts from the top */
+    left: 50%; /* Positions at the center of the page */
+    width: 2px; /* Line thickness */
+    height: 100vh; /* Full height of the viewport */
+    background-color: gray; /* Line color */
+    transform: translateX(-50%); /* Centers the line exactly */
+     z-index: 10;
+}
+
+.right {
+margin-left: auto;
+    width: 50% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
