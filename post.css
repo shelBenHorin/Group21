@@ -1,16 +1,68 @@
 body {
     background-color: #e7ed76;
     color: #0a5247;
+/*font-family: 'Comic Sans MS', 'Comic Sans', cursive;*/
+/*font-family: 'Garamond', serif;*/
+font-family: 'Palatino Linotype', 'Palatino', serif;
+
 
     form div {
         margin-bottom: 10px;
     }
 
-    .photo {
-        transform: translateX(1000px);
-        /*margin-bottom: -500px;*/
-        /*transform: translateY(-800px);*/
-    }
+    /*.photo {*/
+    /*    transform: translateX(1000px);*/
+    /*    !*margin-bottom: -500px;*!*/
+    /*    !*transform: translateY(-800px);*!*/
+    /*}*/
+
+/*    .photo-upload {*/
+/*    position: absolute;*/
+/*    right: 20px;*/
+/*    top: 200px; !* Adjust this value to align properly *!*/
+/*    padding: 10px;*/
+/*    border: 2px solid #0a5247; !* Dark Green for frame *!*/
+/*    border-radius: 8px;*/
+/*    background-color: #f8f4ed; !* Cream background *!*/
+/*    text-align: center;*/
+/*}*/
+
+/*.photo-upload label {*/
+/*    display: block;*/
+/*    font-size: 1em;*/
+/*    margin-bottom: 8px;*/
+/*    color: #0a5247; !* Dark Green *!*/
+/*}*/
+
+/*.photo-upload input[type="file"] {*/
+/*    border: none;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+    .photo-upload {
+    position: absolute;
+    right: 20px;
+    top: 200px; /* Adjust to align it better */
+    padding: 20px;
+    border: 2px solid #0a5247; /* Dark Green frame */
+    border-radius: 8px;
+    background-color: #e7ed76; /* Cream background */
+    width: 250px; /* Larger width */
+    height: 200px; /* Larger height */
+    text-align: center;
+}
+
+.photo-upload label {
+    font-size: 1.1em;
+    color: #0a5247; /* Dark Green text */
+    margin-bottom: 10px;
+}
+
+.photo-upload input[type="file"] {
+    font-size: 0.9em;
+    margin-top: 10px;
+    width: 90%; /* Stretch input to fit */
+}
 
     label {
         display: block;
@@ -50,13 +102,115 @@ body {
     }
 
     h3 {
-        text-align: center ;
+        text-align: center;
         color: #0a5247;
         font-size: 70px;
         font-family: "Cooper";
         background-color: #bfd202;
-        padding: 20px ;
+        padding: 20px;
         margin-top: 0px;
     }
 
+    /*.dietary-tags {*/
+    /*    display: flex;*/
+    /*    flex-wrap: wrap; !* מאפשר לשבור שורות אם אין מקום *!*/
+    /*    gap: 10px; !* רווח בין האלמנטים *!*/
+    /*    margin: 20px 0;*/
+    /*}*/
+
+    /*.dietary-tags label {*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    background-color: #f0f0f0; !* צבע רקע לתווית *!*/
+    /*    padding: 5px 10px;*/
+    /*    border-radius: 5px; !* פינות מעוגלות *!*/
+    /*    cursor: pointer; !* מצביע על אפשרות ללחוץ *!*/
+    /*    transition: background-color 0.3s;*/
+    /*}*/
+
+    /*.dietary-tags input[type="checkbox"] {*/
+    /*    margin-right: 5px; !* רווח קטן בין ה-checkbox לטקסט *!*/
+    /*    accent-color: #007700; !* צבע של סימון ה-checkbox *!*/
+    /*}*/
+
+    /*.dietary-tags label:hover {*/
+    /*    background-color: #e0e0e0; !* רקע מעט כהה יותר בריחוף *!*/
+    /*}*/
+
+    .dietryTags {
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    gap: 15px; /* Add spacing between checkboxes */
+    padding: 10px;
+        margin: 20px auto;
+    border: 2px solid #0a5247; /* Dark Green border to match design */
+    border-radius: 8px;
+    background-color: #e7ed76; /* Cream background to match design */
+    width: fit-content;
+}
+
+.dietryTags label {
+    display: flex;
+    align-items: center; /* Align checkbox and label text vertically */
+    font-size: 1em;
+    color: #0a5247; /* Dark Green for text */
+    cursor: pointer;
+}
+
+.dietryTags input[type="checkbox"] {
+    margin-right: 10px; /* Add space between checkbox and text */
+    accent-color: #bfd202; /* Medium Green color for the checkbox */
+}
+
+
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a5247; /* Dark Green */
+    padding: 10px 20px;
+    color: antiquewhite;
+}
+
+.nav-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #bfd202; /* Medium Green */
+    color: black;
+}
+
+.nav-links .logout {
+    background-color: #e7ed76; /* Light Green */
+    color: black;
+}
+
+.nav-links .logout:hover {
+    background-color: antiquewhite; /* Cream */
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+
+
+        }
+    }
 }
