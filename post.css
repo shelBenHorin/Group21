@@ -1,169 +1,18 @@
 body {
     background-color: #e7ed76;
     color: #0a5247;
-/*font-family: 'Comic Sans MS', 'Comic Sans', cursive;*/
-/*font-family: 'Garamond', serif;*/
 font-family: 'Palatino Linotype', 'Palatino', serif;
-
-
-    form div {
-        margin-bottom: 10px;
-    }
-
-    /*.photo {*/
-    /*    transform: translateX(1000px);*/
-    /*    !*margin-bottom: -500px;*!*/
-    /*    !*transform: translateY(-800px);*!*/
-    /*}*/
-
-/*    .photo-upload {*/
-/*    position: absolute;*/
-/*    right: 20px;*/
-/*    top: 200px; !* Adjust this value to align properly *!*/
-/*    padding: 10px;*/
-/*    border: 2px solid #0a5247; !* Dark Green for frame *!*/
-/*    border-radius: 8px;*/
-/*    background-color: #f8f4ed; !* Cream background *!*/
-/*    text-align: center;*/
-/*}*/
-
-/*.photo-upload label {*/
-/*    display: block;*/
-/*    font-size: 1em;*/
-/*    margin-bottom: 8px;*/
-/*    color: #0a5247; !* Dark Green *!*/
-/*}*/
-
-/*.photo-upload input[type="file"] {*/
-/*    border: none;*/
-/*    font-size: 0.9em;*/
-/*}*/
-
-    .photo-upload {
-    position: absolute;
-    right: 20px;
-    top: 200px; /* Adjust to align it better */
-    padding: 20px;
-    border: 2px solid #0a5247; /* Dark Green frame */
-    border-radius: 8px;
-    background-color: #e7ed76; /* Cream background */
-    width: 250px; /* Larger width */
-    height: 200px; /* Larger height */
-    text-align: center;
-}
-
-.photo-upload label {
-    font-size: 1.1em;
-    color: #0a5247; /* Dark Green text */
-    margin-bottom: 10px;
-}
-
-.photo-upload input[type="file"] {
-    font-size: 0.9em;
-    margin-top: 10px;
-    width: 90%; /* Stretch input to fit */
-}
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-family: "Cooper";
-        color: #0a5247;
-        margin-left: 20px;
-    }
-
-    input {
-        width: 45%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /*height: 100%;*/
         box-sizing: border-box;
-        border-radius: 10px;
-        background-color: #e7ed76;
-        border-color: #0a5247;
-        border-width: 2px;
-        font-family: "Segoe UI";
-        text-align: center;
-        padding: 7px;
-        margin-left: 10px;
-
-    }
-
-    .post-btn {
-        text-align: center;
-        position: absolute;
-        margin-left: 50%;
-        margin-top: -50px;
-        /*margin-left: 200px;*/
-        background-color: #0a5247;
-        color: antiquewhite;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        width: 180px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    h3 {
-        text-align: center;
-        color: #0a5247;
-        font-size: 70px;
-        font-family: "Cooper";
-        background-color: #bfd202;
-        padding: 20px;
-        margin-top: 0px;
-    }
-
-    /*.dietary-tags {*/
-    /*    display: flex;*/
-    /*    flex-wrap: wrap; !* מאפשר לשבור שורות אם אין מקום *!*/
-    /*    gap: 10px; !* רווח בין האלמנטים *!*/
-    /*    margin: 20px 0;*/
-    /*}*/
-
-    /*.dietary-tags label {*/
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    background-color: #f0f0f0; !* צבע רקע לתווית *!*/
-    /*    padding: 5px 10px;*/
-    /*    border-radius: 5px; !* פינות מעוגלות *!*/
-    /*    cursor: pointer; !* מצביע על אפשרות ללחוץ *!*/
-    /*    transition: background-color 0.3s;*/
-    /*}*/
-
-    /*.dietary-tags input[type="checkbox"] {*/
-    /*    margin-right: 5px; !* רווח קטן בין ה-checkbox לטקסט *!*/
-    /*    accent-color: #007700; !* צבע של סימון ה-checkbox *!*/
-    /*}*/
-
-    /*.dietary-tags label:hover {*/
-    /*    background-color: #e0e0e0; !* רקע מעט כהה יותר בריחוף *!*/
-    /*}*/
-
-    .dietryTags {
-    display: flex; /* Use flexbox for alignment */
-    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
-    gap: 15px; /* Add spacing between checkboxes */
-    padding: 10px;
-        margin: 20px auto;
-    border: 2px solid #0a5247; /* Dark Green border to match design */
-    border-radius: 8px;
-    background-color: #e7ed76; /* Cream background to match design */
-    width: fit-content;
-}
-
-.dietryTags label {
     display: flex;
-    align-items: center; /* Align checkbox and label text vertically */
-    font-size: 1em;
-    color: #0a5247; /* Dark Green for text */
-    cursor: pointer;
-}
-
-.dietryTags input[type="checkbox"] {
-    margin-right: 10px; /* Add space between checkbox and text */
-    accent-color: #bfd202; /* Medium Green color for the checkbox */
-}
+    flex-direction: column;
+    height: 100vh;
 
 
-    nav {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -208,9 +57,165 @@ font-family: 'Palatino Linotype', 'Palatino', serif;
 @media (max-width: 768px) {
     .nav-links {
         flex-direction: column;
-        gap: 10px;
+        gap: -10px;
 
 
         }
     }
+
+  h3 {
+       margin: 0;
+        text-align: center;
+        color: #0a5247;
+        font-size: 70px;
+      /*font-family: 'Georgia', 'Palatino Linotype', 'Palatino', serif;*/
+font-family: 'Cooper Black', 'Georgia', serif;
+
+        /*font-family: "Cooper";*/
+        background-color: #bfd202;
+        padding: 20px;
+    }
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+        padding: 0;
+
+     width: 90%; /* Adjust for responsiveness */
+    height: 70%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the form on the screen */
 }
+
+.left-section {
+    flex: 1; /* Make left and right sections equal size */
+    padding: 20px;
+}
+    .right-section {
+    flex: 1; /* Make left and right sections equal size */
+    padding: 20px;
+}
+
+    form div {
+        margin-bottom: 10px;
+    }
+
+    .photo-upload {
+    /*position: absolute;*/
+    right: 20px;
+    top: 200px; /* Adjust to align it better */
+    padding: 20px;
+    border: 2px solid #0a5247; /* Dark Green frame */
+    border-radius: 8px;
+    background-color: #e7ed76; /* Cream background */
+    width: 90%; /* Larger width */
+    height: 350px; /* Larger height */
+        margin: 0 auto; /* Center the form on the screen */
+
+    text-align: center;
+}
+
+.photo-upload label {
+    font-size: 1.1em;
+    color: #0a5247; /* Dark Green text */
+    margin-bottom: 10px;
+}
+
+.photo-upload input[type="file"] {
+    font-size: 0.9em;
+    align-self: center;
+    justify-self: center;
+    margin-top: 10px;
+    width: 90%; /* Stretch input to fit */
+}
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        /*font-family: "Cooper";*/
+        color: #0a5247;
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+
+        margin-left: 20px;
+    }
+
+    input[type="text"], [type="textarea"], input[type="file"]{
+        box-sizing: border-box;
+        border-radius: 10px;
+        background-color: #e7ed76;
+        border-color: #0a5247;
+        border-width: 2px;
+        /*font-family: "Segoe UI";*/
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+
+        text-align: center;
+        padding: 10px;
+        margin-left: 10px;
+
+          width: 100%;
+
+
+    }
+
+    .post-btn {
+        display: block;
+        margin: 1px auto;
+        padding: 10px 20px;
+        background-color: #0a5247;
+        color: antiquewhite;
+        border-radius: 10px;
+                font-family: 'Palatino Linotype', 'Palatino', serif;
+    font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        width: 180px;
+
+    }
+
+    .post-btn:hover {
+    background-color: #bfd202; /* Medium Green */
+    color: black;
+
+}
+
+
+
+
+
+
+    .dietryTags {
+    display: flex; /* Use flexbox for alignment */
+            align-items: center;
+justify-content: space-between;
+    /*flex-wrap: wrap; !* Allow items to wrap to the next line if needed *!*/
+    gap: 10px; /* Add spacing between checkboxes */
+    /*padding: 10px;*/
+    /*    margin-top: 15px;*/
+    border: 2px solid #0a5247; /* Dark Green border to match design */
+    border-radius: 10px;
+    background-color: #e7ed76; /* Cream background to match design */
+        text-align: center;
+        /*padding: 5px;*/
+        /*margin-left: 10px;*/
+padding: 1px;
+        margin-left: 10px;
+          width: 100%;
+}
+
+.dietryTags label {
+    display: flex;
+    align-items: center; /* Align checkbox and label text vertically */
+    font-size: 1em;
+    color: #0a5247; /* Dark Green for text */
+    cursor: pointer;
+        gap: 5px;
+
+}
+
+.dietryTags input[type="checkbox"] {
+    margin-right: 10px; /* Add space between checkbox and text */
+    accent-color: #bfd202; /* Medium Green color for the checkbox */
+}
+
+    }

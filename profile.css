@@ -1,60 +1,192 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     background-color: #e7ed76;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
 
-}
-h1{
- text-align: left ;
-  color: #0a5247;
-  font-size: 50px;
-    background-color: #bfd202;
-   padding: 50px 60px;
-    width: 80%;
-    margin-top: 0px;
-    margin-left: 0px;
-    font-family: "cooper", Serif;
-}
-.left{
-   width: 50%;
+nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    background-color: #0a5247; /* Dark Green */
+    padding: 10px 20px;
+    color: antiquewhite;
+}
+
+.nav-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #bfd202; /* Medium Green */
+    color: black;
+}
+
+.nav-links .logout {
+    background-color: #e7ed76; /* Light Green */
+    color: black;
+}
+
+.nav-links .logout:hover {
+    background-color: antiquewhite; /* Cream */
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: -10px;
+        }
+    }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.left-half {
+    width: 50%;
     text-align: center;
-    font-family: "Segoe UI";
-    gap: 10px;
-    position: fixed;
+}
+
+.left-half h1 {
+    color: #0a5247;
+    font-size: 50px;
+    background-color: #bfd202;
+    padding: 20px 30px;
+    font-family: Cooper;
+        text-align: center;
+    border-radius: 30px;
 
 }
-.nickname{
-    font-size: 30px;
-}
-.edit{
 
-        background-color: #0a5247;
-        color: antiquewhite;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        width: 180px;
-        padding: 10px;
-        border-radius: 10px; ;
+.profile-picture {
+    border-radius: 50%;
+    /*width: 200px;*/
+    width: 40%;
+    height: 40%;
+    object-fit: cover;
+    margin: 10px 0;
 }
+
+.nickname {
+    font-size: 50px;
+    margin-top: -15px;
+    color: #0a5247;
+}
+
+.edit {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #8bc34a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
+
+.edit:hover {
+    background-color: #33691e;
+}
+
+.right-half {
+    width: 50%;
+    text-align: center;
+}
+
+.lunchbox-picture {
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+/* Divider */
 .divider {
-    position: fixed; /* Keeps the line in place */
-    top: 0; /* Starts from the top */
-    left: 50%; /* Positions at the center of the page */
-    width: 2px; /* Line thickness */
-    height: 100vh; /* Full height of the viewport */
-    background-color: gray; /* Line color */
-    transform: translateX(-50%); /* Centers the line exactly */
-     z-index: 10;
+    height: 1px;
+    background-color: #8bc34a;
+    margin: 20px 0;
 }
 
-.right {
-margin-left: auto;
-    width: 50% ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/*h1{*/
+/* text-align: left ;*/
+/*  color: #0a5247;*/
+/*  font-size: 50px;*/
+/*    background-color: #bfd202;*/
+/*   padding: 50px 60px;*/
+/*    width: 80%;*/
+/*    margin-top: 0px;*/
+/*    margin-left: 0px;*/
+/*    font-family: "cooper", Serif;*/
+/*}*/
+/*.left{*/
+/*   width: 50%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*    text-align: center;*/
+/*    font-family: "Segoe UI";*/
+/*    gap: 10px;*/
+/*    position: fixed;*/
 
-}
+/*}*/
+/*.nickname{*/
+/*    font-size: 30px;*/
+/*}*/
+/*.edit{*/
+
+/*        background-color: #0a5247;*/
+/*        color: antiquewhite;*/
+/*        font-weight: bold;*/
+/*        letter-spacing: 0.5px;*/
+/*        width: 180px;*/
+/*        padding: 10px;*/
+/*        border-radius: 10px; ;*/
+/*}*/
+/*.divider {*/
+/*    position: fixed; !* Keeps the line in place *!*/
+/*    top: 0; !* Starts from the top *!*/
+/*    left: 50%; !* Positions at the center of the page *!*/
+/*    width: 2px; !* Line thickness *!*/
+/*    height: 100vh; !* Full height of the viewport *!*/
+/*    background-color: gray; !* Line color *!*/
+/*    transform: translateX(-50%); !* Centers the line exactly *!*/
+/*     z-index: 10;*/
+/*}*/
+
+/*.right {*/
+/*margin-left: auto;*/
+/*    width: 50% ;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+
+/*}*/
+

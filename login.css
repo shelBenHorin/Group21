@@ -1,91 +1,124 @@
-body {
-  background-color: #bfd202;
-  background-image: url("lunch box.jpeg") ;
-  background-repeat: no-repeat;
-  background-position:right center;
-  background-size: 45% 100%;
-  font-family: "cooper";
-  margin: 0;
-  height: 100vh;
-  margin-right: 200px;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h3 {
+    body {
+        background-color: #bfd202;
+        background-image: url("lunch box.jpeg") ;
+        background-repeat: no-repeat;
+        background-position:right center;
+        background-size: 45% 100%;
+        font-family: "cooper";
+         display: flex;
+  justify-content: flex-start;
+  align-items: center;
+        /*margin: 0;*/
+        height: 100vh;
+        /*margin-right: 200px;*/
 
-  text-align: center ;
-  color: #0a5247;
-  font-size: 50px;
-  margin-right: 350px;
-}
-
-h4 {
-  text-align: center ;
-  color: #0a5247;
-  font-size: 30px;
-  margin-right: 350px;
-}
-
-h1 {
-  text-align: center;
-  color: #0a5247;
-  font-size: 70px;
-  margin-right: 350px;
-}
-
-button{
-    text-align: center;
-    background-color: #ffc643;
-    color: black;
-    width: 180px;
-    padding: 10px;
-    border-radius: 30px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-width: 0px;
-}
-
- button:hover {
-      background-color: darkorange;
     }
 
-.signup-text{
-  text-align: center;
-  margin-right: 350px;
-}git
-
-form{
-  text-align: center;
-  margin-right: 350px;
-<<<<<<< HEAD
-  border-radius: 10px;
-
-=======
-  border-radius: 30px;
->>>>>>> 64509219d45700d052d7b07c1d089efee032c79d
-
+    .container {
+        text-align: center;
+        border-radius: 10px;
+        padding: 30px;
+        width: 40%; /* Adjust form width */
+        margin-left: 5%; /* Add spacing from the left edge */
 }
 
-.signup-btn{
-  text-align: center;
-    margin-left: 260px;
-   background-color: #e7ed76;
-    color: black;
-    width: 180px;
-    padding: 10px;
-    border-radius: 30px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-width: 0px;
-}
-.signup-btn:hover {
-    background: green;
-}
+    h3 {
+        /*text-align: center ;*/
+        color: #0a5247;
+        font-size: 40px;
+        /*margin-right: 350px;*/
+          margin-bottom: 20px;
+        padding: 10px 30px;
+        background-color: #e7ed76;
+        width: 100%;
+        border-radius: 10px;
 
-.input-field {
-    border-radius: 30px;
-    background-color: #e7ed76;
-    border-color: #0a5247;
-    border-width: 0.5px;
-    font-family: Calibri;
-    text-align: center;
-    padding: 10px;
-}
+    }
+
+    h4 {
+        /*text-align: center ;*/
+        color: #0a5247;
+        font-size: 30px;
+        /*margin-right: 350px;*/
+          margin-bottom: 15px;
+
+    }
+
+    h1 {
+        /*text-align: center;*/
+        color: #0a5247;
+        font-size: 60px;
+        /*margin-right: 350px;*/
+          margin-bottom: 20px;
+
+    }
+
+    .input-field {
+        width: 80%;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border-radius: 30px;
+        background-color: #e7ed76;
+        border: 1px solid #8bc34a;
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .login-btn {
+        width: 80%;
+        text-align: center;
+        background-color: #ffc643;
+        color: black;
+                font-size: 16px;
+
+        padding: 10px;
+        border-radius: 30px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-width: 0px;
+                font-family: 'Palatino Linotype', 'Palatino', serif;
+
+    }
+
+    .login-btn:hover {
+        background-color: darkorange;
+    }
+
+    .signup-btn {
+        width: 80%;
+        text-align: center;
+        background-color: #e7ed76;
+          margin-bottom: 10px;
+
+        color: black;
+        padding: 10px;
+                font-size: 16px;
+
+        border-radius: 30px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-width: 0px;
+                font-family: 'Palatino Linotype', 'Palatino', serif;
+
+    }
+
+    .signup-btn:hover {
+        background: #5e9f23;
+    }
+
+    .signup-text{
+        text-align: center;
+         margin: 15px 0;
+  color: #0a5247;
+  font-size: 16px;
+    }
+
+
+
+
+

@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-<div class = "divider"> </div>
+    <nav>
+        <div class="nav-logo">What's in my Box?</div>
+        <div class="nav-links">
+            <a href="#feed">Feed</a>
+            <a href="#profile">My Profile</a>
+            <a href="#share">Share a New Post</a>
+            <a href="#search">Search</a>
+            <a href="#logout" class="logout">Log Out</a>
+        </div>
+    </nav>
 
-<div class = "left half">
-<h1> What's In My Box?</h1>
-
-<img src = "lunch box.jpeg" alt = "picture from sign up"
-style="border-radius: 50%; width: 250px; object-fit: cover;">
-
-<p> <div class = "nickname" ><strong> @nickname</strong> </div>
-     @Email
-    <br>
-    <strong> number of lunch boxes</strong>
- <strong> <button class = "edit"> &#9881; edit profile</button></strong>
-</p>
+<div class="container">
+        <div class="left-half">
+            <h1>What's In My Box?</h1>
+            <img src="lunch box.jpeg" alt="User Profile Picture" class="profile-picture">
+            <p>
+                <div class="nickname"><strong>@nickname</strong></div>
+                <span>@Email</span>
+                <br>
+                <strong>Number of lunch boxes</strong>
+            <br>
+                <button class="edit">&#9881; Edit Profile</button>
+            </p>
+        </div>
+        <div class="right-half">
+            <img src="lunch box.jpeg" alt="Lunch Box" class="lunchbox-picture">
+        </div>
     </div>
-<div class = "right half">
-    <img src="lunch box.jpeg" style = "border-radius: 10px";>
-</div>
 </body>
 </html>

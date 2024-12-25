@@ -9,7 +9,7 @@
 <body>
 
     <nav>
-        <div class="nav-logo">What's in the Box</div>
+        <div class="nav-logo">What's in my Box?</div>
         <div class="nav-links">
             <a href="#feed">Feed</a>
             <a href="#profile">My Profile</a>
@@ -20,18 +20,21 @@
     </nav>
 
     <h3>Post A New Lunch Box</h3>
-    <form action="#" id = 'post-form' class = "post" method="GET">
-        <div>
-            <label> Title </label>
-            <input type="text" id = "title" placeholder="add lunchbox name/title" required>
-        </div>
 
-        <div>
-            <label> Description </label>
-            <input type="text" id = "description" placeholder="add lunchbox description">
-        </div>
+     <div class="form-container">
+        <div class="left-section">
+             <form action="#" id = 'post-form' class = "post" method="GET">
+                <div>
+                    <label> Title </label>
+                     <input type="text" id = "title" placeholder="add lunchbox name/title" required>
+                </div>
 
-        <div>
+                <div>
+                    <label> Description </label>
+                    <input type="textarea" id = "description" placeholder="add lunchbox description">
+                </div>
+
+                <div>
             <label> Ingredients </label>
             <input type="text" id = "ingredients" placeholder="add lunchbox list and amounts of ingredients" class="input-field" required>
         </div>
@@ -40,7 +43,7 @@
             <label> Recipe </label>
             <input type="text" id = "recipe" placeholder="add lunchbox recipe and instructions">
          </div>
-
+                        <label> Dietary Tags </label>
         <div class = dietryTags>
             <label>
         <input type="checkbox" name="dietary" value="vegan">
@@ -64,15 +67,19 @@
     </label>
 
         </div>
+     </form>
+   </div>
 
+                 <div class="right-section">
         <div class="photo-upload">
     <label for="photo">Choose a photo from camera roll:</label>
     <input type="file" id="photo" name="photo">
 </div>
-
+</div>
+         </div>
         <button type="submit" class="post-btn">Click to share!</button>
 
-    </form>
+
 
 </body>
 </html>
