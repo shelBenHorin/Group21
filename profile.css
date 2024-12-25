@@ -65,10 +65,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 .left-half {
+    padding: 10px;
     width: 50%;
     text-align: center;
 }
@@ -86,9 +87,9 @@ nav {
 
 .profile-picture {
     border-radius: 50%;
-    /*width: 200px;*/
-    width: 40%;
-    height: 40%;
+   width: 200px; /* Fixed width */
+  height: 200px; /* Fixed height, same as width */
+  overflow: hidden;
     object-fit: cover;
     margin: 10px 0;
 }
@@ -115,8 +116,14 @@ nav {
 }
 
 .right-half {
+    padding: 10px 20px;
     width: 50%;
     text-align: center;
+    display: grid;
+     grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 10px; /* Space between the images */
+     max-width: 45%;
+
 }
 
 .lunchbox-picture {
@@ -126,12 +133,12 @@ nav {
     height: auto;
 }
 
-/* Divider */
-.divider {
-    height: 1px;
-    background-color: #8bc34a;
-    margin: 20px 0;
-}
+/*!* Divider *!*/
+/*.divider {*/
+/*    height: 1px;*/
+/*    background-color: #000000;*/
+/*    margin: 20px 0;*/
+/*}*/
 
 /*h1{*/
 /* text-align: left ;*/
