@@ -1,51 +1,210 @@
-body{
+body {
     background-color: #e7ed76;
-    font-family: "cooper", Serif;
+    font-family: "Cooper";
+    margin: 0;
+    padding: 0;
+    /*display: flex;*/
+    /*justify-content: start; !* Center the container horizontally *!*/
+    /*align-items: start;   !* Center the container vertically *!*/
+    /*height: 100vh;*/
+
 }
 
-h1{
- text-align: left ;
-  color: #0a5247;
-  font-size: 50px;
-    background-color: #bfd202;
-   padding: 50px 100px;
-    width: 100%;
-    margin-top: 0px;
-}
+.container {
 
-.profile-section{
-text-align: left;
-    margin-left: 100px;
-}
-
-h2{
+   width: 50%;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
     text-align: center;
+
 }
-.signin{
-    text-align: center;
-    border-radius: 50px;
-    border-width: 0.1px;
-    padding: 8px;
-    border-spacing: 10px;
-    background-color: lightgreen;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+/* Header Styles */
+h3 {
+        text-align: center;
+        color: #0a5247;
+        font-size: 60px;
+        margin: 0; /* Remove all margins */
+
+        /*margin-bottom: 20px;*/
+        padding: 10px 20px;
+        background-color: #bfd202;
+        width: 100%;
+        border-radius: 10px;
+        display: inline-block; /* Fit content */
+
 }
-.signup{
-    align-items: center;
+
+h4 {
+    color: #0a5247;
+    font-size: 26px;
+    margin-top: -20px; /* Remove all margins */
+    /*margin-bottom: -5px;*/
+}
+
+.form-group {
+    text-align: left;
+}
+
+label {
+    margin-left: 20px;
+    display: block;
+    font-size: 16px;
+    color: #0a5247;
+            font-family: 'Palatino Linotype', 'Palatino', serif;
+
+}
+
+.input-field {
+       justify-content: start; /* Center the container horizontally */
+    align-items: start;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border-radius: 30px;
+        background-color: #e7ed76;
+        border: 1px solid #8bc34a;
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+        padding: 10px;
+        box-sizing: border-box; /* Ensure consistent padding */
+
+    }
+
+/* Buttons */
+.signup-btn, .signin-btn {
+
+    width: 80%;
+        text-align: center;
+        background-color: #ffc643;
+        color: black;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 30px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border: none;
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+
+}
+
+/* Signup Button */
+.signup-btn {
+    margin-top: 10px;
     background-color: #ffc643;
-    border-radius: 50px;
-    border-width: 0.1px;
-    padding: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-.signup:hover{
-    background: orange;
+.signup-btn:hover {
+    background-color: orange;
 }
 
-.signin:hover{
+/* Signin Button */
+.signin-btn {
+    background-color: lightgreen;
+    color: #000000;
+}
+
+.signin-btn:hover {
     background-color: green;
 }
-.personal-area{
-    width: 50%;
+
+/* Signin Text */
+.signin-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #0a5247;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+.photo-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-label {
+/*justify-content: center; !* Center the container horizontally *!*/
+    display: inline-flex;
+    align-items: center;
+        justify-content: center; /* Horizontally center content */
+
+        text-align: center;
+        width: 100%;
+    font-size: 16px;
+    color: #0a5247;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #e7ed76;
+    border-radius: 30px;
+    border: 1px solid #8bc34a;
+    box-sizing: border-box; /* Ensure consistent box sizing */
+
+    /*box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);*/
+    /*transition: background-color 0.3s ease;*/
+
+}
+
+.photo-label:hover {
+    background-color: #d4d85d;
+}
+
+.photo-label i {
+    font-size: 24px;
+    color: #0a5247;
+    margin-right: 10px;
+    /*margin-top: 5px;*/
+    /*display: inline;*/
+}
+/*h1{*/
+/* text-align: left ;*/
+/*  color: #0a5247;*/
+/*  font-size: 50px;*/
+/*    background-color: #bfd202;*/
+/*   padding: 50px 100px;*/
+/*    width: 100%;*/
+/*    margin-top: 0px;*/
+/*}*/
+
+/*.profile-section{*/
+/*text-align: left;*/
+/*    margin-left: 100px;*/
+/*}*/
+
+/*h2{*/
+/*    text-align: center;*/
+/*}*/
+/*.signin{*/
+/*    text-align: center;*/
+/*    border-radius: 50px;*/
+/*    border-width: 0.1px;*/
+/*    padding: 8px;*/
+/*    border-spacing: 10px;*/
+/*    background-color: lightgreen;*/
+/*    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);*/
+/*}*/
+/*.signup{*/
+/*    align-items: center;*/
+/*    background-color: #ffc643;*/
+/*    border-radius: 50px;*/
+/*    border-width: 0.1px;*/
+/*    padding: 8px;*/
+/*    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.signup:hover{*/
+/*    background: orange;*/
+/*}*/
+
+/*.signin:hover{*/
+/*    background-color: green;*/
+/*}*/
+/*.personal-area{*/
+/*    width: 50%;*/
+/*}*/

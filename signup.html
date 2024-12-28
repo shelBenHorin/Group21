@@ -2,52 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>sign up</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
     <script defer src="signup.js"></script>
-
 </head>
 <body>
+        <h3>What's In My Box</h3>
 
-  <div class="personal-area">
-        <h1>What's In My Box</h1>
+    <div class="container">
+        <h4>Create Your Account</h4>
+        <form action="#" id="signup-form" method="POST" enctype="multipart/form-data">
+            <!-- Profile Picture -->
+<!--            <div class="form-group">-->
+<!--                <label for="profile-picture">Profile Picture:</label>-->
+<!--                <input type="file" id="profile-picture" accept="image/*" class="input-field">-->
+<!--            </div>-->
+            <div class="photo-upload">
 
- <!-- Profile Picture Upload -->
-<div class="profile-section">
-            <label for="profile-picture">Profile Picture:</label>
-            <input type="file" id="profile-picture" accept="image/*">
-            <div id="profile-picture-preview"></div>
-        </div>
-      <br>
-      <br>
-  <!-- Username -->
-        <div class="profile-section">
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Enter your username">
-        </div>
-      <br>
-      <br>
-        <!-- Email -->
-        <div class="profile-section">
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="Enter your email">
-        </div>
-      <br>
-      <br>
-       <!-- Password -->
-       <div class="profile-section">
-            <label for="Password">Password:</label>
-            <input type="Password" id="Password" placeholder="Create your Password">
-        </div>
-      <br>
-      <br>
-      <!-- signup button -->
-      <button class = "signup"> create an account </button>
+    <label for="profile-picture" class="photo-label">
+                                <i class="fas fa-camera"></i>
+        Upload Profile Picture
+    </label>
+    <input type="file" id="profile-picture" accept="image/*" style="display: none;">
+</div>
 
-      <!-- back to signin -->
-      <h2>Already have an account?</h2>
-      <button class = "signin"> Sign in </button>
-
- </div>
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" class="input-field" required>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" class="input-field" required>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Create your password" class="input-field" required>
+            </div>
+            <!-- Signup Button -->
+            <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+        <p class="signin-text">Already have an account?</p>
+        <button class="signin-btn">Sign In</button>
+    </div>
 </body>
 </html>
