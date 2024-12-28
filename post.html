@@ -32,22 +32,24 @@
 
                 <div>
                     <label> Description </label>
-                    <input type="textarea" id = "description" placeholder="add lunchbox description">
+                    <textarea id="description" placeholder="Add lunchbox description" required></textarea>
                 </div>
 
                 <div>
-            <label> Ingredients </label>
-            <input type="text" id = "ingredients" placeholder="add lunchbox list and amounts of ingredients" class="input-field" required>
-        </div>
+                    <label> Ingredients </label>
+                    <textarea id="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
+                </div>
 
-        <div>
-            <label> Recipe </label>
-            <input type="text" id = "recipe" placeholder="add lunchbox recipe and instructions">
-         </div>
+                <div>
+                    <label> Recipe </label>
+                    <textarea id="recipe" placeholder="Add lunchbox recipe and instructions" required></textarea>
+                </div>
+
                         <label> Dietary Tags </label>
         <div class = dietryTags>
             <label>
-        <input type="checkbox" name="dietary" value="vegan">
+                        <input type="checkbox" name="dietary" value="vegan">
+
         Vegan
     </label>
     <label>
@@ -79,12 +81,15 @@
          <i class="fas fa-camera"></i>
   </label>
   <input type="file" id="photo" name="photo" style="display:none;">
+    <div id="photo-preview-container" style="margin-top: 10px;"></div>
 </div>
 </div>
          </div>
-        <button type="submit" class="post-btn">Click to share!</button>
 
+        <button type="button" class="post-btn">Click to share!</button>
+<!--        <button onclick="window.location.href='feed.html'" type="submit" class="post-btn">Click to share!</button>-->
 
+    <script src="post.js"></script>
 
 </body>
 </html>
