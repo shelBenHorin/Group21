@@ -20,7 +20,21 @@
 
     }
 
+
+h3 {
+    text-align: center;
+    color: #0a5247;
+    font-size: 60px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #e7ed76;
+    width: 55%;  /* Set width to 50% of the viewport */
+    position: absolute;  /* Position it outside of the container */
+    top: 0px;  /* Adjust the top position */
+    left: 0;  /* Align it to the center of the screen */
+}
     .container {
+        margin-top: 80px;
         text-align: center;
         border-radius: 10px;
         padding: 30px;
@@ -28,25 +42,15 @@
         margin-left: 5%; /* Add spacing from the left edge */
 }
 
-    h3 {
-        /*text-align: center ;*/
-        color: #0a5247;
-        font-size: 40px;
-        /*margin-right: 350px;*/
-          margin-bottom: 20px;
-        padding: 10px 30px;
-        background-color: #e7ed76;
-        width: 100%;
-        border-radius: 10px;
 
-    }
 
     h4 {
         /*text-align: center ;*/
         color: #0a5247;
-        font-size: 30px;
+        font-size: 25px;
         /*margin-right: 350px;*/
-          margin-bottom: 15px;
+        margin-top: 20px;
+          /*margin-bottom: 15px;*/
 
     }
 
@@ -93,7 +97,7 @@
     .signup-btn {
         width: 80%;
         text-align: center;
-        background-color: #e7ed76;
+        background-color: lightgreen;
           margin-bottom: 10px;
 
         color: black;

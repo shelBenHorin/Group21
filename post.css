@@ -95,15 +95,16 @@ h3 {
 
 textarea {
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: #e7ed76;
-    border: 2px solid #0a5247;
+    border: 1.3px solid #0a5247;
     font-family: 'Palatino Linotype', 'Palatino', serif;
     text-align: center;
     padding: 10px;
     margin-left: 10px;
     width: 100%;
     height: 40px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -115,142 +116,115 @@ form div {
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 200px; /* Adjust to align it better */
+    top: 200px;
     padding: 20px;
-    border: 2px solid #0a5247; /* Dark Green frame */
-    border-radius: 20px;
-    background-color: #e7ed76; /* Cream background */
-    width: 90%; /* Larger width */
-    height: 350px; /* Larger height */
+    border: 1.3px solid #0a5247;
+    border-radius: 30px;
+    background-color: #e7ed76;
+    width: 90%;
+    height: 350px;
     text-align: center;
     font-size: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .photo-upload label {
     font-size: 1.1em;
     color: #0a5247;
- cursor: pointer;
- /*display: flex;*/
- /* align-items: center;*/
-
+    cursor: pointer;
 }
 
 .photo-label i {
-font-size: 40px;
+    font-size: 40px;
     margin-top: 20px;
 }
 .photo-label i:hover {
-color: #bfd202;
+    color: #bfd202;
 }
 
 #photo-preview-container {
-    margin-top: 10px; /* Adds spacing above the preview */
-    text-align: center; /* Centers the image */
+    margin-top: 10px;
+    text-align: center;
 }
 
-/* Style for the image preview */
 #photo-preview-container img {
-    max-width: 100%; /* Ensures the image fits within the container's width */
-    max-height: 200px; /* Sets a max height for the image */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border-radius: 10px; /* Optional: adds rounded corners to the image */
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 input[type="file"] {
   display: none; /* Hides the file input */
 }
 
-    label {
-        display: block;
-        margin-bottom: 5px;
-        /*font-family: "Cooper";*/
-        color: #0a5247;
-        font-family: 'Palatino Linotype', 'Palatino', serif;
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0a5247;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    margin-left: 20px;
+}
 
-        margin-left: 20px;
-    }
+input[type="text"]{
+    box-sizing: border-box;
+    border-radius: 30px;
+    background-color: #e7ed76;
+    border-color: #0a5247;
+    border-width: 1.3px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    text-align: center;
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+}
 
-    input[type="text"]{
-        box-sizing: border-box;
-        border-radius: 10px;
-        background-color: #e7ed76;
-        border-color: #0a5247;
-        border-width: 2px;
-        /*font-family: "Segoe UI";*/
-        font-family: 'Palatino Linotype', 'Palatino', serif;
-
-        text-align: center;
-        padding: 10px;
-        margin-left: 10px;
-
-          width: 100%;
-
-
-    }
-
-
-
-
-
-
-
-    .dietryTags {
-    display: flex; /* Use flexbox for alignment */
-            align-items: center;
-justify-content: space-between;
-    /*flex-wrap: wrap; !* Allow items to wrap to the next line if needed *!*/
-    gap: 10px; /* Add spacing between checkboxes */
-    /*padding: 10px;*/
-    /*    margin-top: 15px;*/
-    border: 2px solid #0a5247; /* Dark Green border to match design */
-    border-radius: 10px;
-    background-color: #e7ed76; /* Cream background to match design */
-        text-align: center;
-        /*padding: 5px;*/
-        /*margin-left: 10px;*/
-padding: 1px;
-        margin-left: 10px;
-          width: 100%;
+.dietryTags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1.3px solid #0a5247;
+    border-radius: 30px;
+    background-color: #e7ed76;
+    text-align: center;
+    padding: 1px;
+    margin-left: 10px;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dietryTags label {
     display: flex;
-    align-items: center; /* Align checkbox and label text vertically */
+    align-items: center;
     font-size: 1em;
-    color: #0a5247; /* Dark Green for text */
+    color: #0a5247;
     cursor: pointer;
-        gap: 5px;
-
+    gap: 5px;
 }
 
 .dietryTags input[type="checkbox"] {
-    margin-right: 10px; /* Add space between checkbox and text */
-    accent-color: #bfd202; /* Medium Green color for the checkbox */
+    margin-right: 10px;
+    accent-color: #bfd202;
 }
 
-
-
-
-    .post-btn {
-        display: block;
-        /*margin: 1px auto;*/
-        padding: 10px 20px;
-        /*margin-top: 10px;*/
-        background-color: #0a5247;
-        color: antiquewhite;
-        border-radius: 10px;
-                font-family: 'Palatino Linotype', 'Palatino', serif;
-    font-size: 16px;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        width: 180px;
-            align-self: center; /* or use align-items depending on your layout */
-                cursor: pointer;
-    }
-
-    .post-btn:hover {
-    background-color: #bfd202; /* Medium Green */
+.post-btn {
+    width: 20%;
+    text-align: center;
+    background-color: #bfd202;
     color: black;
-
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    align-self: center;
+    cursor: pointer;
 }
 
+.post-btn:hover {
+    background-color: lightgreen;
+    color: black;
+}
