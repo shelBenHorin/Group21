@@ -12,24 +12,24 @@ document.getElementById('login-form').addEventListener('submit', function (event
      const password = document.getElementById('password').value.trim();
 
      // Validate the email
-     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     if (!emailPattern.test(email)) {
-         alert ( 'Please enter a valid email address.');
-         resetForm();
-         return; // Stop further validation
-     }
+     // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     // if (!emailPattern.test(email)) {
+     //     alert ( 'Please enter a valid email address.');
+     //     resetForm();
+     //     return; // Stop further validation
+     // }
 
      // Validate the password (e.g., at least 8 characters, includes a number and a special character)
-     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-     if (!passwordPattern.test(password)) {
-         alert ('Password must be at least 8 characters long, include a number, and a special character.');
-         resetForm();
-         return; // Stop further validation
-
-     }
+     // const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+     // if (!passwordPattern.test(password)) {
+     //     alert ('Password must be at least 8 characters long, include a number, and a special character.');
+     //     resetForm();
+     //     return; // Stop further validation
+     //
+     // }
 
      // If all validations pass
-     alert('Form submitted successfully!');
+     // alert('Form submitted successfully!');
 
 function resetForm() {
     document.getElementById('login-form').reset();

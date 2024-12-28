@@ -13,12 +13,8 @@
 
     <div class="container">
         <h4>Create Your Account</h4>
-        <form action="#" id="signup-form" method="POST" enctype="multipart/form-data">
-            <!-- Profile Picture -->
-<!--            <div class="form-group">-->
-<!--                <label for="profile-picture">Profile Picture:</label>-->
-<!--                <input type="file" id="profile-picture" accept="image/*" class="input-field">-->
-<!--            </div>-->
+        <form action="#" id="signup-form" method="POST" class = "signup-form" enctype="multipart/form-data">
+
             <div class="photo-upload">
 
     <label for="profile-picture" class="photo-label">
@@ -32,22 +28,25 @@
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" placeholder="Enter your username" class="input-field" required>
+                     <span class="error" id="usernameError"></span>
             </div>
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" placeholder="Enter your email" class="input-field" required>
+                <span class="error" id="emailError"></span>
             </div>
             <!-- Password -->
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Create your password" class="input-field" required>
+                 <span class="error" id="passwordError"></span>
             </div>
             <!-- Signup Button -->
             <button type="submit" class="signup-btn">Create Account</button>
         </form>
         <p class="signin-text">Already have an account?</p>
-        <button class="signin-btn">Sign In</button>
+        <button onclick="window.location.href='login.html'" class="signin-btn">Sign In</button>
     </div>
     <script src="signup.js"></script>
 
