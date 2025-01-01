@@ -47,32 +47,34 @@ nav {
     background-color: antiquewhite; /* Cream */
 }
 
+.search-form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    gap: 20px; /* Add spacing between search bar, categories, and button */
+}
 .search-container {
     text-align: center;
+    display: grid;
     margin: 0 auto;
 }
 
 .search-container h1 {
-        margin-top: 0;
-        font-family: Cooper;
-            background-color: #bfd202;
-        padding: 10px;
+    margin-top: 0;
+    font-family: Cooper, serif;
+    background-color: #bfd202;
+    padding: 10px;
     font-size: 70px;
     color: #0a5247;
     margin-bottom: 20px;
+        text-align: center;
+
 }
 
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
 
 .search-input {
-        font-family: 'Palatino Linotype', 'Palatino', serif;
-
-    width: 50%;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    width: 100%;
     max-width: 500px;
     padding: 10px;
     border: 2px solid #0a5247;
@@ -90,9 +92,8 @@ nav {
 }
 
 .search-button {
-    padding: 10px 20px;
-        font-family: 'Palatino Linotype', 'Palatino', serif;
-
+    padding: 10px 100px;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
     background-color: #0a5247;
     color: antiquewhite;
     font-size: 1em;
@@ -100,6 +101,8 @@ nav {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
 }
 
 .search-button:hover {
@@ -109,25 +112,43 @@ nav {
 
 .category-blocks {
     display: flex;
+    grid-auto-columns: 120%;
+    text-align: center;
+    position: relative;
     justify-content: center;
-    margin-top: 20px;
+    /*margin: 20px;*/
     flex-wrap: wrap;
     gap: 15px;
 }
 
 .category-block {
-    width: 10%;
-    max-width: 150px;
+    /*position: ;*/
+    display: flex;
+    align-items: center;
+        justify-content: center;
+
+    /*justify-content: center;*/
+    width: 100px;
+    height: 30px;
+    max-width: 180px;
     background-color: #0a5247;
     color: antiquewhite;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    font-size: 12px; /* Smaller text */
+    font-size: 14px; /* Smaller text */
 
 }
-
+/*.category-block input[type="checkbox"] {*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*    pointer-events: none;*/
+/*}*/
+.category-block input[type="checkbox"]:checked + label {
+    background-color: #bfd202;
+    color: black;
+}
 .category-block:hover {
      background-color: #bfd202; /* Medium Green */
     color: black;
