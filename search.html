@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Search</title>
     <link rel="stylesheet" href="search.css">
-
 </head>
 <body>
 
@@ -22,20 +21,24 @@
     <h1>Search</h1>
     <form class="search-form">
         <input type="text" placeholder="Type here to search..." class="search-input" />
+
+        <div class="category-blocks">
+            <label class="category-block">
+                <input type="checkbox" name="category" value="recipes" />
+                Recipes
+            </label>
+            <label class="category-block">
+                <input type="checkbox" name="category" value="users" />
+                Users
+            </label>
+            <label class="category-block">
+                <input type="checkbox" name="category" value="tags" />
+                Tags
+            </label>
+        </div>
+
         <button type="submit" class="search-button">Search</button>
     </form>
-
-    <div class="category-blocks">
-        <div class="category-block" id="recipes">
-            <h2>Recipes</h2>
-        </div>
-        <div class="category-block" id="users">
-            <h2>Users</h2>
-        </div>
-        <div class="category-block" id="tags">
-            <h2>Tags</h2>
-        </div>
-    </div>
 </div>
 
 </body>

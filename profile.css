@@ -58,14 +58,13 @@ nav {
     .nav-links {
         flex-direction: column;
         gap: -10px;
-        }
     }
+}
 
 .container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    /*padding: 20px;*/
 }
 
 .left-half {
@@ -79,40 +78,24 @@ nav {
     font-size: 50px;
     background-color: #bfd202;
     padding: 20px 30px;
-    font-family: Cooper;
-        text-align: center;
+    font-family: Cooper, serif;
+    text-align: center;
     border-radius: 30px;
-
 }
 
 .profile-picture {
     border-radius: 50%;
-   width: 200px; /* Fixed width */
-  height: 200px; /* Fixed height, same as width */
-  overflow: hidden;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
     object-fit: cover;
     margin: 10px 0;
 }
 
-.nickname {
-    font-size: 50px;
+.username {
+    font-size: 40px;
     margin-top: -15px;
     color: #0a5247;
-}
-
-.edit {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #8bc34a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Palatino Linotype', 'Palatino', serif;
-}
-
-.edit:hover {
-    background-color: #33691e;
 }
 
 .right-half {
@@ -120,10 +103,9 @@ nav {
     width: 50%;
     text-align: center;
     display: grid;
-     grid-template-columns: repeat(2, 1fr); /* Creates two columns */
-  gap: 10px; /* Space between the images */
-     max-width: 45%;
-
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 45%;
 }
 
 .lunchbox-picture {
@@ -131,69 +113,7 @@ nav {
     width: 100%;
     max-width: 400px;
     height: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/*!* Divider *!*/
-/*.divider {*/
-/*    height: 1px;*/
-/*    background-color: #000000;*/
-/*    margin: 20px 0;*/
-/*}*/
-
-/*h1{*/
-/* text-align: left ;*/
-/*  color: #0a5247;*/
-/*  font-size: 50px;*/
-/*    background-color: #bfd202;*/
-/*   padding: 50px 60px;*/
-/*    width: 80%;*/
-/*    margin-top: 0px;*/
-/*    margin-left: 0px;*/
-/*    font-family: "cooper", Serif;*/
-/*}*/
-/*.left{*/
-/*   width: 50%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    flex-direction: column;*/
-/*    text-align: center;*/
-/*    font-family: "Segoe UI";*/
-/*    gap: 10px;*/
-/*    position: fixed;*/
-
-/*}*/
-/*.nickname{*/
-/*    font-size: 30px;*/
-/*}*/
-/*.edit{*/
-
-/*        background-color: #0a5247;*/
-/*        color: antiquewhite;*/
-/*        font-weight: bold;*/
-/*        letter-spacing: 0.5px;*/
-/*        width: 180px;*/
-/*        padding: 10px;*/
-/*        border-radius: 10px; ;*/
-/*}*/
-/*.divider {*/
-/*    position: fixed; !* Keeps the line in place *!*/
-/*    top: 0; !* Starts from the top *!*/
-/*    left: 50%; !* Positions at the center of the page *!*/
-/*    width: 2px; !* Line thickness *!*/
-/*    height: 100vh; !* Full height of the viewport *!*/
-/*    background-color: gray; !* Line color *!*/
-/*    transform: translateX(-50%); !* Centers the line exactly *!*/
-/*     z-index: 10;*/
-/*}*/
-
-/*.right {*/
-/*margin-left: auto;*/
-/*    width: 50% ;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    flex-direction: column;*/
-
-/*}*/
 

@@ -4,16 +4,16 @@
     box-sizing: border-box;
 }
 
-    body {
-        background-color: #bfd202;
-        background-image: url("lunch box.jpeg") ;
-        background-repeat: no-repeat;
-        background-position:right center;
-        background-size: 45% 100%;
-        font-family: "cooper";
-         display: flex;
-  justify-content: flex-start;
-  align-items: center;
+body {
+    background-color: #bfd202;
+    background-image: url("lunch box.jpeg") ;
+    background-repeat: no-repeat;
+    background-position:right center;
+    background-size: 45% 100%;
+    font-family: "cooper", serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
         /*margin: 0;*/
         height: 100vh;
         /*margin-right: 200px;*/
