@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post A New Lunch Box</title>
      <link rel="stylesheet" href="post.css">
 </head>
 <body>
-
     <nav>
         <div class="nav-logo">What's in my Box?</div>
         <div class="nav-links">
@@ -22,12 +21,12 @@
 
     <h3>Post A New Lunch Box</h3>
 
-     <div class="form-container">
+    <div class="form-container">
         <div class="left-section">
              <form action="#" id = 'post-form' class = "post" method="GET">
                 <div>
                     <label> Title </label>
-                     <input type="text" id = "title" placeholder="add lunchbox name/title" required>
+                    <input type="text" id = "title" placeholder="add lunchbox name/title" required>
                 </div>
 
                 <div>
@@ -45,49 +44,48 @@
                     <textarea id="recipe" placeholder="Add lunchbox recipe and instructions" required></textarea>
                 </div>
 
-                        <label> Dietary Tags </label>
-        <div class = dietryTags>
-            <label>
-                        <input type="checkbox" name="dietary" value="vegan">
-
-        Vegan
-    </label>
-    <label>
-        <input type="checkbox" name="dietary" value="vegetarian">
-        Vegetarian
-    </label>
-    <label>
-        <input type="checkbox" name="dietary" value="gluten-free">
-        Gluten-Free
-    </label>
-    <label>
-        <input type="checkbox" name="dietary" value="dairy-free">
-        Dairy-Free
-    </label>
-    <label>
-        <input type="checkbox" name="dietary" value="nut-free">
-        Nut-Free
-    </label>
-
+                <div>
+                    <label> Dietary Tags </label>
+                    <div class = dietryTags>
+                        <label>
+                            <input type="checkbox" name="dietary" value="vegan">
+                            Vegan
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietary" value="vegetarian">
+                            Vegetarian
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietary" value="gluten-free">
+                            Gluten-Free
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietary" value="dairy-free">
+                            Dairy-Free
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietary" value="nut-free">
+                            Nut-Free
+                        </label>
+                    </div>
+                </div>
+            </form>
         </div>
-     </form>
-   </div>
 
-                 <div class="right-section">
-        <div class="photo-upload">
-     <label for="photo" class="photo-label">
-    Choose a photo from camera roll:
-         <br>
-         <i class="fas fa-camera"></i>
-  </label>
-  <input type="file" id="photo" name="photo" style="display:none;">
-    <div id="photo-preview-container" style="margin-top: 10px;"></div>
-</div>
-</div>
-         </div>
+        <div class="right-section">
+            <div class="photo-upload">
+                <label for="photo" class="photo-label">
+                    Choose a photo from camera roll:
+                    <br>
+                    <i class="fas fa-camera"></i>
+                </label>
+            <input type="file" id="photo" name="photo" style="display:none;">
+            <div id="photo-preview-container" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
 
-        <button type="button" class="post-btn">Click to share!</button>
-<!--        <button onclick="window.location.href='feed.html'" type="submit" class="post-btn">Click to share!</button>-->
+    <button type="button" class="post-btn">Click to share!</button>
 
     <script src="post.js"></script>
 
