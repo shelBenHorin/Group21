@@ -14,12 +14,8 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-        /*margin: 0;*/
-        height: 100vh;
-        /*margin-right: 200px;*/
-
-    }
-
+    height: 100vh;
+}
 
 h3 {
     text-align: center;
@@ -28,103 +24,84 @@ h3 {
     margin-bottom: 20px;
     padding: 20px;
     background-color: #e7ed76;
-    width: 55%;  /* Set width to 50% of the viewport */
-    position: absolute;  /* Position it outside of the container */
-    top: 0px;  /* Adjust the top position */
-    left: 0;  /* Align it to the center of the screen */
-}
-    .container {
-        margin-top: 80px;
-        text-align: center;
-        border-radius: 10px;
-        padding: 30px;
-        width: 40%; /* Adjust form width */
-        margin-left: 5%; /* Add spacing from the left edge */
+    width: 55%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
+.container {
+    margin-top: 80px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+    width: 40%;
+    margin-left: 5%;
+}
 
+h4 {
+    color: #0a5247;
+    font-size: 25px;
+    margin-top: 20px;
+}
 
-    h4 {
-        /*text-align: center ;*/
-        color: #0a5247;
-        font-size: 25px;
-        /*margin-right: 350px;*/
-        margin-top: 20px;
-          /*margin-bottom: 15px;*/
+h1 {
+    color: #0a5247;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
 
+.input-field {
+    width: 80%;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 30px;
+    background-color: #e7ed76;
+    border: 1px solid #8bc34a;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn {
+    width: 80%;
+    text-align: center;
+    background-color: #ffc643;
+    color: black;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-width: 0;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
+
+.login-btn:hover {
+    background-color: darkorange;
+}
+
+.signup-btn {
+    width: 80%;
+    text-align: center;
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-width: 0px;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
     }
 
-    h1 {
-        /*text-align: center;*/
-        color: #0a5247;
-        font-size: 60px;
-        /*margin-right: 350px;*/
-          margin-bottom: 20px;
+.signup-btn:hover {
+    background: #5e9f23;
+}
 
-    }
-
-    .input-field {
-        width: 80%;
-        margin-bottom: 15px;
-        font-size: 16px;
-        border-radius: 30px;
-        background-color: #e7ed76;
-        border: 1px solid #8bc34a;
-        font-family: 'Palatino Linotype', 'Palatino', serif;
-        text-align: center;
-        padding: 10px;
-                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
-    }
-
-    .login-btn {
-        width: 80%;
-        text-align: center;
-        background-color: #ffc643;
-        color: black;
-                font-size: 16px;
-
-        padding: 10px;
-        border-radius: 30px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border-width: 0px;
-                font-family: 'Palatino Linotype', 'Palatino', serif;
-
-    }
-
-    .login-btn:hover {
-        background-color: darkorange;
-    }
-
-    .signup-btn {
-        width: 80%;
-        text-align: center;
-        background-color: lightgreen;
-          margin-bottom: 10px;
-
-        color: black;
-        padding: 10px;
-                font-size: 16px;
-
-        border-radius: 30px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border-width: 0px;
-                font-family: 'Palatino Linotype', 'Palatino', serif;
-
-    }
-
-    .signup-btn:hover {
-        background: #5e9f23;
-    }
-
-    .signup-text{
-        text-align: center;
-         margin: 15px 0;
-  color: #0a5247;
-  font-size: 16px;
-    }
-
-
-
-
-
+.signup-text{
+    text-align: center;
+    margin: 15px 0;
+    color: #0a5247;
+    font-size: 16px;
+}

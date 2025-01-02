@@ -3,6 +3,7 @@ body {
     padding: 0;
     background-color: #e7ed76;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
