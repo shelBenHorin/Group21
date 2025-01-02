@@ -142,8 +142,13 @@ label {
     border-radius: 30px;
     border: 1px solid #043b33;
     box-sizing: border-box;
-                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
+}
+
+
+input[type="file"] {
+    display: none;
 }
 
 @keyframes grow {

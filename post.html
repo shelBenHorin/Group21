@@ -74,19 +74,20 @@
 
         <div class="right-section">
             <div class="photo-upload">
+                <input type="file" id="photo" name="photo" style="display:none;">
                 <label for="photo" class="photo-label">
                     Choose a photo from camera roll:
                     <br>
                     <i class="fas fa-camera"></i>
                 </label>
-            <input type="file" id="photo" name="photo" style="display:none;">
-            <div id="photo-preview-container" style="margin-top: 10px;"></div>
+            <div id="photo-preview-container"></div>
             </div>
         </div>
     </div>
 
-    <button type="button" class="post-btn">Click to share!</button>
-
+    <div class="button-container">
+        <button type="button" class="post-btn">Click to share!</button>
+    </div>
     <script src="post.js"></script>
 
 </body>
