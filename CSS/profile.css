@@ -54,12 +54,6 @@ nav {
     background-color: antiquewhite; /* Cream */
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        gap: -10px;
-    }
-}
 
 .container {
     display: flex;
@@ -75,7 +69,7 @@ nav {
 
 .left-half h1 {
     color: #0a5247;
-    font-size: 50px;
+    font-size: 60px;
     background-color: #bfd202;
     padding: 20px 30px;
     font-family: Cooper, serif;
@@ -93,8 +87,7 @@ nav {
 }
 
 .username {
-    font-size: 40px;
-    margin-top: -15px;
+    font-size: 20px;
     color: #0a5247;
 }
 
@@ -117,3 +110,9 @@ nav {
 }
 
 
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: -10px;
+    }
+}
