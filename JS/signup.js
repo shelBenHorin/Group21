@@ -192,13 +192,11 @@ function validateForm(event) {
 
     // If all validations pass
     if (isValid) {
+        alert('Form submitted successfully!');
         formSuccess.textContent = 'Form submitted successfully!';
         resetForm(); // Clear the form
+        window.location.href = 'feed.html';
 
-        // Clear all error messages
-        usernameError.textContent = '';
-        emailError.textContent = '';
-        passwordError.textContent = '';
     }
 }
 
