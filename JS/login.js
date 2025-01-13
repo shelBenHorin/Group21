@@ -1,38 +1,51 @@
 document.getElementById('login-form').addEventListener('submit', function (event) {
-     // Prevent the form from being submitted
-     event.preventDefault();
+    event.preventDefault();
 
-     // Clear any previous error messages
-     document.getElementById('emailError').textContent = '';
-     document.getElementById('passwordError').textContent = '';
-     console.log("Clear any previous error messages")
+    // Clear previous error messages and remove red borders
+    const existingError = document.querySelector('.dynamic-error');
+    if (existingError) {
+        existingError.remove(); // Remove any previous error message
+    }
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    emailField.style.border = ''; // Reset border
+    passwordField.style.border = ''; // Reset border
 
-     // Get the values of the inputs
-     const email = document.getElementById('email').value.trim();
-     const password = document.getElementById('password').value.trim();
+    const email = emailField.value.trim();
+    const password = passwordField.value.trim();
 
-     // Validate the email
-     // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     // if (!emailPattern.test(email)) {
-     //     alert ( 'Please enter a valid email address.');
-     //     resetForm();
-     //     return; // Stop further validation
-     // }
+    let isValid = true;
 
-     // Validate the password (e.g., at least 8 characters, includes a number and a special character)
-     // const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-     // if (!passwordPattern.test(password)) {
-     //     alert ('Password must be at least 8 characters long, include a number, and a special character.');
-     //     resetForm();
-     //     return; // Stop further validation
-     //
-     // }
+    // Check if email field is empty
+    if (email.length === 0) {
+        emailField.style.border = '2px solid red'; // Add red border to the email field
+        isValid = false;
+    }
 
-     // If all validations pass
-     // alert('Form submitted successfully!');
+    // Check if password field is empty
+    if (password.length === 0) {
+        passwordField.style.border = '2px solid red'; // Add red border to the password field
+        isValid = false;
+    }
+
+    // Show an error message if any field is empty
+    if (!isValid) {
+        const errorMessage = document.createElement('span');
+        errorMessage.textContent = 'Please fill both fields.';
+        errorMessage.className = 'dynamic-error'; // Add a class for styling
+
+        // Append the error message to the form
+        const form = document.getElementById('login-form');
+        form.appendChild(errorMessage);
+
+        return; // Stop further execution
+    }
+
+    // If both fields are filled
+    alert('Sign-in successful!');
+    window.location.href = 'feed.html';
 
 function resetForm() {
     document.getElementById('login-form').reset();
-
 
 }})

@@ -172,3 +172,25 @@ input[type="file"] {
     color: #0a5247;
     margin-right: 10px;
 }
+
+/* Error message styling */
+.error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
+
+/* Success message styling */
+.success-message {
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
+
+/* Highlight input fields with errors */
+.input-error {
+    border: 2px solid red;
+}
+

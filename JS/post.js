@@ -2,25 +2,49 @@ document.addEventListener("DOMContentLoaded", function () {
     const shareButton = document.querySelector(".post-btn"); // The "Share" button
     const form = document.getElementById("post-form"); // The form with id 'post-form'
 
-    // Function to validate required fields (excluding dietary tags)
+    // Function to validate required fields
     function validateForm() {
         const title = document.getElementById("title");
         const description = document.getElementById("description");
         const ingredients = document.getElementById("ingredients");
         const recipe = document.getElementById("recipe");
-        const photoUpload = document.getElementById("photo");
 
-        // Check if required fields are filled
-        if (!title.value || !description.value || !ingredients.value || !recipe.value || !photoUpload.files.length) {
-            alert("Please fill out all required fields.");
-            return false; // Prevent form submission if validation fails
+        // Array to track all required fields (photo removed)
+        const requiredFields = [title, description, ingredients, recipe];
+        let isValid = true;
+
+        // Remove previous error styles and message
+        requiredFields.forEach((field) => {
+            field.style.border = ""; // Reset the border
+        });
+
+        const existingError = document.querySelector(".dynamic-error");
+        if (existingError) {
+            existingError.remove(); // Remove previous error message
         }
-        return true; // All required fields are filled
+
+        // Check each field and validate
+        requiredFields.forEach((field) => {
+            if (field.value.trim() === "") {
+                field.style.border = "2px solid red"; // Add a red border to invalid fields
+                isValid = false;
+            }
+        });
+
+        // If there are invalid fields, show error message
+        if (!isValid) {
+            const errorMessage = document.createElement("span");
+            errorMessage.textContent = "Please fill all required fields.";
+            errorMessage.className = "dynamic-error"; // Add a class for styling
+            form.appendChild(errorMessage); // Append the error message to the form
+        }
+
+        return isValid; // Return whether the form is valid or not
     }
 
     // Add an event listener to the "share" button
     shareButton.addEventListener("click", function (e) {
-        console.log("Share button clicked!");  // Check if the button click is registered
+        console.log("Share button clicked!"); // Check if the button click is registered
 
         // Prevent default form submission (since the button is outside the form)
         e.preventDefault();
@@ -32,32 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Optionally, navigate to the "feed" screen (adjust the URL as necessary)
             window.location.href = "feed.html"; // Assuming this is the URL for the "feed" screen
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the file input and preview container elements
-    const photoInput = document.getElementById("photo");
-    const previewContainer = document.getElementById("photo-preview-container");
-
-    // Listen for changes in the file input
-    photoInput.addEventListener("change", function (e) {
-        const file = e.target.files[0]; // Get the selected file
-
-        if (file) {
-            const reader = new FileReader(); // Create a FileReader to read the file
-
-            reader.onload = function (event) {
-                const imgElement = document.createElement("img"); // Create an image element
-                imgElement.src = event.target.result; // Set the source of the image to the file URL
-
-                // Clear previous preview (if any) and add the new image
-                previewContainer.innerHTML = ""; // Clear previous content
-                previewContainer.appendChild(imgElement); // Append the new image
-            };
-
-            reader.readAsDataURL(file); // Read the file as a data URL
         }
     });
 });

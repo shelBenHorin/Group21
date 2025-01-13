@@ -231,9 +231,35 @@ input[type="text"]{
     font-family: 'Palatino Linotype', 'Palatino', serif;
     align-self: center;
     cursor: pointer;
+
 }
 
 .post-btn:hover {
-    background-color: lightgreen;
+    background-color: #5e9f23;
     color: black;
+    animation: grow 0.5s ease-in-out;
+
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.dynamic-error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block; /* Ensure it appears on a new line */
+    text-align: center;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+
 }

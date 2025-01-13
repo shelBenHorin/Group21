@@ -77,7 +77,9 @@ nav {
     width: 100%;
     max-width: 500px;
     padding: 10px;
-    border: 2px solid #0a5247;
+    border: 1px solid #0a5247;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
     border-radius: 30px;
     font-size: 1em;
     background-color: #e7ed76;
@@ -94,8 +96,8 @@ nav {
 .search-button {
     padding: 10px 100px;
     font-family: 'Palatino Linotype', 'Palatino', serif;
-    background-color: #0a5247;
-    color: antiquewhite;
+    background-color: #ffc643;
+    color: black;
     font-size: 1em;
     border: none;
     border-radius: 30px;
@@ -106,8 +108,9 @@ nav {
 }
 
 .search-button:hover {
-    background-color: #bfd202; /* Medium Green */
-    color: black;
+    background-color: orange;
+    animation: grow 0.5s ease-in-out;
+
 }
 
 .category-blocks {
@@ -131,8 +134,8 @@ nav {
     width: 100px;
     height: 30px;
     max-width: 180px;
-    background-color: #0a5247;
-    color: antiquewhite;
+    background-color: lightgreen;
+    color: black;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -140,17 +143,13 @@ nav {
     font-size: 14px; /* Smaller text */
 
 }
-/*.category-block input[type="checkbox"] {*/
-/*    position: absolute;*/
-/*    opacity: 0;*/
-/*    pointer-events: none;*/
-/*}*/
+
 .category-block input[type="checkbox"]:checked + label {
-    background-color: #bfd202;
+    background-color: green;
     color: black;
 }
 .category-block:hover {
-     background-color: #bfd202; /* Medium Green */
+     background-color: green; /* Medium Green */
     color: black;
         cursor: pointer; /* Add this to show the pointer cursor */
 
@@ -170,5 +169,17 @@ nav {
 
     .search-input {
         width: 80%;
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }

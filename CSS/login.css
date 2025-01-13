@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "cooper", serif;
+
 }
 
 body {
@@ -10,7 +12,6 @@ body {
     background-repeat: no-repeat;
     background-position:right center;
     background-size: 45% 100%;
-    font-family: "cooper", serif;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -75,10 +76,13 @@ h1 {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-width: 0;
     font-family: 'Palatino Linotype', 'Palatino', serif;
+        cursor: pointer;
+
 }
 
 .login-btn:hover {
     background-color: darkorange;
+    animation: grow 0.5s ease-in-out;
 }
 
 .signup-btn {
@@ -93,10 +97,14 @@ h1 {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-width: 0px;
     font-family: 'Palatino Linotype', 'Palatino', serif;
+        cursor: pointer;
+
     }
 
 .signup-btn:hover {
     background: #5e9f23;
+    animation: grow 0.5s ease-in-out;
+
 }
 
 .signup-text{
@@ -104,4 +112,26 @@ h1 {
     margin: 15px 0;
     color: #0a5247;
     font-size: 16px;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.dynamic-error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block; /* Ensures it appears on a new line */
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    text-align: center;
 }
