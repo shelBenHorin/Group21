@@ -2,15 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "cooper", serif;
-
+    font-family: "Cooper", serif;
 }
 
 body {
     background-color: #bfd202;
-    background-image: url("../images/lunchbox.jpeg") ;
+    background-image: url("../images/lunchbox.jpeg");
     background-repeat: no-repeat;
-    background-position:right center;
+    background-position: right center;
     background-size: 45% 100%;
     display: flex;
     justify-content: flex-start;
@@ -74,10 +73,9 @@ h1 {
     padding: 10px;
     border-radius: 30px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-width: 0;
+    border: none;
     font-family: 'Palatino Linotype', 'Palatino', serif;
-        cursor: pointer;
-
+    cursor: pointer;
 }
 
 .login-btn:hover {
@@ -95,19 +93,17 @@ h1 {
     font-size: 16px;
     border-radius: 30px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-width: 0px;
+    border: none;
     font-family: 'Palatino Linotype', 'Palatino', serif;
-        cursor: pointer;
-
-    }
+    cursor: pointer;
+}
 
 .signup-btn:hover {
     background: #5e9f23;
     animation: grow 0.5s ease-in-out;
-
 }
 
-.signup-text{
+.signup-text {
     text-align: center;
     margin: 15px 0;
     color: #0a5247;
@@ -131,7 +127,7 @@ h1 {
     font-size: 14px;
     font-weight: bold;
     margin-top: 10px;
-    display: block; /* Ensures it appears on a new line */
+    display: block;
     font-family: 'Palatino Linotype', 'Palatino', serif;
     text-align: center;
 }

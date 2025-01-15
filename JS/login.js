@@ -1,51 +1,50 @@
 document.getElementById('login-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    // Clear previous error messages and remove red borders
+    // Reset error messages and styles
     const existingError = document.querySelector('.dynamic-error');
     if (existingError) {
-        existingError.remove(); // Remove any previous error message
+        existingError.remove();
     }
+
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
-    emailField.style.border = ''; // Reset border
-    passwordField.style.border = ''; // Reset border
+    emailField.style.border = '';
+    passwordField.style.border = '';
 
     const email = emailField.value.trim();
     const password = passwordField.value.trim();
-
     let isValid = true;
 
-    // Check if email field is empty
-    if (email.length === 0) {
-        emailField.style.border = '2px solid red'; // Add red border to the email field
+    // Validate email field
+    if (!email) {
+        emailField.style.border = '2px solid red';
         isValid = false;
     }
 
-    // Check if password field is empty
-    if (password.length === 0) {
-        passwordField.style.border = '2px solid red'; // Add red border to the password field
+    // Validate password field
+    if (!password) {
+        passwordField.style.border = '2px solid red';
         isValid = false;
     }
 
-    // Show an error message if any field is empty
+    // Display error message if there is an empty field
     if (!isValid) {
         const errorMessage = document.createElement('span');
         errorMessage.textContent = 'Please fill both fields.';
-        errorMessage.className = 'dynamic-error'; // Add a class for styling
+        errorMessage.className = 'dynamic-error';
 
-        // Append the error message to the form
         const form = document.getElementById('login-form');
         form.appendChild(errorMessage);
-
-        return; // Stop further execution
+        return;
     }
 
-    // If both fields are filled
+    // successful sign-in - message and move to feed
     alert('Sign-in successful!');
     window.location.href = 'feed.html';
+});
 
+// reset the form
 function resetForm() {
     document.getElementById('login-form').reset();
-
-}})
+}

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../CSS/signup.css">
     <script defer src="../JS/signup.js"></script>
 </head>
@@ -13,8 +13,14 @@
 
     <div class="container">
         <h4>Create Your Account</h4>
-        <form action="#" id="signup-form" method="POST" class = "signup-form" enctype="multipart/form-data" novalidate>
-
+        <form
+            action="#"
+            id="signup-form"
+            method="POST"
+            class="signup-form"
+            enctype="multipart/form-data"
+            novalidate
+        >
             <!-- Profile Picture Upload -->
             <div class="form-group photo-upload">
                 <input type="file" id="profile-picture" accept="image/*">
@@ -22,38 +28,58 @@
                     <i class="fas fa-camera"></i>
                     Upload Profile Picture
                 </label>
-
             </div>
 
             <!-- Username -->
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Enter your username" class="input-field" required>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    class="input-field"
+                    required
+                >
                 <span class="error" id="usernameError"></span>
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Enter your email" class="input-field" required>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    class="input-field"
+                    required
+                >
                 <span class="error" id="emailError"></span>
             </div>
 
             <!-- Password -->
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Create your password" class="input-field" required>
-                 <span class="error" id="passwordError"></span>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create your password"
+                    class="input-field"
+                    required
+                >
+                <span class="error" id="passwordError"></span>
             </div>
 
             <!-- Signup Button -->
             <button type="submit" class="signup-btn">Create Account</button>
-             <div id="formSuccess" class="success-message"></div>
         </form>
-        <p class="signin-text">Already have an account?</p>
-        <button onclick="window.location.href='login.html'" class="signin-btn">Sign In</button>
-    </div>
-    <script src="../JS/signup.js"></script>
 
+        <p class="signin-text">Already have an account?</p>
+        <button
+            onclick="window.location.href='login.html'"
+            class="signin-btn"
+        >
+            Sign In
+        </button>
+    </div>
 </body>
 </html>

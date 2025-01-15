@@ -8,7 +8,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0a5247; /* Dark Green */
+    background-color: #0a5247;
     padding: 10px 20px;
     color: antiquewhite;
 }
@@ -33,18 +33,19 @@ nav {
 }
 
 .nav-links a:hover {
-    background-color: #bfd202; /* Medium Green */
+    background-color: #bfd202;
     color: black;
 }
 
 .nav-links .logout {
-    background-color: #e7ed76; /* Light Green */
+    background-color: #e7ed76;
     color: black;
 }
 
 .nav-links .logout:hover {
-    background-color: antiquewhite; /* Cream */
+    background-color: antiquewhite;
 }
+
 main {
     text-align: center;
     font-family: 'Palatino Linotype', 'Palatino', serif;
@@ -58,7 +59,6 @@ main {
     color: #0a5247;
     margin: 0;
 }
-
 
 .recipe-grid {
     display: grid;
@@ -79,8 +79,7 @@ main {
 .recipe-card img {
     width: 100%;
     border-radius: 8px;
-        object-fit: cover;
-
+    object-fit: cover;
 }
 
 .recipe-card h3 {
@@ -102,6 +101,6 @@ main {
 @media (max-width: 768px) {
     .nav-links {
         flex-direction: column;
-        gap: -10px;
+        gap: 10px;
     }
 }

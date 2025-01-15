@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <title>What's In My Box</title>
-    <link rel="stylesheet" href="../CSS/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/login.css">
 </head>
 <body>
     <h3>What's In My Box?</h3>
@@ -11,15 +11,35 @@
         <h4>Hello again!</h4>
         <h1>LOG IN</h1>
         <form action="#" id="login-form" method="GET" novalidate>
-            <input type="email" id="email" placeholder="Email" class="input-field" required>
+            <!-- Email Input -->
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                class="input-field"
+                required
+                aria-label="Email">
             <span class="error" id="emailError"></span>
-            <input type="password" id="password" placeholder="Password" class="input-field" required>
-             <span class="error" id="passwordError"></span>
-            <button   type="submit" class="login-btn">Login</button>
+
+            <!-- Password Input -->
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                class="input-field"
+                required
+                aria-label="Password">
+            <span class="error" id="passwordError"></span>
+
+            <!-- Login Button -->
+            <button type="submit" class="login-btn">Login</button>
         </form>
-        <p class="signup-text">don't have an account yet?</p>
-        <button onclick="window.location.href='signup.html'" class="signup-btn">Sign Up!</button>
+        <p class="signup-text">Don't have an account yet?</p>
+        <button
+            onclick="window.location.href='signup.html'"
+            class="signup-btn">Sign Up!
+        </button>
     </div>
-<script src="../JS/login.js"></script>
+    <script src="../JS/login.js"></script>
 </body>
 </html>

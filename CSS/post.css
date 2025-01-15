@@ -40,23 +40,23 @@ nav {
 }
 
 .nav-links a:hover {
-    background-color: #bfd202; /* Medium Green */
+    background-color: #bfd202;
     color: black;
 }
 
 .nav-links .logout {
-    background-color: #e7ed76; /* Light Green */
+    background-color: #e7ed76;
     color: black;
 }
 
 .nav-links .logout:hover {
-    background-color: antiquewhite; /* Cream */
+    background-color: antiquewhite;
 }
 
 @media (max-width: 768px) {
     .nav-links {
         flex-direction: column;
-        gap: -10px;
+        gap: 10px;
     }
 }
 
@@ -108,7 +108,6 @@ textarea {
 
 form div {
     margin-bottom: 10px;
-
 }
 
 .photo-upload {
@@ -116,7 +115,6 @@ form div {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    /*top: 200px;*/
     padding: 20px;
     margin-top: 25px;
     border: 1.3px solid #0a5247;
@@ -124,7 +122,6 @@ form div {
     background-color: #e7ed76;
     width: 80%;
     height: 330px;
-    /*height: 100%;*/
     text-align: center;
     font-size: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -140,24 +137,13 @@ form div {
     font-size: 40px;
     margin-top: 20px;
 }
+
 .photo-label i:hover {
     color: #bfd202;
 }
 
-#photo-preview-container {
-    margin-top: 10px;
-    text-align: center;
-}
-
-#photo-preview-container img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
 input[type="file"] {
-  display: none;
+    display: none;
 }
 
 label {
@@ -168,19 +154,17 @@ label {
     margin-left: 20px;
 }
 
-input[type="text"]{
+input[type="text"] {
     box-sizing: border-box;
     border-radius: 30px;
     background-color: #e7ed76;
-    border-color: #0a5247;
-    border-width: 1.3px;
+    border: 1.3px solid #0a5247;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Palatino Linotype', 'Palatino', serif;
     text-align: center;
     padding: 10px;
     margin-left: 10px;
     width: 100%;
-
 }
 
 .dietryTags {
@@ -214,8 +198,7 @@ input[type="text"]{
 .button-container {
     display: flex;
     justify-content: center;
-    padding-bottom: 30px; /* Space below the button */
-    /*margin-top: 20px; !* Space above the button *!*/
+    padding-bottom: 30px;
 }
 
 .post-btn {
@@ -231,14 +214,12 @@ input[type="text"]{
     font-family: 'Palatino Linotype', 'Palatino', serif;
     align-self: center;
     cursor: pointer;
-
 }
 
 .post-btn:hover {
     background-color: #5e9f23;
     color: black;
     animation: grow 0.5s ease-in-out;
-
 }
 
 @keyframes grow {
@@ -258,8 +239,7 @@ input[type="text"]{
     font-size: 14px;
     font-weight: bold;
     margin-top: 10px;
-    display: block; /* Ensure it appears on a new line */
+    display: block;
     text-align: center;
     font-family: 'Palatino Linotype', 'Palatino', serif;
-
 }

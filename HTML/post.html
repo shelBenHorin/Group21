@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post A New Lunch Box</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../CSS/post.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <div class="nav-logo">What's in my Box?</div>
         <div class="nav-links">
@@ -19,76 +20,80 @@
         </div>
     </nav>
 
+    <!-- Page Header -->
     <h3>Post A New Lunch Box</h3>
 
     <div class="form-container">
+        <!-- Left Section: Form Inputs -->
         <div class="left-section">
-             <form action="#" id = 'post-form' class = "post" method="GET">
-                 <div>
-                    <label> Title </label>
-                    <input type="text" id = "title" placeholder="add lunchbox name/title" required>
+            <form action="#" id="post-form" class="post" method="GET">
+                <!-- Title -->
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="Add lunchbox name/title" required>
                 </div>
 
+                <!-- Description -->
                 <div>
-                    <label> Description </label>
+                    <label for="description">Description</label>
                     <textarea id="description" placeholder="Add lunchbox description" required></textarea>
                 </div>
 
+                <!-- Ingredients -->
                 <div>
-                    <label> Ingredients </label>
+                    <label for="ingredients">Ingredients</label>
                     <textarea id="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
                 </div>
 
+                <!-- Recipe -->
                 <div>
-                    <label> Recipe </label>
+                    <label for="recipe">Recipe</label>
                     <textarea id="recipe" placeholder="Add lunchbox recipe and instructions" required></textarea>
                 </div>
 
+                <!-- Dietary Tags -->
                 <div>
-                    <label> Dietary Tags </label>
-                    <div class = dietryTags>
+                    <label>Dietary Tags</label>
+                    <div class="dietryTags">
                         <label>
-                            <input type="checkbox" name="dietary" value="vegan">
-                            Vegan
+                            <input type="checkbox" name="dietary" value="vegan"> Vegan
                         </label>
                         <label>
-                            <input type="checkbox" name="dietary" value="vegetarian">
-                            Vegetarian
+                            <input type="checkbox" name="dietary" value="vegetarian"> Vegetarian
                         </label>
                         <label>
-                            <input type="checkbox" name="dietary" value="gluten-free">
-                            Gluten-Free
+                            <input type="checkbox" name="dietary" value="gluten-free"> Gluten-Free
                         </label>
                         <label>
-                            <input type="checkbox" name="dietary" value="dairy-free">
-                            Dairy-Free
+                            <input type="checkbox" name="dietary" value="dairy-free"> Dairy-Free
                         </label>
                         <label>
-                            <input type="checkbox" name="dietary" value="nut-free">
-                            Nut-Free
+                            <input type="checkbox" name="dietary" value="nut-free"> Nut-Free
                         </label>
                     </div>
                 </div>
             </form>
         </div>
 
+        <!-- Right Section: File Upload -->
         <div class="right-section">
             <div class="photo-upload">
-                <input type="file" id="photo" name="photo" style="display:none;">
+                <input type="file" id="photo" name="photo" accept="image/*">
                 <label for="photo" class="photo-label">
                     Choose a photo from camera roll:
                     <br>
                     <i class="fas fa-camera"></i>
                 </label>
-            <div id="photo-preview-container"></div>
+                <p id="file-feedback" class="file-feedback">No file chosen</p>
             </div>
         </div>
     </div>
 
+    <!-- Share Button -->
     <div class="button-container">
         <button type="button" class="post-btn">Click to share!</button>
     </div>
-    <script src="../JS/post.js"></script>
 
+    <script src="../JS/post.js"></script>
 </body>
 </html>

@@ -1,36 +1,34 @@
 function validateForm(event) {
-    // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Clear any previous messages and error styles
+    // Input fields and error messages
     const usernameField = document.getElementById('username');
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
-
-    usernameField.classList.remove('input-error');
-    emailField.classList.remove('input-error');
-    passwordField.classList.remove('input-error');
 
     const usernameError = document.getElementById('usernameError');
     const emailError = document.getElementById('emailError');
     const passwordError = document.getElementById('passwordError');
     const formSuccess = document.getElementById('formSuccess');
 
+    // Clear errors and styles
+    [usernameField, emailField, passwordField].forEach((field) =>
+        field.classList.remove('input-error')
+    );
+
     usernameError.textContent = '';
     emailError.textContent = '';
     passwordError.textContent = '';
     formSuccess.textContent = '';
 
-    // Get the input values
+    // Validation logic
     const username = usernameField.value.trim();
     const email = emailField.value.trim();
     const password = passwordField.value.trim();
-
-    // Track validation status
     let isValid = true;
 
     // Username validation
-    if (username.length === 0) {
+    if (!username) {
         usernameError.textContent = 'Username is required.';
         usernameField.classList.add('input-error');
         isValid = false;
@@ -51,30 +49,36 @@ function validateForm(event) {
     // Password validation
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
     if (!passwordPattern.test(password)) {
-        passwordError.textContent = 'Password must be at least 8 characters long, include a number, and a special character.';
+        passwordError.textContent =
+            'Password must be at least 8 characters long, include a number, and a special character.';
         passwordField.classList.add('input-error');
         isValid = false;
     }
 
-    // If all validations pass
+    // If valid, show success and reset form
     if (isValid) {
         formSuccess.textContent = 'Form submitted successfully!';
         formSuccess.classList.add('success-message');
-        resetForm(); // Clear the form
+        resetForm();
         window.location.href = 'feed.html';
     }
 }
 
 function resetForm() {
-    document.getElementById('signup-form').reset();
+    const form = document.getElementById('signup-form');
+    form.reset();
+
+    // Clear error messages
     document.getElementById('usernameError').textContent = '';
     document.getElementById('emailError').textContent = '';
     document.getElementById('passwordError').textContent = '';
 
-    // Clear input error styles
-    const inputs = document.querySelectorAll('.input-field');
+    // Remove input error styles
+    const inputs = form.querySelectorAll('.input-field');
     inputs.forEach((input) => input.classList.remove('input-error'));
 }
 
-// Attach the event listener
-document.getElementById('signup-form').addEventListener('submit', validateForm);
+// Attach event listener
+document
+    .getElementById('signup-form')
+    .addEventListener('submit', validateForm);
