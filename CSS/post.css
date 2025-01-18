@@ -245,6 +245,9 @@ input[type="text"] {
 }
 
 .success-message {
-            color: green;
-            font-weight: bold;
-        }
+    color: green;
+    font-weight: bold;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    padding-top: 20px;
+    text-align: center;
+}

@@ -65,9 +65,18 @@ function validateForm(event) {
              resetForm();
         }, 2000);
 
-        // window.location.href = 'feed.html';
     }
 }
+
+// Add photo selection feedback
+document.addEventListener("DOMContentLoaded", function () {
+    const photoInput = document.getElementById("profile-picture");
+    const fileFeedback = document.getElementById("file-feedback");
+
+    photoInput.addEventListener("change", function () {
+        fileFeedback.textContent = this.files.length > 0 ? "File selected!" : "No file chosen";
+    });
+});
 
 function resetForm() {
     const form = document.getElementById('signup-form');
