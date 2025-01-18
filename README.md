@@ -16,16 +16,11 @@ This project focuses on the client-side of the application, built using HTML, CS
 ---
 
 ## Main Flows on the Site
-1. **Sign Up**:
-   - Users create an account with an optional profile picture, username, email, and password.
-2. **Share a Recipe**:
-   - Users can fill out a simple form to post recipes, complete with an optional image upload.
-3. **Explore the Feed**:
-   - Browse recipes displayed with images and short descriptions. Clicking on a recipe shows more details.
-4. **Search Page**:
-   - Currently, the search page is non functionall. The next phase will include real-time filtering based on user input.
-5. **Interactive Navigation**:
-   - A consistent navigation bar links users to the feed, profile, search, and recipe-sharing sections.
+1. **Sign Up**: Users create an account with an optional profile picture, username, email, and password.
+2. **Share a Recipe**: Users can fill out a simple form to post recipes, complete with an optional image upload.
+3. **Explore the Feed**: Browse recipes displayed with images and short descriptions. Clicking on a recipe shows more details.
+4. **Search Page**: Currently, the search page is non functionall. The next phase will include real-time filtering based on user input.
+5. **Interactive Navigation**: A consistent navigation bar links users to the feed, profile, search, and recipe-sharing sections.
 ---
 
 ## Validations and Forms
@@ -42,18 +37,14 @@ This project focuses on the client-side of the application, built using HTML, CS
 
 ## Responsive Design
 The entire site uses responsive techniques to ensure functionality and aesthetics on all devices. Features include:
-- **Media Queries**:
-  - Adapt layouts for different screen sizes.
-- **Flexible Layouts**:
-  - CSS Grid and Flexbox for adaptable components.
+- **Media Queries**: Adapt layouts for different screen sizes.
+- **Flexible Layouts**: CSS Grid and Flexbox for adaptable components.
 
 ---
 
 ## CSS Animations
-- **Button Animations**:
-  - Smooth transitions and scaling effects on hover.
-- **Image Effects**:
-  - Zoom effects for images in the feed and in the profile on hover.
+- **Button Animations**: Smooth transitions and scaling effects on hover.
+- **Image Effects**: Zoom effects for images in the feed and in the profile on hover.
 
 ---
 
