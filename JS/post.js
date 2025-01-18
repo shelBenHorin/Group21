@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("post-form");
     const photoInput = document.getElementById("photo");
     const fileFeedback = document.getElementById("file-feedback");
+    const formSuccess = document.getElementById('formSuccess');
+
 
     // Update feedback when a photo is selected
     photoInput.addEventListener("change", function () {
         fileFeedback.textContent = this.files.length > 0 ? "File selected!" : "No file chosen";
     });
+
+     formSuccess.textContent = '';
 
     // Function to validate required fields
     function validateForm() {
@@ -48,8 +52,17 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         if (validateForm()) {
-            form.reset(); // Clear the form
-            window.location.href = "feed.html"; // Redirect to the feed screen
+        formSuccess.textContent = 'Form submitted successfully!';
+        formSuccess.classList.add('success-message');
+        setTimeout(() => {
+            window.location.href = 'feed.html'; // Redirect after 1 second
+             resetForm();
+        }, 2000);
         }
+            // form.reset(); // Clear the form
+            // window.location.href = "feed.html"; // Redirect to the feed screen
+
+               // If valid, show success and reset form
+
     });
 });

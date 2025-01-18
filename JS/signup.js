@@ -1,5 +1,6 @@
 function validateForm(event) {
     event.preventDefault();
+    console.log("Validate form triggered")
 
     // Input fields and error messages
     const usernameField = document.getElementById('username');
@@ -59,8 +60,12 @@ function validateForm(event) {
     if (isValid) {
         formSuccess.textContent = 'Form submitted successfully!';
         formSuccess.classList.add('success-message');
-        resetForm();
-        window.location.href = 'feed.html';
+        setTimeout(() => {
+            window.location.href = 'feed.html'; // Redirect after 1 second
+             resetForm();
+        }, 2000);
+
+        // window.location.href = 'feed.html';
     }
 }
 
@@ -82,3 +87,4 @@ function resetForm() {
 document
     .getElementById('signup-form')
     .addEventListener('submit', validateForm);
+
