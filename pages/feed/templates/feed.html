@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Feed</title>
-    <link rel="stylesheet" href="../static/CSS/feed.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/feed.css') }}">
 </head>
 <body>
     <nav>
@@ -24,7 +24,7 @@
             <!-- Recipe 1 -->
             <div class="recipe-card">
                 <a href="../../recipe/templates/recipe.html">
-                    <img src="../../../static/media/images/meatballs.jpg" alt="Recipe 1">
+                    <img src="{{ url_for('static', filename='images/meatballs.jpg') }}" alt="Recipe 1">
                 </a>
                 <h3>Recipe Title 1</h3>
                 <p>Posted by: Ido Cohen</p>
@@ -34,7 +34,7 @@
             <!-- Recipe 2 -->
             <div class="recipe-card">
                 <a href="../../recipe/templates/recipe.html">
-                    <img src="../../../static/media/images/recipe3.jpg" alt="Recipe 2">
+                    <img src="../../../static/images/recipe3.jpg" alt="Recipe 2">
                 </a>
                 <h3>Recipe Title 2</h3>
                 <p>Posted by: Maya Levi</p>
@@ -44,7 +44,7 @@
             <!-- Recipe 3 -->
             <div class="recipe-card">
                 <a href="../../recipe/templates/recipe.html">
-                    <img src="../../../static/media/images/AutumnSalad.jpg" alt="Recipe 3">
+                    <img src="../../../static/images/AutumnSalad.jpg" alt="Recipe 3">
                 </a>
                 <h3>Recipe Title 3</h3>
                 <p>Posted by: Noam Regev</p>

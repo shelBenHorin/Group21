@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>LunchBox Recipe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/CSS/recipe.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/recipe.css') }}">
 </head>
 <body>
     <nav>
@@ -20,7 +20,7 @@
 
     <div class="container">
         <div class="image-section">
-            <img src="../../../static/media/images/meatballs.jpg" alt="Lunchbox" />
+            <img src="../../../static/images/meatballs.jpg" alt="Lunchbox" />
         </div>
 
         <div class="right-section">
