@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ {% block page_head %}{% endblock%}
+</head>
+<body>
+<nav>
+        <div class="nav-logo">What's in my Box?</div>
+        <div class="nav-links">
+            <a href="/feed">Feed</a>
+            <a href="/profile">My Profile</a>
+            <a href="/post">Share a New Post</a>
+            <a href="/search">Search</a>
+            <a href="/login" class="logout">Log Out</a>
+        </div>
+    </nav>
+    {% block content %}{% endblock%}
+</body>
+</html>

@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html'%}
+
+{% block page_head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/profile.css') }}">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-logo">What's in my Box?</div>
-        <div class="nav-links">
-            <a href="../../feed/templates/feed.html">Feed</a>
-            <a href="profile.html">My Profile</a>
-            <a href="../../post/templates/post.html">Share a New Post</a>
-            <a href="../../search/templates/search.html">Search</a>
-            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>
-        </div>
-    </nav>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile/static/CSS/profile.css') }}">
+{% endblock %}
 
+
+
+    <!-- Navigation Bar -->
+{#    <nav>#}
+{#        <div class="nav-logo">What's in my Box?</div>#}
+{#        <div class="nav-links">#}
+{#            <a href="../../feed/templates/feed.html">Feed</a>#}
+{#            <a href="profile.html">My Profile</a>#}
+{#            <a href="../../post/templates/post.html">Share a New Post</a>#}
+{#            <a href="../../search/templates/search.html">Search</a>#}
+{#            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>#}
+{#        </div>#}
+{#    </nav>#}
+
+{% block content %}
+<main>
     <!-- Profile Content -->
     <div class="container">
         <!-- Left Section: User Info -->
@@ -45,10 +49,10 @@
             <a href="../../recipe/templates/recipe.html">
                 <img src="../../../static/images/recipe3.jpg" alt="Lunch Box 3" class="lunchbox-picture">
             </a>
-            <a href="../../recipe/templates/recipe.html">
+              <a href="../../recipe/templates/recipe.html">
                 <img src="../../../static/images/Recipe2.jpg" alt="Lunch Box 4" class="lunchbox-picture">
-            </a>
+             </a>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    </main>
+{% endblock %}

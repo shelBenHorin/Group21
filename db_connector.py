@@ -1,18 +1,17 @@
+import os
+import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import pymongo
-
-uri = "mongodb+srv://ShelAlma:ShelAlma@cluster0.3whqy.mongodb.net"
-
 
 
 # get your uri from .env file
-# uri = os.environ.get('DB_URI')
+uri = "mongodb+srv://ShelAlma:ShelAlma@cluster0.3whqy.mongodb.net"
+
 
 # create cluster
 cluster = MongoClient(uri, server_api=ServerApi('1'))
 
-# get all dbs and collestions that needed
+# get all dbs and collections that needed
 mydatabase = cluster['mydatabase']
 # customers_col = mydatabase['customers']
 #

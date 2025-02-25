@@ -1,24 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html'%}
+
+{% block page_head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/search.css') }}">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-logo">What's in my Box?</div>
-        <div class="nav-links">
-            <a href="../../feed/templates/feed.html">Feed</a>
-            <a href="../../profile/templates/profile.html">My Profile</a>
-            <a href="../../post/templates/post.html">Share a New Post</a>
-            <a href="search.html">Search</a>
-            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>
-        </div>
-    </nav>
+    <link rel="stylesheet" href="{{ url_for('static', filename='search/static/CSS/search.css') }}">
+{% endblock %}
 
+    <!-- Navigation Bar -->
+{#    <nav>#}
+{#        <div class="nav-logo">What's in my Box?</div>#}
+{#        <div class="nav-links">#}
+{#            <a href="../../feed/templates/feed.html">Feed</a>#}
+{#            <a href="../../profile/templates/profile.html">My Profile</a>#}
+{#            <a href="../../post/templates/post.html">Share a New Post</a>#}
+{#            <a href="search.html">Search</a>#}
+{#            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>#}
+{#        </div>#}
+{#    </nav>#}
+
+{% block content %}
+<main>
     <!-- Search Section -->
     <div class="search-container">
         <h1>Search</h1>
@@ -47,5 +49,5 @@
             <button type="submit" class="search-button">Search</button>
         </form>
     </div>
-</body>
-</html>
+</main>
+{% endblock %}

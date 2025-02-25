@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html'%}
+
+{% block page_head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Feed</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/feed.css') }}">
-</head>
-<body>
-    <nav>
-        <div class="nav-logo">What's in my Box?</div>
-        <div class="nav-links">
-            <a href="feed.html">Feed</a>
-            <a href="../../profile/templates/profile.html">My Profile</a>
-            <a href="../../post/templates/post.html">Share a New Post</a>
-            <a href="../../search/templates/search.html">Search</a>
-            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>
-        </div>
-    </nav>
+    <link rel="stylesheet" href="{{ url_for('static', filename='feed/static/CSS/feed.css') }}">
+{% endblock %}
 
+
+{% block content %}
     <main>
         <h1 class="heading">My Feed</h1>
         <div class="recipe-grid">
@@ -52,5 +43,5 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}
+
