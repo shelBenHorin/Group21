@@ -8,19 +8,6 @@
 {% endblock %}
 
 
-
-    <!-- Navigation Bar -->
-{#    <nav>#}
-{#        <div class="nav-logo">What's in my Box?</div>#}
-{#        <div class="nav-links">#}
-{#            <a href="../../feed/templates/feed.html">Feed</a>#}
-{#            <a href="profile.html">My Profile</a>#}
-{#            <a href="../../post/templates/post.html">Share a New Post</a>#}
-{#            <a href="../../search/templates/search.html">Search</a>#}
-{#            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>#}
-{#        </div>#}
-{#    </nav>#}
-
 {% block content %}
 <main>
     <!-- Profile Content -->
@@ -28,30 +15,22 @@
         <!-- Left Section: User Info -->
         <div class="left-half">
             <h1>My Profile</h1>
-            <img src="../../../static/images/newprofile.jpg" alt="User Profile Picture" class="profile-picture">
-            <div class="username">
-                <strong>@username</strong>
-                <br>
-                <span>@Email</span>
-                <br>
-                <strong>Number of lunch boxes</strong>
+            <img src="{{ url_for('static', filename='images/' + user.profile_picture) }}"
+                 alt="User Profile Picture" class="profile-picture">
+                        <div class="username">
+                 <strong>@{{ user.username }}</strong> <br>
+                <span>{{ user.email }}</span> <br>
             </div>
         </div>
 
         <!-- Right Section: User Lunchboxes -->
         <div class="right-half">
-            <a href="../../recipe/templates/recipe.html">
-                <img src="../../../static/images/AutumnSalad.jpg" alt="Lunch Box 1" class="lunchbox-picture">
-            </a>
-            <a href="../../recipe/templates/recipe.html">
-                <img src="../../../static/images/meatballs.jpg" alt="Lunch Box 2" class="lunchbox-picture">
-            </a>
-            <a href="../../recipe/templates/recipe.html">
-                <img src="../../../static/images/recipe3.jpg" alt="Lunch Box 3" class="lunchbox-picture">
-            </a>
-              <a href="../../recipe/templates/recipe.html">
-                <img src="../../../static/images/Recipe2.jpg" alt="Lunch Box 4" class="lunchbox-picture">
-             </a>
+        {% for image in user.uploaded_recipes %}
+    <a href="{{ url_for('recipe_page_from_profile', image_name=recipe_id) }}">
+        <img src="{{ url_for('static', filename='images/' + image) }}"
+             alt="Recipe Image" class="lunchbox-picture">
+    </a>
+{% endfor %}
             </div>
         </div>
     </main>

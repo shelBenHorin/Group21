@@ -83,6 +83,25 @@ def recipe_page(recipe_id):
     return render_template('recipe/templates/recipe.html', recipe=recipe)
 
 
+@app.route('/profile/<username>')
+def user_profile(username):
+    user = users_collection.find_one({"username": username}, {"_id": 0})  # Exclude _id for clean output
+
+    if not user:
+        return "User not found", 404
+
+    return render_template('profile/templates/profile.html', user=user)
+
+
+@app.route('/recipe/<image_name>')
+def recipe_page_from_profile(image_name):
+    recipe = recipes_collection.find_one({"image_url": image_name}, {"_id": 0})
+
+    if not recipe:
+        return "Recipe not found", 404
+
+    return render_template('recipe/templates/recipe.html', recipe=recipe)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
