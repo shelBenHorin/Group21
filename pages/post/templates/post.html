@@ -23,62 +23,54 @@
     <main>
     <!-- Page Header -->
     <h3>Post A New Lunch Box</h3>
-
+<!-- Form Section -->
+<form action="#" id="post-form" class="post" method="GET" enctype="multipart/form-data">
     <div class="form-container">
-        <!-- Left Section: Form Inputs -->
+        <!-- Left Section -->
         <div class="left-section">
-            <form action="#" id="post-form" class="post" method="GET">
-                <!-- Title -->
-                <div>
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="Add lunchbox name/title" required>
-                </div>
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" placeholder="Add lunchbox name/title" required>
+            </div>
 
-                <!-- Description -->
-                <div>
-                    <label for="description">Description</label>
-                    <textarea id="description" placeholder="Add lunchbox description" required></textarea>
-                </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Add lunchbox description" required></textarea>
+            </div>
 
-                <!-- Ingredients -->
-                <div>
-                    <label for="ingredients">Ingredients</label>
-                    <textarea id="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
-                </div>
+            <div>
+                <label for="ingredients">Ingredients</label>
+                <textarea id="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
+            </div>
 
-                <!-- Recipe -->
-                <div>
-                    <label for="recipe">Recipe</label>
-                    <textarea id="recipe" placeholder="Add lunchbox recipe and instructions" required></textarea>
-                </div>
+            <div>
+                <label for="recipe">Recipe</label>
+                <textarea id="recipe" placeholder="Add lunchbox recipe and instructions" required></textarea>
+            </div>
 
-                <!-- Dietary Tags -->
-                <div>
-                    <label>Dietary Tags</label>
-                    <div class="dietryTags">
-                        <label>
-                            <input type="checkbox" name="dietary" value="vegan"> Vegan
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietary" value="vegetarian"> Vegetarian
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietary" value="gluten-free"> Gluten-Free
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietary" value="dairy-free"> Dairy-Free
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietary" value="nut-free"> Nut-Free
-                        </label>
-                    </div>
+            <div>
+                <label>Dietary Tags</label>
+                <div class="dietryTags">
+                    <label>
+                        <input type="checkbox" name="dietary" value="vegan"> Vegan
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietary" value="vegetarian"> Vegetarian
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietary" value="gluten-free"> Gluten-Free
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietary" value="dairy-free"> Dairy-Free
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietary" value="nut-free"> Nut-Free
+                    </label>
                 </div>
-                <div id="formSuccess" class="success-message" ></div>
-            </form>
+            </div>
         </div>
 
-
-        <!-- Right Section: File Upload -->
+        <!-- Right Section: Now Inside the Form -->
         <div class="right-section">
             <div class="photo-upload">
                 <input type="file" id="photo" name="photo" accept="image/*">
@@ -92,10 +84,14 @@
         </div>
     </div>
 
+    <div id="formSuccess" class="success-message"></div>
+
     <!-- Share Button -->
     <div class="button-container">
-        <button type="button" class="post-btn">Click to share!</button>
+        <button type="submit" class="post-btn">Click to share!</button>
     </div>
+</form>
+
 
     <script src="../static/js/post.js"></script>
     </main>

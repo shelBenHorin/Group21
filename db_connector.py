@@ -13,9 +13,19 @@ cluster = MongoClient(uri, server_api=ServerApi('1'))
 
 # get all dbs and collections that needed
 mydatabase = cluster['mydatabase']
-# customers_col = mydatabase['customers']
-#
-#
+users_collection = mydatabase['Users']
+recipes_collection = mydatabase['Recipes']
+
+
+@app.route('/users')
+def get_users():
+    users = list(users_collection.find({}, {"_id": 0}))  # Fetch all users, exclude `_id`
+    return render_template('users.html', users=users)
+
+@app.route('/recipes')
+def get_recipes():
+    recipes = list(recipes_collection.find({}, {"_id": 0}))  # Fetch all recipes
+    return render_template('recipes.html', recipes=recipes)
 # # create all necessary functions
 # def get_list_of_customers():
 #     return list(customers_col.find())
