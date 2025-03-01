@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, render_template
+from flask import Flask, session, redirect, url_for, render_template, jsonify
 import os
 from db_connector import users_collection, recipes_collection
 
@@ -101,6 +101,19 @@ def recipe_page_from_profile(image_name):
         return "Recipe not found", 404
 
     return render_template('recipe/templates/recipe.html', recipe=recipe)
+
+#---------queries-------------
+# 🔹 Query 2: Get Latest 3 Recipes
+@app.route('/api/recipes/latest')
+def get_latest_recipes():
+    latest_recipes = list(recipes_collection.find().sort("created_at", -1).limit(3))
+    return jsonify(latest_recipes)
+
+# 🔹 Query 3: Get All Users
+@app.route('/api/users')
+def get_all_users():
+    users = list(users_collection.find({}, {"_id": 0}))
+    return jsonify(users)
 
 if __name__ == '__main__':
     app.run(debug=True)
