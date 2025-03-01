@@ -22,34 +22,36 @@
 <main>
     <div class="container">
         <div class="image-section">
-            <img src="../../../static/images/meatballs.jpg" alt="Lunchbox" />
+            <img src="{{ url_for('static', filename='images/' + recipe.image_url) }}" alt="Lunchbox">
         </div>
 
         <div class="right-section">
-            <h1 class="title">Meatballs In Tomato Sauce</h1>
-            <p class="user"><strong>Posted by:</strong> Karen Cohen</p>
-            <p class="timestamp"><strong>Posted on:</strong> 12/11/2024 10:30 PM</p>
+<h1 class="title">{{ recipe.title }}</h1>
+            <p class="user"><strong>Posted by:</strong> {{ recipe.created_by }}</p>
+            <p class="timestamp"><strong>Posted on:</strong> {{ recipe.created_at }}</p>
             <p class="description">
-                <strong>Description:</strong> Beef meatballs with tomato sauce, goes perfect with white rice.
+                <strong>Description:</strong> {{ recipe.description }}
             </p>
 
             <h2 class="subheading">Ingredients</h2>
             <ul class="ingredients">
-                <li>Grounded beef - 500 g</li>
-                <li>Tomato paste - 200 g</li>
-                <li>White onion - 1</li>
-                <li>...</li>
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
             </ul>
 
             <h2 class="subheading">Recipe</h2>
             <ul class="recipe">
-                <li>Slice the onion...</li>
-                <li>Fry in a hot pan with oil</li>
-                <li>Add the ground meat</li>
-                <li>...</li>
+                {% for step in recipe.recipe %}
+                    <li>{{ step }}</li>
+                {% endfor %}
             </ul>
 
-            <p class="tag"><strong>Dietary Tags:</strong> #meat</p>
+            <p class="tag"><strong>Dietary Tags:</strong>
+                {% for tag in recipe.dietaryTags %}
+                    #{{ tag }}
+                {% endfor %}
+            </p>
         </div>
     </div>
 </main>

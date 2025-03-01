@@ -37,8 +37,7 @@
             <button type="submit" class="login-btn">Login</button>
         </form>
         <p class="signup-text">Don't have an account yet?</p>
-        <button
-            onclick="window.location.href='signup.html'"
+        <button onclick="window.location.href='{{ url_for('signup') }}'"
             class="signup-btn">Sign Up!
         </button>
     </div>
