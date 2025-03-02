@@ -1,6 +1,7 @@
 from flask import Flask, session, redirect, url_for, render_template, jsonify
 import os
 from db_connector import users_collection, recipes_collection
+from datetime import datetime
 
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
@@ -103,17 +104,57 @@ def recipe_page_from_profile(image_name):
     return render_template('recipe/templates/recipe.html', recipe=recipe)
 
 #---------queries-------------
-# 🔹 Query 2: Get Latest 3 Recipes
+# 🔹 Query 1: Get Latest 3 Recipes
 @app.route('/api/recipes/latest')
 def get_latest_recipes():
     latest_recipes = list(recipes_collection.find().sort("created_at", -1).limit(3))
     return jsonify(latest_recipes)
 
-# 🔹 Query 3: Get All Users
+# Query 2: Get All Users
 @app.route('/api/users')
 def get_all_users():
     users = list(users_collection.find({}, {"_id": 0}))
     return jsonify(users)
+
+#Query 3: Top 2 users who uploaded the most recipes
+@app.route('/api/top_users')
+def get_top_users():
+
+        top_users = list(recipes_collection.aggregate([
+            { "$group": { "_id": "$created_by", "recipe_count": { "$sum": 1 } } },
+            { "$sort": { "recipe_count": -1 } },
+            { "$limit": 2 }
+        ]))
+
+        return jsonify(top_users)
+
+#Query 4: group recipes by dietary tag and count how many recipes belong to each tag.
+@app.route('/api/popular_dietary_tags')
+def get_popular_dietary_tags():
+
+        popular_tags = list(recipes_collection.aggregate([
+            { "$unwind": "$dietaryTags" },
+            { "$group": { "_id": "$dietaryTags", "count": { "$sum": 1 } } },
+            { "$sort": { "count": -1 } }
+        ]))
+
+        return jsonify(popular_tags)
+
+
+#Query 5: insert New user
+@app.route('/insert_user/<username>/<email>', methods=['POST'])
+def insert_user(username, email):
+    new_user = {
+        "username": username,
+        "email": email,
+        "profile_picture": f"{username}_profile.jpg",
+        "uploaded_recipes": [],
+        "joined_at": datetime.utcnow()
+    }
+    users_collection.insert_one(new_user)
+    return jsonify({"message": f"User {username} added successfully!"})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
