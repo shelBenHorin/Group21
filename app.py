@@ -104,19 +104,8 @@ def recipe_page_from_profile(image_name):
     return render_template('recipe/templates/recipe.html', recipe=recipe)
 
 #---------queries-------------
-# 🔹 Query 1: Get Latest 3 Recipes
-@app.route('/api/recipes/latest')
-def get_latest_recipes():
-    latest_recipes = list(recipes_collection.find().sort("created_at", -1).limit(3))
-    return jsonify(latest_recipes)
 
-# Query 2: Get All Users
-@app.route('/api/users')
-def get_all_users():
-    users = list(users_collection.find({}, {"_id": 0}))
-    return jsonify(users)
-
-#Query 3: Top 2 users who uploaded the most recipes
+#Query 1: Top 2 users who uploaded the most recipes
 @app.route('/api/top_users')
 def get_top_users():
 
@@ -128,7 +117,7 @@ def get_top_users():
 
         return jsonify(top_users)
 
-#Query 4: group recipes by dietary tag and count how many recipes belong to each tag.
+#Query 2: group recipes by dietary tag and count how many recipes belong to each tag.
 @app.route('/api/popular_dietary_tags')
 def get_popular_dietary_tags():
 
@@ -141,8 +130,8 @@ def get_popular_dietary_tags():
         return jsonify(popular_tags)
 
 
-#Query 5: insert New user
-@app.route('/insert_user/<username>/<email>', methods=['POST'])
+#Query 3: insert New user
+@app.route('/insert_user/<username>/<email>', methods=['Get','POST'])
 def insert_user(username, email):
     new_user = {
         "username": username,
@@ -154,6 +143,21 @@ def insert_user(username, email):
     users_collection.insert_one(new_user)
     return jsonify({"message": f"User {username} added successfully!"})
 
+#Query 4: Update profile picture
+@app.route('/update_profile_picture/<username>/<new_picture>', methods=['GET', 'PUT'])
+def update_profile_picture(username, new_picture):
+    users_collection.update_one(
+        { "username": username },
+        { "$set": { "profile_picture": new_picture } }
+    )
+    return jsonify({"message": f"Profile picture updated for {username}."})
+
+
+#Query 5: Delete All Users Who Never Uploaded a Recipe
+@app.route('/delete_inactive_users', methods=['GET', 'DELETE'])
+def delete_inactive_users():
+    result = users_collection.delete_many({ "uploaded_recipes": { "$size": 0 } })
+    return jsonify({"message": f"{result.deleted_count} inactive users deleted."})
 
 
 if __name__ == '__main__':
