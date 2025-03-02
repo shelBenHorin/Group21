@@ -1,5 +1,7 @@
-from flask import Flask, session, redirect, url_for, render_template, jsonify
+from flask import Flask, session, redirect, url_for, render_template, jsonify, request
 import os
+from werkzeug.utils import secure_filename
+from datetime import datetime
 from db_connector import users_collection, recipes_collection
 from datetime import datetime
 from analyzeDB import print_database_contents
@@ -52,8 +54,8 @@ def profile():
 def search():
     return render_template('search/templates/search.html')
 
-@app.route('/signup')
-def signup():
+@app.route('/signup', methods=['GET', 'POST'])
+def signup_page():
     return render_template('signup/templates/signup.html')
 
 
@@ -160,6 +162,44 @@ def delete_inactive_users():
     result = users_collection.delete_many({ "uploaded_recipes": { "$size": 0 } })
     return jsonify({"message": f"{result.deleted_count} inactive users deleted."})
 
+UPLOAD_FOLDER = os.path.join(app.root_path, "static", "images")  # Set images folder
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')  # In real-world apps, **hash this!**
+        uploaded_file = request.files.get('profile-picture')
+
+        profile_picture_filename = None
+        if uploaded_file and uploaded_file.filename:
+            profile_picture_filename = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
+            uploaded_file.save(profile_picture_filename)  # Save the image
+
+        user_data = {
+            "_id": username,  # Consider using UUID for unique _id
+            "username": username,
+            "email": email,
+            "profile_picture": f"static/images/{uploaded_file.filename}" if profile_picture_filename else None,
+            "uploaded_recipes": [],
+        }
+
+        users_collection.insert_one(user_data)
+
+        return redirect(url_for('signup_success'))
+
+    return render_template('signup/templates/signup.html')
+
+@app.route('/signup_success')
+def signup_success():
+    return "Signup successful! You can now log in."
+
+@app.route('/signup', methods=['POST'])
+def prnt_signup():
+    print("Signup Form Data:", request.form)  # Debugging Output
+    print("Uploaded File:", request.files.get('profile-picture'))
 
 if __name__ == '__main__':
  print("\n🚀 Flask is starting...\n", flush=True)  # Debug print

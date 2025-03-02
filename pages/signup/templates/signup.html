@@ -13,14 +13,8 @@
 
     <div class="container">
         <h4>Create Your Account</h4>
-        <form
-            action="#"
-            id="signup-form"
-            method="POST"
-            class="signup-form"
-            enctype="multipart/form-data"
-            novalidate
-        >
+        <form action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">
+
             <!-- Profile Picture Upload -->
             <div class="form-group photo-upload">
                 <input type="file" id="profile-picture" accept="image/*">
@@ -74,15 +68,15 @@
             <button type="submit" class="signup-btn">Create Account</button>
         </form>
 
-         <!-- Success Message -->
-          <div id="formSuccess" class="success-message" ></div>
+{#         <!-- Success Message -->#}
+{#          <div id="formSuccess" class="success-message" ></div>#}
 
         <p class="signin-text">Already have an account?</p>
         <button
             onclick="window.location.href='login.html'"
             class="signin-btn"> Sign In </button>
     </div>
- <script src="../static/js/signup.js"></script>
+ <script src="{{ url_for('static', filename='pages/signup/static/js/signup.js') }}"></script>
 {# <script defer src="../static/js/signup.js"></script>#}
 </body>
 </html>
