@@ -2,6 +2,7 @@ from flask import Flask, session, redirect, url_for, render_template, jsonify
 import os
 from db_connector import users_collection, recipes_collection
 from datetime import datetime
+from analyzeDB import print_database_contents
 
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
@@ -161,5 +162,10 @@ def delete_inactive_users():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+ print("\n🚀 Flask is starting...\n", flush=True)  # Debug print
+ print_database_contents()  # This will ensure the database prints before Flask starts
+ app.run(debug=True)
+
+
+
 
