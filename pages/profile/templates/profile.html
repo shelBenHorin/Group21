@@ -26,7 +26,7 @@
         <!-- Right Section: User Lunchboxes -->
         <div class="right-half">
         {% for image in user.uploaded_recipes %}
-    <a href="{{ url_for('recipe_page_from_profile', image_name=recipe_id) }}">
+    <a href="{{ url_for('recipe_page_from_profile', image_name=image) }}">
         <img src="{{ url_for('static', filename='images/' + image) }}"
              alt="Recipe Image" class="lunchbox-picture">
     </a>

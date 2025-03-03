@@ -6,6 +6,7 @@ from db_connector import users_collection, recipes_collection
 from datetime import datetime
 from analyzeDB import print_database_contents
 
+
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=template_dir)
@@ -47,9 +48,24 @@ def post_page():
 #     return render_template('recipe.html', receipe=receipe)
 
 
+# @app.route('/profile')
+# def profile():
+#     return render_template('profile/templates/profile.html')
+
 @app.route('/profile')
 def profile():
-    return render_template('profile/templates/profile.html')
+    # Check if user is logged in (session contains username)
+    if 'username' not in session:
+        return redirect(url_for('login'))  # Redirect to login if not logged in
+
+    # Fetch user data from the database
+    user = users_collection.find_one({"username": session['username']}, {"_id": 0})
+
+    if not user:
+        return "User not found", 404  # Handle case where user is not in database
+
+    return render_template('profile/templates/profile.html', user=user)
+
 
 @app.route('/search')
 def search():
@@ -106,6 +122,40 @@ def recipe_page_from_profile(image_name):
         return "Recipe not found", 404
 
     return render_template('recipe/templates/recipe.html', recipe=recipe)
+
+#----handle search requests and return results from MongoDB----
+@app.route('/search_results')
+def search_results():
+    query = request.args.get('query', '').strip()  # Get search query
+    filters = request.args.getlist('filter')  # Get selected filters (recipes, tags, users)
+
+    results = {}
+
+    # Search Recipes by Title
+    if 'recipes' in filters:
+        recipes = list(recipes_collection.find(
+            {"title": {"$regex": query, "$options": "i"}},  # Case-insensitive search
+            {"_id": 1, "title": 1, "image_url": 1, "created_by": 1, "created_at": 1}  # ✅ Include _id
+        ))
+        results['recipes'] = recipes
+
+    # Search Recipes by User
+    if 'users' in filters:
+        recipes_by_user = list(recipes_collection.find(
+            {"created_by": {"$regex": query, "$options": "i"}},
+            {"_id": 1, "title": 1, "image_url": 1, "created_by": 1, "created_at": 1}  # ✅ Include _id
+        ))
+        results['recipes_by_user'] = recipes_by_user
+
+    # Search Recipes by Tag
+    if 'tags' in filters:
+        tagged_recipes = list(recipes_collection.find(
+            {"dietaryTags": {"$regex": query, "$options": "i"}},
+            {"_id": 1, "title": 1, "image_url": 1, "created_by": 1, "created_at": 1}  # ✅ Include _id
+        ))
+        results['recipes_by_tag'] = tagged_recipes
+
+    return render_template('search_results/templates/search_results.html', results=results, query=query)
 
 #---------queries-------------
 

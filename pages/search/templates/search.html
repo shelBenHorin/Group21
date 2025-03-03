@@ -7,41 +7,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='search/static/CSS/search.css') }}">
 {% endblock %}
 
-    <!-- Navigation Bar -->
-{#    <nav>#}
-{#        <div class="nav-logo">What's in my Box?</div>#}
-{#        <div class="nav-links">#}
-{#            <a href="../../feed/templates/feed.html">Feed</a>#}
-{#            <a href="../../profile/templates/profile.html">My Profile</a>#}
-{#            <a href="../../post/templates/post.html">Share a New Post</a>#}
-{#            <a href="search.html">Search</a>#}
-{#            <a href="../../log%20in/templates/login.html" class="logout">Log Out</a>#}
-{#        </div>#}
-{#    </nav>#}
 
 {% block content %}
 <main>
     <!-- Search Section -->
     <div class="search-container">
         <h1>Search</h1>
-        <form class="search-form">
-            <input
-                type="text"
-                placeholder="Type here to search..."
-                class="search-input"
-            />
+        <form action="{{ url_for('search_results') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Type here to search..." class="search-input" required>
 
             <div class="category-blocks">
                 <label class="category-block">
-                    <input type="checkbox" name="category" value="recipes" />
+                    <input type="checkbox" name="filter" value="recipes" >
                     Recipes
                 </label>
                 <label class="category-block">
-                    <input type="checkbox" name="category" value="users" />
+                    <input type="checkbox" name="filter" value="users" >
                     Users
                 </label>
                 <label class="category-block">
-                    <input type="checkbox" name="category" value="tags" />
+                    <input type="checkbox" name="filter" value="tags" >
                     Tags
                 </label>
             </div>

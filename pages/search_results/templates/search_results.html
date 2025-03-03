@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% block page_head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='feed/static/CSS/feed.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+  <h1 class="heading">Search Results for "{{ query }}"</h1>
+
+        {% if results.recipes or results.recipes_by_user or results.recipes_by_tag %}
+            <div class="recipe-grid">
+                <!-- Recipes by Title -->
+                {% for recipe in results.recipes %}
+                <div class="recipe-card">
+                    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                    </a>
+                    <h3>{{ recipe['title'] }}</h3>
+                    <p>Posted by: {{ recipe['created_by'] }}</p>
+                    <p>{{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}</p>
+                </div>
+                {% endfor %}
+
+                <!-- Recipes by User -->
+                {% for recipe in results.recipes_by_user %}
+                <div class="recipe-card">
+                    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                    </a>
+                    <h3>{{ recipe['title'] }}</h3>
+                    <p>Posted by: {{ recipe['created_by'] }}</p>
+                    <p>{{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}</p>
+                </div>
+                {% endfor %}
+
+                <!-- Recipes by Tag -->
+                {% for recipe in results.recipes_by_tag %}
+                <div class="recipe-card">
+                    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                    </a>
+                    <h3>{{ recipe['title'] }}</h3>
+                    <p>Posted by: {{ recipe['created_by'] }}</p>
+                    <p>{{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No matching recipes found.</p>
+        {% endif %}
+
+
+</main>
+{% endblock %}
