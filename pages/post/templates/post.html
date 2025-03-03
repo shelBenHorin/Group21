@@ -24,9 +24,8 @@
     <!-- Page Header -->
     <h3>Post A New Lunch Box</h3>
 <!-- Form Section -->
-<form action="#" id="post-form" class="post" method="GET" enctype="multipart/form-data">
-    <div class="form-container">
-        <!-- Left Section -->
+<form action="{{ url_for('post_recipe') }}" id="post-form" class="post" method="POST" enctype="multipart/form-data">    <div class="form-container">
+    <!-- Left Section -->
         <div class="left-section">
             <div>
                 <label for="title">Title</label>
@@ -40,7 +39,7 @@
 
             <div>
                 <label for="ingredients">Ingredients</label>
-                <textarea id="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
+                <textarea id="ingredients" name="ingredients" placeholder="Add lunchbox list and amounts of ingredients" class="input-field" required></textarea>
             </div>
 
             <div>
@@ -93,6 +92,6 @@
 </form>
 
 
-    <script src="../static/js/post.js"></script>
+    <script src="../pages/post/static/js/post.js"></script>
     </main>
 {% endblock %}

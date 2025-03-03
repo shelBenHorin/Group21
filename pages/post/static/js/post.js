@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formSuccess.textContent = 'Form submitted successfully!';
         formSuccess.classList.add('success-message');
         setTimeout(() => {
-            window.location.href = 'feed.html'; // Redirect after 1 second
+            window.location.href = 'feed'; // Redirect after 1 second
              resetForm();
         }, 2000);
         }

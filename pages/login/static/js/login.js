@@ -42,7 +42,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
     // successful sign-in - message and move to feed
     // alert('Sign-in successful!');
 
-    window.location.href = 'feed.html';
+    window.location.href = 'feed';
 
 });
 

@@ -16,7 +16,8 @@ def defult():
 
 @app.route('/feed')
 def feed():
-    return render_template('feed/templates/feed.html')
+    recipes = list(recipes_collection.find())
+    return render_template('feed/templates/feed.html', recipes=recipes)
 
 @app.route('/login')
 def login():
@@ -24,12 +25,12 @@ def login():
 
 
 @app.route('/post')
-def post():
+def post_page():
     return render_template('post/templates/post.html')
 
-@app.route('/recipe')
-def recipe():
-    return render_template('recipe/templates/recipe.html')
+# @app.route('/recipe')
+# def recipe():
+#     return render_template('recipe/templates/recipe.html')
 
 
 # @app.route('/recipe/:id')
@@ -72,7 +73,7 @@ def get_recipes():
 
 
 @app.route("/recipe/<recipe_id>")
-def recipe_page(recipe_id):
+def recipe(recipe_id):
     # Try to fetch the recipe from the database
     recipe = recipes_collection.find_one({"_id": recipe_id})
 
@@ -165,6 +166,8 @@ def delete_inactive_users():
 UPLOAD_FOLDER = os.path.join(app.root_path, "static", "images")  # Set images folder
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+UPLOAD_FOLDER = "static/images"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -200,6 +203,45 @@ def signup_success():
 def prnt_signup():
     print("Signup Form Data:", request.form)  # Debugging Output
     print("Uploaded File:", request.files.get('profile-picture'))
+
+@app.route('/post', methods=['GET', 'POST'])
+def post_recipe():
+    if request.method == 'POST':
+        print("✅ Form received!")  # Debug message
+
+        title = request.form.get('title')
+        description = request.form.get('description')
+        ingredients = request.form.get('ingredients').split("\n")
+        recipe_steps = request.form.get('recipe').split("\n")
+        dietary_tags = request.form.getlist('dietary')
+        created_by = "user_001"  # TODO: Get from session after login
+        created_at = datetime.utcnow()
+
+        uploaded_file = request.files.get('photo')
+        image_path = None
+
+        if uploaded_file and uploaded_file.filename:
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
+            uploaded_file.save(image_path)
+
+        new_recipe = {
+            "_id": f"recipe_{int(datetime.timestamp(datetime.utcnow()))}",
+            "title": title,
+            "created_by": created_by,
+            "created_at": created_at,
+            "description": description,
+            "ingredients": ingredients,
+            "recipe": recipe_steps,
+            "dietaryTags": dietary_tags,
+            "image_url": image_path if image_path else None,
+        }
+
+        recipes_collection.insert_one(new_recipe)
+        print("✅ Recipe added to DB:", new_recipe)
+
+        return redirect(url_for('feed'))  # Redirect to feed after posting
+
+    return render_template("post/templates/post.html")
 
 if __name__ == '__main__':
  print("\n🚀 Flask is starting...\n", flush=True)  # Debug print
