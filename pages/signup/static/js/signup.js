@@ -61,7 +61,7 @@ function validateForm(event) {
         formSuccess.textContent = 'Form submitted successfully!';
         formSuccess.classList.add('success-message');
         setTimeout(() => {
-            window.location.href = 'feed.html'; // Redirect after 1 second
+            window.location.href = 'feed'; // Redirect after 1 second
              resetForm();
         }, 2000);
 
@@ -91,6 +91,9 @@ function resetForm() {
     const inputs = form.querySelectorAll('.input-field');
     inputs.forEach((input) => input.classList.remove('input-error'));
 }
+
+console.log("Signup.js is successfully connected!");
+
 
 // Attach event listener
 document

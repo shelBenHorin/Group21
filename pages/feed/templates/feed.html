@@ -15,7 +15,11 @@
             {% for recipe in recipes %}
             <div class="recipe-card">
                 <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
-                    <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                    {% if recipe['image_url'] %}
+                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="Default Image">
+                    {% endif %}
                 </a>
                 <h3>{{ recipe['title'] }}</h3>
                 <p>Posted by: {{ recipe['created_by'] }}</p>

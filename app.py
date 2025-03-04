@@ -254,15 +254,62 @@ def prnt_signup():
     print("Signup Form Data:", request.form)  # Debugging Output
     print("Uploaded File:", request.files.get('profile-picture'))
 
+# @app.route('/post', methods=['GET', 'POST'])
+# def post_recipe():
+#     if request.method == 'POST':
+#         print("✅ Form received!")  # Debug message
+#
+#         title = request.form.get('title')
+#         description = request.form.get('description')
+#         ingredients = request.form.get('ingredients').split("\n")
+#         recipe_steps = request.form.get('recipe').split("\n")
+#         dietary_tags = request.form.getlist('dietary')
+#         created_by = "user_001"  # TODO: Get from session after login
+#         created_at = datetime.utcnow()
+#
+#         uploaded_file = request.files.get('photo')
+#         image_path = None
+#
+#         if uploaded_file and uploaded_file.filename:
+#             image_path = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
+#             uploaded_file.save(image_path)
+#
+#         new_recipe = {
+#             "_id": f"recipe_{int(datetime.timestamp(datetime.utcnow()))}",
+#             "title": title,
+#             "created_by": created_by,
+#             "created_at": created_at,
+#             "description": description,
+#             "ingredients": ingredients,
+#             "recipe": recipe_steps,
+#             "dietaryTags": dietary_tags,
+#             "image_url": image_path if image_path else None,
+#         }
+#
+#         recipes_collection.insert_one(new_recipe)
+#         print("✅ Recipe added to DB:", new_recipe)
+#
+#         return redirect(url_for('feed'))  # Redirect to feed after posting
+#
+#     return render_template("post/templates/post.html")
+
 @app.route('/post', methods=['GET', 'POST'])
 def post_recipe():
     if request.method == 'POST':
         print("✅ Form received!")  # Debug message
 
+        # Print form data for debugging
+        print("🔹 Title:", request.form.get('title'))
+        print("🔹 Description:", request.form.get('description'))
+        print("🔹 Ingredients:", request.form.get('ingredients'))
+        print("🔹 Recipe:", request.form.get('recipe'))
+        print("🔹 Dietary Tags:", request.form.getlist('dietary'))
+        print("🔹 Uploaded File:", request.files.get('photo'))
+
         title = request.form.get('title')
         description = request.form.get('description')
-        ingredients = request.form.get('ingredients').split("\n")
-        recipe_steps = request.form.get('recipe').split("\n")
+        ingredients = request.form.get('ingredients').split("\n") if request.form.get('ingredients') else []
+        recipe_steps = request.form.get('recipe').split("\n") if request.form.get('recipe') else []
         dietary_tags = request.form.getlist('dietary')
         created_by = "user_001"  # TODO: Get from session after login
         created_at = datetime.utcnow()
@@ -271,8 +318,9 @@ def post_recipe():
         image_path = None
 
         if uploaded_file and uploaded_file.filename:
-            image_path = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(uploaded_file.filename))
             uploaded_file.save(image_path)
+            print("✅ Image saved at:", image_path)
 
         new_recipe = {
             "_id": f"recipe_{int(datetime.timestamp(datetime.utcnow()))}",
@@ -283,8 +331,11 @@ def post_recipe():
             "ingredients": ingredients,
             "recipe": recipe_steps,
             "dietaryTags": dietary_tags,
-            "image_url": image_path if image_path else None,
+            "image_url": uploaded_file.filename if uploaded_file else None,
         }
+
+        # Debugging print before inserting
+        print("✅ Preparing to insert into MongoDB:", new_recipe)
 
         recipes_collection.insert_one(new_recipe)
         print("✅ Recipe added to DB:", new_recipe)
@@ -292,6 +343,7 @@ def post_recipe():
         return redirect(url_for('feed'))  # Redirect to feed after posting
 
     return render_template("post/templates/post.html")
+
 
 if __name__ == '__main__':
  print("\n🚀 Flask is starting...\n", flush=True)  # Debug print
