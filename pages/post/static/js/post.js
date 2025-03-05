@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("description"),
             document.getElementById("ingredients"),
             document.getElementById("recipe"),
+            document.getElementById("photo"),
         ];
         let isValid = true;
 

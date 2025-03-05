@@ -7,9 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db_connector import users_collection, recipes_collection, mydatabase
 from datetime import datetime
 from analyzeDB import print_database_contents
-# from gridfs import GridFS
 
-# fs = GridFS(mydatabase)
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=template_dir)
@@ -25,6 +23,7 @@ def feed():
 
 @app.route('/login')
 def logout():
+    session.pop('username', None)
     return render_template('login/templates/login.html')
 
 @app.route('/login', methods=['POST'])
@@ -111,10 +110,11 @@ def signup():
 
         image_url = None
         if uploaded_file and uploaded_file.filename:
-            filename = secure_filename(uploaded_file.filename)
+            filename = secure_filename(f"{username}.jpg")
+            # filename = secure_filename(uploaded_file.filename)
             image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             uploaded_file.save(image_path)
-            image_url = f"static/images/{filename}"
+            image_url = f"images/{filename}"
 
         new_user = {
             "username": username,
@@ -244,14 +244,14 @@ def user_profile(username):
     return render_template('profile/templates/profile.html', user=user)
 
 
-@app.route('/recipe/<image_name>')
-def recipe_page_from_profile(image_name):
-    recipe = recipes_collection.find_one({"image_url": image_name}, {"_id": 0})
-
-    if not recipe:
-        return "Recipe not found", 404
-
-    return render_template('recipe/templates/recipe.html', recipe=recipe)
+# @app.route('/recipe/<image_name>')
+# def recipe_page_from_profile(image_name):
+#     recipe = recipes_collection.find_one({"image_url": image_name}, {"_id": 0})
+#
+#     if not recipe:
+#         return "Recipe not found", 404
+#
+#     return render_template('recipe/templates/recipe.html', recipe=recipe)
 
 #----handle search requests and return results from MongoDB----
 @app.route('/search_results')
@@ -349,7 +349,7 @@ def delete_inactive_users():
 # UPLOAD_FOLDER = "static/images"
 # app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "static", "images")
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "pages" , "images")
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -449,7 +449,6 @@ def prnt_signup():
 #     return render_template("post/templates/post.html")
 
 
-# app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 # @app.route('/post', methods=['GET', 'POST'])
 # def post_recipe():
@@ -504,6 +503,9 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route('/post', methods=['GET','POST'])
 def post_recipe():
+    if 'username' not in session:
+        return jsonify({"error": "Unauthorized. Please log in."}), 401  # Prevent posting if not logged in
+
     if request.method == 'POST':
         print("✅ Form received!")  # Debugging
 
@@ -515,20 +517,27 @@ def post_recipe():
         if dietary_tags:
             dietary_tags = eval(dietary_tags)  # Convert from JSON string to list
 
-        created_by = "user_001"  # TODO: Replace with session-based user
+        created_by = session['username']  # TODO: Replace with session-based user
         created_at = datetime.utcnow()
 
         uploaded_file = request.files.get('photo')
         image_url = None
 
+        # if uploaded_file and uploaded_file.filename:
+        #     filename = secure_filename(uploaded_file.filename)
+        #     image_url = os.path.join("static/images", filename)
+        #     uploaded_file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+        #     print("✅ Image saved at:", image_url)
         if uploaded_file and uploaded_file.filename:
-            filename = secure_filename(uploaded_file.filename)
-            image_url = os.path.join("static/images", filename)
-            uploaded_file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            print("✅ Image saved at:", image_url)
+            filename = secure_filename(f"{title.replace(' ', '_')}.jpg")  # Save image with recipe title
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            uploaded_file.save(image_path)
+            image_url = f"images/{filename}"  # Match the format used in signup
+
+        recipe_id = f"recipe_{int(datetime.timestamp(datetime.utcnow()))}"
 
         new_recipe = {
-            "_id": f"recipe_{int(datetime.timestamp(datetime.utcnow()))}",
+            "_id": recipe_id,
             "title": title,
             "description": description,
             "ingredients": ingredients,
@@ -541,6 +550,11 @@ def post_recipe():
 
         print("✅ Saving to MongoDB:", new_recipe)
         recipes_collection.insert_one(new_recipe)
+
+        users_collection.update_one(
+            {"username": created_by},
+            {"$push": {"uploaded_recipes": recipe_id}}  # Add recipe_id to array
+        )
 
         return jsonify({"message": "Recipe posted successfully!", "redirect": "/feed"})
 
