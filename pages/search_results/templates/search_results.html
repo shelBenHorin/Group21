@@ -29,7 +29,7 @@
                 {% for recipe in results.recipes_by_user %}
                 <div class="recipe-card">
                     <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
-                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
+                        <img src="{{ url_for('static', filename=recipe['image_url']) }}" alt="{{ recipe['title'] }}">
                     </a>
                     <h3>{{ recipe['title'] }}</h3>
                     <p>Posted by: {{ recipe['created_by'] }}</p>

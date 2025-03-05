@@ -32,8 +32,10 @@ def print_database_contents():
     else:
         print(" No recipes found.")
 
-    print("\n Database content printed successfully!\n")
+print("\n Database content printed successfully!\n")
 
+if __name__ == '__main__':
+ print_database_contents()
 
 
 

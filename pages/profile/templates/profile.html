@@ -55,12 +55,19 @@
 {#        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ recipe['title'] }}" class="lunchbox-picture">#}
 {#    </a>#}
 {#{% endfor %}#}
-        {% for recipe in user.uploaded_recipes %}
-    <a href="{{ url_for('recipe', recipe_id=recipe_id) }}">
-        <img src="{{ url_for('static', filename=recipe.image_url) }}"
-             alt="Recipe Image" class="lunchbox-picture">
+{#        {% for recipe in user.uploaded_recipes %}#}
+{#    <a href="{{ url_for('recipe', recipe_id=recipe_id) }}">#}
+{#        <img src="{{ url_for('static', filename=recipe.image_url) }}"#}
+{#             alt="Recipe Image" class="lunchbox-picture">#}
+{#    </a>#}
+{#{% endfor %}#}
+            {% for recipe in recipes %}
+    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+        <img src="{{ url_for('static', filename=recipe['image_url']) }}"
+             alt="{{ recipe['title'] }}" class="lunchbox-picture">
     </a>
 {% endfor %}
+
             </div>
         </div>
     </main>

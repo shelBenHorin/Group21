@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db_connector import users_collection, recipes_collection, mydatabase
 from datetime import datetime
 from analyzeDB import print_database_contents
+import re
 
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
@@ -194,7 +195,10 @@ def profile():
     if not user:
         return "User not found", 404  # Handle case where user is not in database
 
-    return render_template('profile/templates/profile.html', user=user)
+    recipe_ids = user.get("uploaded_recipes", [])  # Get the list of recipe IDs
+    recipes = list(recipes_collection.find({"_id": {"$in": recipe_ids}}))
+
+    return render_template('profile/templates/profile.html', user=user, recipes=recipes)
 
 
 @app.route('/search')
@@ -315,26 +319,62 @@ def get_popular_dietary_tags():
 
 
 #Query 3: insert New user
-@app.route('/insert_user/<username>/<email>', methods=['Get','POST'])
-def insert_user(username, email):
+# Email & Password Validation Patterns
+EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
+PASSWORD_PATTERN = re.compile(r"^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$")
+
+@app.route('/insert_user', methods=['GET','POST'])
+def insert_user():
+    data = request.get_json()
+
+    email = data.get("email", "").strip()
+    password = data.get("password", "").strip()
+
+    # **Validation Checks**
+    if not email or not EMAIL_PATTERN.match(email):
+        return jsonify({"error": "Invalid email format."}), 400
+
+    if not password or not PASSWORD_PATTERN.match(password):
+        return jsonify({
+            "error": "Password must be at least 8 characters, include a number, and a special character."
+        }), 400
+
+    # Extract username from email
+    username = email.split("@")[0]
+
+    # Check if user already exists
+    if users_collection.find_one({"email": email}):
+        return jsonify({"error": "Email is already registered."}), 409
+
+    hashed_password = generate_password_hash(password)  # Secure password storage
+
     new_user = {
         "username": username,
         "email": email,
+        "password": hashed_password,
         "profile_picture": f"{username}_profile.jpg",
         "uploaded_recipes": [],
         "joined_at": datetime.utcnow()
     }
-    users_collection.insert_one(new_user)
-    return jsonify({"message": f"User {username} added successfully!"})
 
-#Query 4: Update profile picture
-@app.route('/update_profile_picture/<username>/<new_picture>', methods=['GET', 'PUT'])
-def update_profile_picture(username, new_picture):
-    users_collection.update_one(
-        { "username": username },
-        { "$set": { "profile_picture": new_picture } }
+    users_collection.insert_one(new_user)
+    return jsonify({"message": f"User {username} added successfully!"}), 201
+
+#Query 4: Update user password
+@app.route('/update_password/<username>/<new_password>', methods=['GET', 'PUT'])
+def update_password(username, new_password):
+    hashed_password = generate_password_hash(new_password)  # Securely hash the new password
+
+    result = users_collection.update_one(
+        {"username": username},
+        {"$set": {"password": hashed_password}}
     )
-    return jsonify({"message": f"Profile picture updated for {username}."})
+
+    if result.matched_count == 0:
+        return jsonify({"message": f"User {username} not found."}), 404
+
+    return jsonify({"message": f"Password updated successfully for {username}."})
+
 
 
 #Query 5: Delete All Users Who Never Uploaded a Recipe
@@ -560,7 +600,7 @@ def post_recipe():
 
 if __name__ == '__main__':
  print("\n🚀 Flask is starting...\n", flush=True)  # Debug print
- print_database_contents()  # This will ensure the database prints before Flask starts
+ print_database_contents()
  app.run(debug=True)
 
 
