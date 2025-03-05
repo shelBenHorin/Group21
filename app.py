@@ -222,38 +222,53 @@ def delete_inactive_users():
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "static", "images")
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
-@app.route('/signup', methods=['GET', 'POST'])
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+@app.route('/signup', methods=['POST'])
 def signup():
-    if request.method == 'POST':
+    try:
         username = request.form.get('username')
         email = request.form.get('email')
-        password = request.form.get('password')  # In real-world apps, **hash this!**
+        password = request.form.get('password')
         uploaded_file = request.files.get('profile-picture')
 
-        profile_picture_filename = None
+        # ✅ Debugging: Print received data
+        print("📩 Received Signup Request:")
+        print(f"   Username: {username}")
+        print(f"   Email: {email}")
+        print(f"   Password: {'*' * len(password) if password else 'None'}")
+        print(f"   Uploaded File: {uploaded_file.filename if uploaded_file else 'No file'}")
+
+        # 🚨 Validate required fields
+        if not username or not email or not password:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # 🚨 Check if user already exists
+        if users_collection.find_one({"username": username}):
+            return jsonify({"error": "Username already taken"}), 400
+
+        image_url = None
         if uploaded_file and uploaded_file.filename:
             filename = secure_filename(uploaded_file.filename)
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            uploaded_file.save(image_path)
+            image_url = f"static/images/{filename}"
 
-            # Ensure images are stored correctly
-            image_folder = os.path.join(app.config["UPLOAD_FOLDER"])
-            image_path = os.path.join("static", "images", filename).replace("\\", "/")  # Fix path!
-
-            # Save the image
-            uploaded_file.save(os.path.join(image_folder, filename))
-
-        user_data = {
-            "_id": username,  # Consider using UUID for unique _id
+        new_user = {
             "username": username,
             "email": email,
-            "profile_picture": f"static/images/{uploaded_file.filename}" if profile_picture_filename else None,
+            "profile_picture": image_url,
             "uploaded_recipes": [],
+            "joined_at": datetime.utcnow()
         }
 
-        users_collection.insert_one(user_data)
+        users_collection.insert_one(new_user)
+        print("✅ New user added to DB:", new_user)
 
-        return redirect(url_for('signup_success'))
+        return jsonify({"message": "Signup successful!", "redirect": "/feed"}), 200
 
-    return render_template('signup/templates/signup.html')
+    except Exception as e:
+        print("❌ Signup Error:", str(e))
+        return jsonify({"error": "Internal server error"}), 500
 
 @app.route('/signup_success')
 def signup_success():

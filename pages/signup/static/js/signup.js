@@ -1,102 +1,87 @@
-function validateForm(event) {
-    event.preventDefault();
-    console.log("Validate form triggered")
-
-    // Input fields and error messages
-    const usernameField = document.getElementById('username');
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-
-    const usernameError = document.getElementById('usernameError');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
-    const formSuccess = document.getElementById('formSuccess');
-
-    // Clear errors and styles
-    [usernameField, emailField, passwordField].forEach((field) =>
-        field.classList.remove('input-error')
-    );
-
-    usernameError.textContent = '';
-    emailError.textContent = '';
-    passwordError.textContent = '';
-    formSuccess.textContent = '';
-
-    // Validation logic
-    const username = usernameField.value.trim();
-    const email = emailField.value.trim();
-    const password = passwordField.value.trim();
-    let isValid = true;
-
-    // Username validation
-    if (!username) {
-        usernameError.textContent = 'Username is required.';
-        usernameField.classList.add('input-error');
-        isValid = false;
-    } else if (username.length > 30) {
-        usernameError.textContent = 'Username must not exceed 30 characters.';
-        usernameField.classList.add('input-error');
-        isValid = false;
-    }
-
-    // Email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        emailError.textContent = 'Please enter a valid email address.';
-        emailField.classList.add('input-error');
-        isValid = false;
-    }
-
-    // Password validation
-    const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-    if (!passwordPattern.test(password)) {
-        passwordError.textContent =
-            'Password must be at least 8 characters long, include a number, and a special character.';
-        passwordField.classList.add('input-error');
-        isValid = false;
-    }
-
-    // If valid, show success and reset form
-    if (isValid) {
-        formSuccess.textContent = 'Form submitted successfully!';
-        formSuccess.classList.add('success-message');
-        setTimeout(() => {
-            window.location.href = 'feed'; // Redirect after 1 second
-             resetForm();
-        }, 2000);
-
-    }
-}
-
-// Add photo selection feedback
 document.addEventListener("DOMContentLoaded", function () {
-    const photoInput = document.getElementById("profile-picture");
+    const form = document.getElementById("signup-form");
+    const fileInput = document.getElementById("profile-picture");
     const fileFeedback = document.getElementById("file-feedback");
+    const formSuccess = document.getElementById("formSuccess");
 
-    photoInput.addEventListener("change", function () {
+    // ✅ Update file feedback
+    fileInput.addEventListener("change", function () {
         fileFeedback.textContent = this.files.length > 0 ? "File selected!" : "No file chosen";
+    });
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        console.log("📤 Form submission triggered");
+
+        // ✅ Validate input fields
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const usernameError = document.getElementById("usernameError");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+
+        let isValid = true;
+        usernameError.textContent = emailError.textContent = passwordError.textContent = "";
+
+        if (!username) {
+            usernameError.textContent = "Username is required.";
+            isValid = false;
+        } else if (username.length > 30) {
+            usernameError.textContent = "Username must not exceed 30 characters.";
+            isValid = false;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            emailError.textContent = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+        if (!passwordPattern.test(password)) {
+            passwordError.textContent = "Password must be at least 8 characters, include a number, and a special character.";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            console.log("❌ Validation failed.");
+            return;
+        }
+
+        // ✅ Prepare form data
+        const formData = new FormData(form);
+
+        // try {
+            const response = await fetch("/signup", {
+                method: "POST",
+                body: formData,
+            });
+
+            // ✅ Check if response is JSON
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Expected JSON response but received HTML. Check Flask logs.");
+            }
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("✅ Signup successful:", data);
+                formSuccess.textContent = "Signup successful! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = data.redirect;
+                }, 2000);
+            } else {
+                console.error("❌ Signup error:", data);
+                formSuccess.textContent = "Signup failed: " + (data.error || "Unknown error");
+            }
+        // } catch (error) {
+        //     // console.error("❌ Network error:", error);
+        //     formSuccess.textContent = "Network error. Please try again.";
+        // }
     });
 });
 
-function resetForm() {
-    const form = document.getElementById('signup-form');
-    form.reset();
-
-    // Clear error messages
-    document.getElementById('usernameError').textContent = '';
-    document.getElementById('emailError').textContent = '';
-    document.getElementById('passwordError').textContent = '';
-
-    // Remove input error styles
-    const inputs = form.querySelectorAll('.input-field');
-    inputs.forEach((input) => input.classList.remove('input-error'));
-}
-
-console.log("Signup.js is successfully connected!");
-
-
-// Attach event listener
-document
-    .getElementById('signup-form')
-    .addEventListener('submit', validateForm);
-
+console.log("✅ signup.js is successfully connected!");

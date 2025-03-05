@@ -13,11 +13,12 @@
 
     <div class="container">
         <h4>Create Your Account</h4>
-        <form id="signup-form" action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">
+{#        <form id="signup-form" action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">#}
+        <form id="signup-form" method="POST" enctype="multipart/form-data">
 
             <!-- Profile Picture Upload -->
             <div class="form-group photo-upload">
-                <input type="file" id="profile-picture" accept="image/*">
+                <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
                 <label for="profile-picture" class="photo-label">
                     <i class="fas fa-camera"></i>
                     Upload Profile Picture
@@ -31,6 +32,7 @@
                 <input
                     type="text"
                     id="username"
+                    name="username"
                     placeholder="Enter your username"
                     class="input-field"
                     required
@@ -44,6 +46,7 @@
                 <input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="Enter your email"
                     class="input-field"
                     required
@@ -57,6 +60,7 @@
                 <input
                     type="password"
                     id="password"
+                    name="password"
                     placeholder="Create your password"
                     class="input-field"
                     required
