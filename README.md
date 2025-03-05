@@ -1,68 +1,47 @@
-## Project Overview
+# What's in My Box?
 
-**"What's In My Box"** is a web app where users can share and discover creative lunchbox recipes.  
-The platform focuses on being user-friendly, visually appealing, and interactive.  
-This phase of the project implements the client-side functionalities using **HTML**, **CSS**, and **JavaScript**.
+## Overview
+**What's in My Box?** is a web app where users can share and discover creative lunchbox recipes. The platform focuses on being user-friendly, visually appealing, and interactive. This phase of the project introduces backend functionalities using **MongoDB and Flask**, enabling user authentication, data storage, and retrieval.
 
 ---
 
 ## Key Features
-
-- **Responsive Design**: The site works well on desktops, tablets, and mobile devices.
-- **Share Recipes**: Users can post recipes with titles, descriptions, ingredients, and optional photos.
-- **Dynamic Feed**: Recipes are displayed in an easy-to-navigate grid layout.
-- **Form Validations**: Provides real-time feedback for input errors to ensure better user experience.
-- **Interactive Navigation**: A consistent navigation bar links to all the main sections of the site.
-
----
-
-## Main Flows on the Site
-
-1. **Sign Up**: Users create an account with an optional profile picture, username, email, and password.
-2. **Share a Recipe**: Users can fill out a simple form to post recipes, complete with an optional image upload.
-3. **Explore the Feed**: Browse recipes displayed with images and short descriptions. Clicking on a recipe shows more details.
-4. **Search Page**: Currently non-functional. The next phase will include real-time filtering based on user input.
-5. **Interactive Navigation**: A consistent navigation bar links users to the feed, profile, search, and recipe-sharing sections.
+-  **Responsive Design** – Works well on desktops, tablets, and mobile devices.
+-  **Share Recipes** – Users can post recipes with titles, descriptions, ingredients, and optional photos.
+-  **Dynamic Feed** – Recipes are displayed in an easy-to-navigate grid layout.
+-  **Form Validations** – Provides real-time feedback for input errors.
+-  **Backend Integration** – Connected to **MongoDB** for storing user data and recipes.
+-  **Search Page** – Allowes user to search easily for a specific recipe, user or tags.
 
 ---
 
-## Validations and Forms
-
-- **Forms**:
-  - **Sign-Up Form**: Validates username under 30 characters, correct email pattern, and password (must contain at least one number, one special character, and be at least 8 characters long).
-  - **Recipe-Sharing Form**: Validates required fields.
-  - **Sign-In Form**: Ensures both fields (email and password) are filled before submission.
-- **Dynamic Validations**:
-  - Checks for empty fields in forms.
-  - Highlights invalid inputs with red borders and displays error messages.
-- **Successful Submission**:
-  - Displays a success message for 1 second.
-  - Redirects to the feed page.
+## Order of Operations
+1. **Sign Up** – Users create an account by providing a username, email, password, and an optional profile picture.
+2. **Login** – Users enter their credentials to access the platform.
+3. **Explore Feed** – Users browse recipes posted by others, with images and short descriptions.
+4. **Click on a Recipe** – Users can click on any recipe from the feed or their profile to view the full details, including ingredients and instructions.
+5. **Share a Recipe** – Users fill out a form to post a new recipe with a title, description, ingredients, and an optional image.
+6. **Search Recipes** – Users can search for specific recipes, tags, or other users.
+7. **View Personal Profile** – Users can access their profile page to see all their posted recipes in one place.
+8. **Logout** – Users can log out from their session securely.
 
 ---
 
-## Event Functions
+## Screenshots
+1. **Login Page** – Displays a welcome message and an allows users to enter their credentials to access the platform if they are signed up, if not they can go to sign up. ![image](https://github.com/user-attachments/assets/edaaa011-7725-450e-b0f2-a3cc588e0a77)
+2. **Sign-Up Page** – Allows users to register with form validation, it they have an account they can go to login page. ![image](https://github.com/user-attachments/assets/5a7ed87b-1f7e-4a07-af21-d4d5eb81ce19)
 
-1. **Login Form Submit**: Validates email and password fields, highlights errors, and redirects to the feed page on success.
-2. **Signup Form Submit**: Validates username, email, and password, provides feedback for errors, and redirects to the feed page on success.
-3. **Recipe Form Submit**: Ensures required fields (title, description, ingredients, recipe) are filled, shows error messages, and redirects to the feed page on success.
-4. **Photo Upload Feedback**: (Post, Signup) Displays "File selected!" or "No file chosen" when a photo is uploaded.
-5. **"Share" Button Click**: Validates recipe-sharing form inputs, displays success message, and redirects to the feed page on success.
+3. **Feed** - Displays a grid of shared recipes, each with an image, title and user. Users can click on a recipe to view full details. ![image](https://github.com/user-attachments/assets/c82b9ff2-694b-477e-950f-cbd14715e33d)
+4. **Recipe Page** – Displays the full details of a recipe, including its title, description, ingredients, recipe, dietary tage and image.![image](https://github.com/user-attachments/assets/73b12194-55d2-4543-a406-34daf8f82ae1) ![image](https://github.com/user-attachments/assets/7b302582-c426-4172-b502-67bd8ad30ea4)
+5.  **Profile Page** – Shows all the recipes posted by a specific user. !!!!!!!!!!!!!!!!!!!!!!!!
 
----
 
-## Responsive Design
+6. **Post Page** – Provides a form where users can submit a new recipe by adding a title, description, ingredients, recipe, dietary tags and an optional image. ![image](https://github.com/user-attachments/assets/73704f39-7190-44ae-be8a-f6bcf2194539)
+7. **Search Page** – Allows users to search for recipes, tags, and other users, helping them quickly find relevant content. ![image](https://github.com/user-attachments/assets/b87ac313-0317-43b9-acab-61788ba0c378)
 
-The entire site uses responsive techniques to ensure functionality and aesthetics on all devices. Features include:
-- **Media Queries**: Adapt layouts for different screen sizes.
-- **Flexible Layouts**: CSS Grid and Flexbox for adaptable components.
+8. **Search Results Page** – Displays the search results based on user queries. Recipes, users, and tags matching the input are listed dynamically, allowing users to navigate directly to the relevant content.![image](https://github.com/user-attachments/assets/1625ce6c-4402-4227-a07b-7d0caacdb3c6)
 
----
 
-## CSS Animations
-
-- **Button Animations**: Smooth transitions and scaling effects on hover.
-- **Images**: Zoom effects on hover in the feed and profile pages.
 
 ---
 
@@ -70,14 +49,6 @@ The entire site uses responsive techniques to ensure functionality and aesthetic
 
 1. **Multiple CSS Files Instead of One**  
    Each page has its own CSS file because the pages are designed differently, requiring unique styles for layout and functionality. This modular approach keeps the project organized and easier to manage (consulted with the course team).  
-
-2. **Search Page is Still Not Functional**  
-   The search page currently serves as a placeholder. The focus of this phase was on implementing core features like recipe sharing and the feed.  
-   In the next phase, the search functionality will allow users to filter recipes dynamically.  
-
-3. **Illustrative Content**  
-   The recipes, images, and descriptions in the project are demo content created for demonstration purposes.  
-   In the next phase, the site will display real user-generated content uploaded through the platform.  
 
 4. **Sign-In Process**  
    Right now, signing in takes users straight to the feed without checking their credentials.  
