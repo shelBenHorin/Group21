@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let isValid = true;
 
         // Reset styles and error messages
-        requiredFields.forEach((field) => (field.style.border = ""));
+        requiredFields.forEach((field) => field.style.border = "");
         const existingError = document.querySelector(".dynamic-error");
         if (existingError) existingError.remove();
 
@@ -51,18 +51,52 @@ document.addEventListener("DOMContentLoaded", function () {
     shareButton.addEventListener("click", function (e) {
         e.preventDefault();
 
-        if (validateForm()) {
-        formSuccess.textContent = 'Form submitted successfully!';
-        formSuccess.classList.add('success-message');
-        setTimeout(() => {
-            window.location.href = 'feed'; // Redirect after 1 second
-             resetForm();
-        }, 2000);
+//         if (validateForm()) {
+//         formSuccess.textContent = 'Form submitted successfully!';
+//         formSuccess.classList.add('success-message');
+//         setTimeout(() => {
+//             window.location.href = 'feed'; // Redirect after 1 second
+//              resetForm();
+//         }, 2000);
+//         }
+//
+//
+//     });
+// });
+       if (!validateForm()) {
+            return;
         }
-            // form.reset(); // Clear the form
-            // window.location.href = "feed.html"; // Redirect to the feed screen
 
-               // If valid, show success and reset form
+        const formData = new FormData();
+        formData.append("title", document.getElementById("title").value);
+        formData.append("description", document.getElementById("description").value);
+        formData.append("ingredients", document.getElementById("ingredients").value);
+        formData.append("recipe", document.getElementById("recipe").value);
 
+        const dietaryTags = [];
+        document.querySelectorAll('input[name="dietary"]:checked').forEach((checkbox) => {
+            dietaryTags.push(checkbox.value);
+        });
+        formData.append("dietaryTags", JSON.stringify(dietaryTags));
+
+        const file = photoInput.files[0];
+        if (file) {
+            formData.append("photo", file);
+        }
+
+        fetch("/post", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            formSuccess.textContent = "Recipe posted successfully!";
+            formSuccess.classList.add("success-message");
+
+            setTimeout(() => {
+                window.location.href = '/feed';
+            }, 2000);
+        })
+        .catch(error => console.error("Error:", error));
     });
 });

@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block page_head %}
     <meta charset="UTF-8">
@@ -7,57 +7,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='feed/static/CSS/feed.css') }}">
 {% endblock %}
 
-
 {% block content %}
     <main>
         <h1 class="heading">My Feed</h1>
-        <div class="recipe-grid">
-            {% for recipe in recipes %}
-            <div class="recipe-card">
-                <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
-                    {% if recipe['image_url'] %}
-                        <img src="{{ url_for('static', filename='images/' + recipe['image_url']) }}" alt="{{ recipe['title'] }}">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="Default Image">
-                    {% endif %}
-                </a>
-                <h3>{{ recipe['title'] }}</h3>
-                <p>Posted by: {{ recipe['created_by'] }}</p>
-                <p>{{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}</p>
+
+        {% if recipes %}
+            <div class="recipe-grid">
+                {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+                      {% if recipe['image_url'] %}
+    {% set image_path = recipe['image_url'] %}
+
+    {# Ensure correct static URL handling #}
+    {% if not image_path.startswith('static/') %}
+        {% set image_path = 'images/' + image_path %}
+    {% else %}
+        {% set image_path = image_path.replace('static/', '') %}
+    {% endif %}
+
+    <img src="{{ url_for('static', filename=image_path) }}" alt="{{ recipe['title'] }}">
+{% else %}
+    <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="Default Image">
+{% endif %}
+                    </a>
+                    <h3>{{ recipe['title'] }}</h3>
+                    <p><strong>Posted by:</strong> {{ recipe['created_by'] if recipe['created_by'] else "Unknown" }}</p>
+                    <p><strong>Date:</strong>
+                        {{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}
+                    </p>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-{#        <div class="recipe-grid">#}
-{#            <!-- Recipe 1 -->#}
-{#            <div class="recipe-card">#}
-{#                <a href="../../recipe/templates/recipe.html">#}
-{#                    <img src="{{ url_for('static', filename='images/meatballs.jpg') }}" alt="Recipe 1">#}
-{#                </a>#}
-{#                <h3>Recipe Title 1</h3>#}
-{#                <p>Posted by: Ido Cohen</p>#}
-{#                <p>12/11/2024 10:30 PM</p>#}
-{#            </div>#}
-{##}
-{#            <!-- Recipe 2 -->#}
-{#            <div class="recipe-card">#}
-{#                <a href="../../recipe/templates/recipe.html">#}
-{#                    <img src="../../../static/images/recipe3.jpg" alt="Recipe 2">#}
-{#                </a>#}
-{#                <h3>Recipe Title 2</h3>#}
-{#                <p>Posted by: Maya Levi</p>#}
-{#                <p>12/11/2024 9:45 PM</p>#}
-{#            </div>#}
-{##}
-{#            <!-- Recipe 3 -->#}
-{#            <div class="recipe-card">#}
-{#                <a href="../../recipe/templates/recipe.html">#}
-{#                    <img src="../../../static/images/AutumnSalad.jpg" alt="Recipe 3">#}
-{#                </a>#}
-{#                <h3>Recipe Title 3</h3>#}
-{#                <p>Posted by: Noam Regev</p>#}
-{#                <p>12/11/2024 8:20 PM</p>#}
-{#            </div>#}
-{#        </div>#}
+        {% else %}
+            <p class="no-recipes">No recipes available. Post one to get started!</p>
+        {% endif %}
     </main>
 {% endblock %}
-
