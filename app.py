@@ -1,6 +1,7 @@
 from flask import Flask, session, redirect, url_for, render_template, jsonify, request
 import os
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from db_connector import users_collection, recipes_collection
 from datetime import datetime
 from analyzeDB import print_database_contents
@@ -20,9 +21,39 @@ def feed():
     recipes = list(recipes_collection.find())
     return render_template('feed/templates/feed.html', recipes=recipes)
 
-@app.route('/login')
+# @app.route('/login')
+# def login():
+#     return render_template('login/templates/login.html')
+@app.route('/login', methods=['POST'])
 def login():
-    return render_template('login/templates/login.html')
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    print("📥 Received login request:")
+    print(f"   Email: {email}")
+    print(f"   Password: {'*' * len(password) if password else 'None'}")
+
+    # 🚨 Check if fields are empty
+    if not email or not password:
+        print("❌ Missing email or password!")
+        return jsonify({"error": "Email and password are required."}), 400
+
+    # 🚨 Find user by email
+    user = users_collection.find_one({"email": email})
+    if not user:
+        print("❌ User not found!")
+        return jsonify({"error": "User not found."}), 400
+
+    # 🚨 Check if the password is correct
+    if not check_password_hash(user["password"], password):
+        print("❌ Incorrect password!")
+        return jsonify({"error": "Incorrect password."}), 400
+
+    # ✅ Login successful
+    session['username'] = user['username']
+    print(f"✅ User {user['username']} logged in successfully!")
+
+    return jsonify({"message": "Login successful!", "redirect": "/feed"}), 200
 
 
 @app.route('/post')
@@ -71,7 +102,7 @@ def profile():
 def search():
     return render_template('search/templates/search.html')
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET'])
 def signup_page():
     return render_template('signup/templates/signup.html')
 

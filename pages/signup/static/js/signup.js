@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // ✅ Prepare form data
         const formData = new FormData(form);
 
-        // try {
+        try {
             const response = await fetch("/signup", {
                 method: "POST",
                 body: formData,
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("❌ Signup error:", data);
                 formSuccess.textContent = "Signup failed: " + (data.error || "Unknown error");
             }
-        // } catch (error) {
-        //     // console.error("❌ Network error:", error);
-        //     formSuccess.textContent = "Network error. Please try again.";
-        // }
+        } catch (error) {
+            console.error("❌ Network error:", error);
+            formSuccess.textContent = "Network error. Please try again.";
+        }
     });
 });
 
