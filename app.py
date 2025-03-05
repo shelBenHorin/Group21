@@ -81,12 +81,12 @@ def get_users():
     users = list(users_collection.find({}, {"_id": 0}))  # Fetch all users, exclude `_id`
     return render_template('users.html', users=users)
 
-@app.route('/recipes')
-def get_recipes():
-    recipes = list(recipes_collection.find({}, {"_id": 0}))  # Fetch all recipes
-    return render_template('recipes.html', recipes=recipes)
-
-
+# @app.route('/recipes')
+# def get_recipes():
+#     recipes = list(recipes_collection.find({}, {"_id": 0}))  # Fetch all recipes
+#     return render_template('recipes.html', recipes=recipes)
+#
+#
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
