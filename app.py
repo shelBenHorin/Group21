@@ -1,17 +1,19 @@
+import io
+
 from flask import Flask, session, redirect, url_for, render_template, jsonify, request
 import os
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
-from db_connector import users_collection, recipes_collection
+from db_connector import users_collection, recipes_collection, mydatabase
 from datetime import datetime
 from analyzeDB import print_database_contents
+# from gridfs import GridFS
 
-
-
+# fs = GridFS(mydatabase)
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=template_dir)
-
+app.secret_key = os.urandom(24)
 @app.route('/')
 def defult():
     return render_template('login/templates/login.html')
@@ -21,40 +23,137 @@ def feed():
     recipes = list(recipes_collection.find())
     return render_template('feed/templates/feed.html', recipes=recipes)
 
-# @app.route('/login')
-# def login():
-#     return render_template('login/templates/login.html')
+@app.route('/login')
+def logout():
+    return render_template('login/templates/login.html')
+
 @app.route('/login', methods=['POST'])
 def login():
+    print("📥 Received login request...")
+
     email = request.form.get('email')
     password = request.form.get('password')
 
-    print("📥 Received login request:")
-    print(f"   Email: {email}")
-    print(f"   Password: {'*' * len(password) if password else 'None'}")
-
-    # 🚨 Check if fields are empty
     if not email or not password:
         print("❌ Missing email or password!")
         return jsonify({"error": "Email and password are required."}), 400
 
-    # 🚨 Find user by email
     user = users_collection.find_one({"email": email})
     if not user:
         print("❌ User not found!")
         return jsonify({"error": "User not found."}), 400
 
-    # 🚨 Check if the password is correct
+    # ✅ Check hashed password
     if not check_password_hash(user["password"], password):
         print("❌ Incorrect password!")
         return jsonify({"error": "Incorrect password."}), 400
 
-    # ✅ Login successful
     session['username'] = user['username']
     print(f"✅ User {user['username']} logged in successfully!")
-
     return jsonify({"message": "Login successful!", "redirect": "/feed"}), 200
 
+
+# def save_profile_picture(uploaded_file):
+#     """
+#     Save profile picture to GridFS
+#     Returns the file_id if successful, None otherwise
+#     """
+#     if uploaded_file and uploaded_file.filename:
+#         try:
+#             # Read file content
+#             file_content = uploaded_file.read()
+#
+#             # Save to GridFS
+#             file_id = fs.put(
+#                 file_content,
+#                 filename=secure_filename(uploaded_file.filename),
+#                 content_type=uploaded_file.content_type
+#             )
+#             return file_id
+#         except Exception as e:
+#             print(f"Error saving profile picture: {e}")
+#             return None
+#     return None
+#
+#
+# def retrieve_profile_picture(file_id):
+#     """
+#     Retrieve profile picture from GridFS
+#     """
+#     try:
+#         file = fs.get(file_id)
+#         return file
+#     except Exception as e:
+#         print(f"Error retrieving profile picture: {e}")
+#         return None
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    try:
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        uploaded_file = request.files.get('profile-picture')
+
+        # 🚨 Validate required fields
+        if not username or not email or not password:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # 🚨 Check if user already exists
+        if users_collection.find_one({"username": username}):
+            return jsonify({"error": "Username already taken"}), 400
+
+        # 🔐 Hash the password before storing
+        hashed_password = generate_password_hash(password)
+
+        # Save profile picture to GridFS
+        # profile_picture_id = save_profile_picture(uploaded_file)
+
+        image_url = None
+        if uploaded_file and uploaded_file.filename:
+            filename = secure_filename(uploaded_file.filename)
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            uploaded_file.save(image_path)
+            image_url = f"static/images/{filename}"
+
+        new_user = {
+            "username": username,
+            "email": email,
+            "password": hashed_password,  # Store the hashed password
+            "profile_picture": image_url,
+            # "profile_picture_id": profile_picture_id,
+            "uploaded_recipes": [],
+            "joined_at": datetime.utcnow()
+        }
+
+        users_collection.insert_one(new_user)
+        print("✅ New user added to DB:", new_user)
+
+        return jsonify({"message": "Signup successful!", "redirect": "/login"}), 200
+
+    except Exception as e:
+        print("❌ Signup Error:", str(e))
+        return jsonify({"error": "Internal server error"}),500
+
+
+# Add a route to retrieve and display profile picture
+# @app.route('/profile_picture/<username>')
+# def profile_picture(username):
+#     user = users_collection.find_one({"username": username})
+#
+#     if user and 'profile_picture_id' in user:
+#         file_id = user['profile_picture_id']
+#         profile_pic = retrieve_profile_picture(file_id)
+#
+#         if profile_pic:
+#             return send_file(
+#                 io.BytesIO(profile_pic.read()),
+#                 mimetype=profile_pic.content_type,
+#                 as_attachment=False
+#             )
+#
+#     # Return a default profile picture if no picture found
+#     return send_file('path/to/default/profile/picture.jpg')
 
 @app.route('/post')
 def post_page():
@@ -254,52 +353,52 @@ UPLOAD_FOLDER = os.path.join(os.getcwd(), "static", "images")
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-@app.route('/signup', methods=['POST'])
-def signup():
-    try:
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        uploaded_file = request.files.get('profile-picture')
-
-        # ✅ Debugging: Print received data
-        print("📩 Received Signup Request:")
-        print(f"   Username: {username}")
-        print(f"   Email: {email}")
-        print(f"   Password: {'*' * len(password) if password else 'None'}")
-        print(f"   Uploaded File: {uploaded_file.filename if uploaded_file else 'No file'}")
-
-        # 🚨 Validate required fields
-        if not username or not email or not password:
-            return jsonify({"error": "Missing required fields"}), 400
-
-        # 🚨 Check if user already exists
-        if users_collection.find_one({"username": username}):
-            return jsonify({"error": "Username already taken"}), 400
-
-        image_url = None
-        if uploaded_file and uploaded_file.filename:
-            filename = secure_filename(uploaded_file.filename)
-            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            uploaded_file.save(image_path)
-            image_url = f"static/images/{filename}"
-
-        new_user = {
-            "username": username,
-            "email": email,
-            "profile_picture": image_url,
-            "uploaded_recipes": [],
-            "joined_at": datetime.utcnow()
-        }
-
-        users_collection.insert_one(new_user)
-        print("✅ New user added to DB:", new_user)
-
-        return jsonify({"message": "Signup successful!", "redirect": "/feed"}), 200
-
-    except Exception as e:
-        print("❌ Signup Error:", str(e))
-        return jsonify({"error": "Internal server error"}), 500
+# @app.route('/signup', methods=['POST'])
+# def signup():
+#     try:
+#         username = request.form.get('username')
+#         email = request.form.get('email')
+#         password = request.form.get('password')
+#         uploaded_file = request.files.get('profile-picture')
+#
+#         # ✅ Debugging: Print received data
+#         print("📩 Received Signup Request:")
+#         print(f"   Username: {username}")
+#         print(f"   Email: {email}")
+#         print(f"   Password: {'*' * len(password) if password else 'None'}")
+#         print(f"   Uploaded File: {uploaded_file.filename if uploaded_file else 'No file'}")
+#
+#         # 🚨 Validate required fields
+#         if not username or not email or not password:
+#             return jsonify({"error": "Missing required fields"}), 400
+#
+#         # 🚨 Check if user already exists
+#         if users_collection.find_one({"username": username}):
+#             return jsonify({"error": "Username already taken"}), 400
+#
+#         image_url = None
+#         if uploaded_file and uploaded_file.filename:
+#             filename = secure_filename(uploaded_file.filename)
+#             image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+#             uploaded_file.save(image_path)
+#             image_url = f"static/images/{filename}"
+#
+#         new_user = {
+#             "username": username,
+#             "email": email,
+#             "profile_picture": image_url,
+#             "uploaded_recipes": [],
+#             "joined_at": datetime.utcnow()
+#         }
+#
+#         users_collection.insert_one(new_user)
+#         print("✅ New user added to DB:", new_user)
+#
+#         return jsonify({"message": "Signup successful!", "redirect": "/feed"}), 200
+#
+#     except Exception as e:
+#         print("❌ Signup Error:", str(e))
+#         return jsonify({"error": "Internal server error"}), 500
 
 @app.route('/signup_success')
 def signup_success():

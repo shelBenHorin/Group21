@@ -1,61 +1,27 @@
 document.getElementById('login-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    // Reset error messages and styles
-    const existingError = document.querySelector('.dynamic-error');
-    if (existingError) {
-        existingError.remove();
-    }
-
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
-    emailField.style.border = '';
-    passwordField.style.border = '';
 
     const email = emailField.value.trim();
     const password = passwordField.value.trim();
-    let isValid = true;
 
-    // Validate email field
-    if (!email) {
-        emailField.style.border = '2px solid red';
-        isValid = false;
-    }
-
-    // Validate password field
-    if (!password) {
-        passwordField.style.border = '2px solid red';
-        isValid = false;
-    }
-
-    // Display error message if there is an empty field
-    if (!isValid) {
-        const errorMessage = document.createElement('span');
-        errorMessage.textContent = 'Please fill both fields.';
-        errorMessage.className = 'dynamic-error';
-        document.getElementById('login-form').appendChild(errorMessage);
+    if (!email || !password) {
+        document.getElementById('emailError').textContent = "Email and password are required.";
         return;
-
-        //
-        // const form = document.getElementById('login-form');
-        // form.appendChild(errorMessage);
-        // return;
     }
 
-    // successful sign-in - message and move to feed
-    // alert('Sign-in successful!');
+    console.log("📤 Sending login request...", { email, password });
 
     try {
         const response = await fetch('/login', {
             method: 'POST',
-            body: new FormData(document.getElementById('login-form'))
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Ensure correct content type
+            },
+            body: new URLSearchParams({ email, password }) // Encode form data correctly
         });
-
-        const contentType = response.headers.get('content-type');
-
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('Expected JSON response but received HTML. Check Flask logs.');
-        }
 
         const data = await response.json();
 
@@ -64,24 +30,10 @@ document.getElementById('login-form').addEventListener('submit', async function 
             window.location.href = data.redirect;
         } else {
             console.error("❌ Login failed:", data);
-            const errorMessage = document.createElement('span');
-            errorMessage.textContent = data.error || "Invalid credentials";
-            errorMessage.className = 'dynamic-error';
-            document.getElementById('login-form').appendChild(errorMessage);
+            document.getElementById('emailError').textContent = data.error || "Invalid credentials.";
         }
     } catch (error) {
         console.error("❌ Network error:", error);
-        const errorMessage = document.createElement('span');
-        errorMessage.textContent = "Network error. Please try again.";
-        errorMessage.className = 'dynamic-error';
-        document.getElementById('login-form').appendChild(errorMessage);
+        document.getElementById('emailError').textContent = "Network error. Try again.";
     }
 });
-//     window.location.href = 'feed';
-//
-// });
-//
-// // reset the form
-// function resetForm() {
-//     document.getElementById('login-form').reset();
-// }
