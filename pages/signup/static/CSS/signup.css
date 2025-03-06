@@ -164,8 +164,10 @@ input[type="file"] {
     margin-right: 10px;
 }
 
-.error {
+.error, .error-message {
     color: red;
+    display: block;
+    margin-top: 20px;
     font-size: 14px;
     font-weight: bold;
     font-family: 'Palatino Linotype', 'Palatino', serif;
@@ -196,8 +198,7 @@ input[type="file"] {
 
 nav {
     display: flex;
-        font-family: 'Palatino Linotype', 'Palatino', serif;
-
+    font-family: 'Palatino Linotype', 'Palatino', serif;
     justify-content: space-between;
     align-items: center;
     background-color: #0a5247;

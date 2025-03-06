@@ -388,6 +388,11 @@ def delete_user():
     session.clear()  # Log out user after deleting account
     return redirect(url_for('signup'))  # Redirect to signup after deletion
 
+@app.route('/check_username/<username>', methods=['GET'])
+def check_username(username):
+    existing_user = users_collection.find_one({"username": username})
+    return jsonify({"exists": bool(existing_user)})
+
 if __name__ == '__main__':
  print("\n Flask is starting...\n", flush=True)  # Debug print
  print_database_contents()
