@@ -598,6 +598,8 @@ def post_recipe():
 
         return jsonify({"message": "Recipe posted successfully!", "redirect": "/feed"})
 
+
+
 if __name__ == '__main__':
  print("\n🚀 Flask is starting...\n", flush=True)  # Debug print
  print_database_contents()
