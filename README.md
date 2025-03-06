@@ -13,7 +13,8 @@
 5. **Share a Recipe** – Users fill out a form to post a new recipe with a title, description, ingredients, and an optional image.
 6. **Search Recipes** – Users can search for specific recipes by their name, tags, or users.
 7. **View Personal Profile** – Users can access their profile page from the navigation bar to see all their posted recipes in one place.
-8. **Logout** – Users can log out from their session securely by clicking log out on the navigation bar.
+8. **Edit Personal Profile** – Users can edit their account details or even delete it.
+9. **Logout** – Users can log out from their session securely by clicking log out on the navigation bar.
 
 ---
 
@@ -23,12 +24,14 @@
 
 3. **Feed** - Displays a grid of shared recipes, each with an image, title and user. Users can click on a recipe to view full details. ![image](https://github.com/user-attachments/assets/c82b9ff2-694b-477e-950f-cbd14715e33d)
 4. **Recipe Page** – Displays the full details of a recipe, including its title, description, ingredients, recipe, dietary tage and image.![image](https://github.com/user-attachments/assets/73b12194-55d2-4543-a406-34daf8f82ae1) ![image](https://github.com/user-attachments/assets/7b302582-c426-4172-b502-67bd8ad30ea4)
-5.  **Profile Page** – Shows all the recipes posted by a specific user. ![image](https://github.com/user-attachments/assets/71fa9755-1ab0-4633-8ab1-db879198a08e)
+5.  **Profile Page** – Shows all the recipes posted by a specific user, their information, and an option to edit their profile. ![image](https://github.com/user-attachments/assets/f6f5646b-6ccb-4f1f-9419-ccf45c390141)
+ 
+6.  **Edit Profile Page** - Lets the user edit their profile details or delete their account. ![image](https://github.com/user-attachments/assets/dc76f502-9317-4208-83f5-e0472df9a706)
 
-6. **Post Page** – Provides a form where users can submit a new recipe by adding a title, description, ingredients, recipe, dietary tags and an optional image. ![image](https://github.com/user-attachments/assets/73704f39-7190-44ae-be8a-f6bcf2194539)
-7. **Search Page** – Allows users to search for recipes, tags, and other users, helping them quickly find relevant content. ![image](https://github.com/user-attachments/assets/b87ac313-0317-43b9-acab-61788ba0c378)
+7. **Post Page** – Provides a form where users can submit a new recipe by adding a title, description, ingredients, recipe, dietary tags and an optional image. ![image](https://github.com/user-attachments/assets/73704f39-7190-44ae-be8a-f6bcf2194539)
+8. **Search Page** – Allows users to search for recipes, tags, and other users, helping them quickly find relevant content. ![image](https://github.com/user-attachments/assets/b87ac313-0317-43b9-acab-61788ba0c378)
 
-8. **Search Results Page** – Displays the search results based on user queries. Recipes, users, and tags matching the input are listed dynamically, allowing users to navigate directly to the relevant content.![image](https://github.com/user-attachments/assets/1625ce6c-4402-4227-a07b-7d0caacdb3c6)
+9. **Search Results Page** – Displays the search results based on user queries. Recipes, users, and tags matching the input are listed dynamically, allowing users to navigate directly to the relevant content.![image](https://github.com/user-attachments/assets/1625ce6c-4402-4227-a07b-7d0caacdb3c6)
 
 ---
 
@@ -41,14 +44,17 @@ To test the platform, you have two options for logging in:
 
 2. **Use an Existing Test Account**  
    - **Email:** `adicohen@gmail.com`  
-   - **Password:** `adi123!!`  
+   - **Password:** `adi123!!`
+      
+## All routes in app.py file
+We decided to keep all routes in app.py rather than being split into separate files for each page as we thought it would be a simpler and more manageable approach for this project. Given its relatively small and simple scale, having everything in one place felt more practical and made development and deployment more straightforward.
 
 ## Running the AnalyzeDB Page
-
 To run the **AnalyzeDB** page and view the database analysis, you need to execute the following command in the terminal:
 python analyzeDB.py
 
 ### AnalyzeDB screenshots:
 1. Users collection: ![WhatsApp Image 2025-03-06 at 16 56 56_3b06cf56](https://github.com/user-attachments/assets/08e09b0a-69b3-44f9-a20e-8705e3c3dc3f)
 2. Recipes collection: ![WhatsApp Image 2025-03-06 at 16 57 15_27c27e87](https://github.com/user-attachments/assets/ec9c4edf-e1a7-479e-9c00-91514b2d2300)
+* these are just parts of the full outcome from running AnalyzeDB.
 
