@@ -14,29 +14,27 @@
         {% if recipes %}
             <div class="recipe-grid">
                 {% for recipe in recipes %}
-                <div class="recipe-card">
-                    <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
-                      {% if recipe['image_url'] %}
-    {% set image_path = recipe['image_url'] %}
+                    <div class="recipe-card">
+                        <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
+                            {% if recipe['image_url'] %}
+                                {% set image_path = recipe['image_url'] %}
 
-    {# Ensure correct static URL handling #}
-    {% if not image_path.startswith('static/') %}
-        {% set image_path =  image_path %}
-    {% else %}
-        {% set image_path = image_path.replace('static/', '') %}
-    {% endif %}
+                                {# Ensure correct static URL handling #}
+                                {% if not image_path.startswith('static/') %}
+                                    {% set image_path = image_path %}
+                                {% else %}
+                                    {% set image_path = image_path.replace('static/', '') %}
+                                {% endif %}
 
-    <img src="{{ url_for('static', filename=image_path) }}" alt="{{ recipe['title'] }}">
-{#{% else %}#}
-{#    <img src="{{ url_for('static', filename='images/default_recipe.jpg') }}" alt="Default Image">#}
-{% endif %}
-                    </a>
-                    <h3>{{ recipe['title'] }}</h3>
-                    <p><strong>Posted by:</strong> {{ recipe['created_by'] if recipe['created_by'] else "Unknown" }}</p>
-                    <p><strong>Date:</strong>
-                        {{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}
-                    </p>
-                </div>
+                                <img src="{{ url_for('static', filename=image_path) }}" alt="{{ recipe['title'] }}">
+                            {% endif %}
+                        </a>
+                        <h3>{{ recipe['title'] }}</h3>
+                        <p><strong>Posted by:</strong> {{ recipe['created_by'] if recipe['created_by'] else "Unknown" }}</p>
+                        <p><strong>Date:</strong>
+                            {{ recipe['created_at'].strftime('%d/%m/%Y %I:%M %p') if recipe['created_at'] else 'Unknown Date' }}
+                        </p>
+                    </div>
                 {% endfor %}
             </div>
         {% else %}

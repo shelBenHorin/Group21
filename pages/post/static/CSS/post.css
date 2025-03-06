@@ -198,7 +198,8 @@ input[type="text"] {
 .button-container {
     display: flex;
     justify-content: center;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
+    /*padding-bottom: 30px;*/
 }
 
 .post-btn {
@@ -239,6 +240,7 @@ input[type="text"] {
     font-size: 14px;
     font-weight: bold;
     margin-top: 10px;
+    padding-bottom: -30px;
     display: block;
     text-align: center;
     font-family: 'Palatino Linotype', 'Palatino', serif;

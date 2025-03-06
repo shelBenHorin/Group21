@@ -12,7 +12,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         return;
     }
 
-    console.log("📤 Sending login request...", { email, password });
+    console.log("Sending login request...", { email, password });
 
     try {
         const response = await fetch('/login', {
@@ -26,14 +26,14 @@ document.getElementById('login-form').addEventListener('submit', async function 
         const data = await response.json();
 
         if (response.ok) {
-            console.log("✅ Login successful:", data);
+            console.log("Login successful:", data);
             window.location.href = data.redirect;
         } else {
-            console.error("❌ Login failed:", data);
+            console.error("Login failed:", data);
             document.getElementById('emailError').textContent = data.error || "Invalid credentials.";
         }
     } catch (error) {
-        console.error("❌ Network error:", error);
+        console.error("Network error:", error);
         document.getElementById('emailError').textContent = "Network error. Try again.";
     }
 });

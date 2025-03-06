@@ -29,10 +29,6 @@
             {% else %}
                 <img src="{{ url_for('static', filename='images/default_profile.jpg') }}" alt="Default Profile Picture" class="profile-picture">
             {% endif %}
-{#            <img src="{{ url_for('static', filename= user['profile_picture'] if user['profile_picture'] else 'default_profile.jpg') }}"#}
-{#            >#}
-{#            <img src="{{ url_for('static', filename='images/' + user.profile_picture) }}"#}
-{#                 alt="User Profile Picture" class="profile-picture">#}
                         <div class="username">
                  <strong>@{{ user.username }}</strong> <br>
                 <span>{{ user.email }}</span> <br>
@@ -41,26 +37,6 @@
 
         <!-- Right Section: User Lunchboxes -->
         <div class="right-half">
-{#            {% for recipe in user.uploaded_recipes %}#}
-{#                <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">#}
-{#        {% set image_path = recipe['image_url'] %}#}
-{##}
-        {# Ensure correct static URL handling #}
-{#        {% if not image_path.startswith('static/') %}#}
-{#            {% set image_path = image_path %}#}
-{#        {% else %}#}
-{#            {% set image_path = image_path.replace('static/', '') %}#}
-{#        {% endif %}#}
-{##}
-{#        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ recipe['title'] }}" class="lunchbox-picture">#}
-{#    </a>#}
-{#{% endfor %}#}
-{#        {% for recipe in user.uploaded_recipes %}#}
-{#    <a href="{{ url_for('recipe', recipe_id=recipe_id) }}">#}
-{#        <img src="{{ url_for('static', filename=recipe.image_url) }}"#}
-{#             alt="Recipe Image" class="lunchbox-picture">#}
-{#    </a>#}
-{#{% endfor %}#}
             {% for recipe in recipes %}
     <a href="{{ url_for('recipe', recipe_id=recipe['_id']) }}">
         <img src="{{ url_for('static', filename=recipe['image_url']) }}"

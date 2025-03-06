@@ -52,18 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     shareButton.addEventListener("click", function (e) {
         e.preventDefault();
 
-//         if (validateForm()) {
-//         formSuccess.textContent = 'Form submitted successfully!';
-//         formSuccess.classList.add('success-message');
-//         setTimeout(() => {
-//             window.location.href = 'feed'; // Redirect after 1 second
-//              resetForm();
-//         }, 2000);
-//         }
-//
-//
-//     });
-// });
+
        if (!validateForm()) {
             return;
         }

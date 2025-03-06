@@ -4,7 +4,7 @@ from db_connector import users_collection, recipes_collection, mydatabase
 from pymongo import MongoClient
 
 # Connect to MongoDB
-client = MongoClient('mongodb+srv://ShelAlma:ShelAlma@cluster0.3whqy.mongodb.net')  # Adjust if using MongoDB Atlas
+client = MongoClient('mongodb+srv://ShelAlma:ShelAlma@cluster0.3whqy.mongodb.net')
 db = client["What_Is_In_My_Box"]
 users_collection = db["Users"]
 recipes_collection = db["Recipes"]
@@ -36,6 +36,3 @@ print("\n Database content printed successfully!\n")
 
 if __name__ == '__main__':
  print_database_contents()
-
-
-

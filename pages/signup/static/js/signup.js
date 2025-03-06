@@ -4,16 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const fileFeedback = document.getElementById("file-feedback");
     const formSuccess = document.getElementById("formSuccess");
 
-    // ✅ Update file feedback
+    // Update file feedback
     fileInput.addEventListener("change", function () {
         fileFeedback.textContent = this.files.length > 0 ? "File selected!" : "No file chosen";
     });
 
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
-        console.log("📤 Form submission triggered");
+        console.log("Form submission triggered");
 
-        // ✅ Validate input fields
+        // Validate input fields
         const username = document.getElementById("username").value.trim();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (!isValid) {
-            console.log("❌ Validation failed.");
+            console.log("Validation failed.");
             return;
         }
 
-        // ✅ Prepare form data
+        // Prepare form data
         const formData = new FormData(form);
 
         try {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: formData,
             });
 
-            // ✅ Check if response is JSON
+            //Check if response is JSON
             const contentType = response.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
                 throw new Error("Expected JSON response but received HTML. Check Flask logs.");
@@ -68,20 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("✅ Signup successful:", data);
+                console.log("Signup successful:", data);
                 formSuccess.textContent = "Signup successful! Redirecting...";
                 setTimeout(() => {
                     window.location.href = data.redirect;
                 }, 2000);
             } else {
-                console.error("❌ Signup error:", data);
+                console.error("Signup error:", data);
                 formSuccess.textContent = "Signup failed: " + (data.error || "Unknown error");
             }
         } catch (error) {
-            console.error("❌ Network error:", error);
+            console.error("Network error:", error);
             formSuccess.textContent = "Network error. Please try again.";
         }
     });
 });
 
-console.log("✅ signup.js is successfully connected!");
+console.log("signup.js is successfully connected!");

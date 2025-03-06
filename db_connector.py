@@ -17,24 +17,4 @@ users_collection = mydatabase['Users']
 recipes_collection = mydatabase['Recipes']
 
 print("Collections in database:", mydatabase.list_collection_names())
-#
-# @app.route('/users')
-# def get_users():
-#     users = list(users_collection.find({}, {"_id": 0}))  # Fetch all users, exclude `_id`
-#     return render_template('users.html', users=users)
-#
-# @app.route('/recipes')
-# def get_recipes():
-#     recipes = list(recipes_collection.find({}, {"_id": 0}))  # Fetch all recipes
-#     return render_template('recipes.html', recipes=recipes)
-# # create all necessary functions
-# def get_list_of_customers():
-#     return list(customers_col.find())
-#
-#
-# def insert_customer(customer_dict):
-#     customers_col.insert_one(customer_dict)
-
-# ...
-
 
