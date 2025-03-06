@@ -122,11 +122,11 @@ h1 {
     }
 }
 
-.dynamic-error {
+.dynamic-error, #emailError {
     color: red;
     font-size: 14px;
     font-weight: bold;
-    margin-top: 10px;
+    margin: 10px;
     display: block;
     font-family: 'Palatino Linotype', 'Palatino', serif;
     text-align: center;
