@@ -188,94 +188,6 @@ def search_results():
 
     return render_template('search_results/templates/search_results.html', results=results, query=query)
 
-#---------queries-------------
-
-#Query 1: Top 2 users who uploaded the most recipes
-@app.route('/api/top_users')
-def get_top_users():
-
-        top_users = list(recipes_collection.aggregate([
-            { "$group": { "_id": "$created_by", "recipe_count": { "$sum": 1 } } },
-            { "$sort": { "recipe_count": -1 } },
-            { "$limit": 2 }
-        ]))
-
-        return jsonify(top_users)
-
-#Query 2: group recipes by dietary tag and count how many recipes belong to each tag.
-@app.route('/api/popular_dietary_tags')
-def get_popular_dietary_tags():
-
-        popular_tags = list(recipes_collection.aggregate([
-            { "$unwind": "$dietaryTags" },
-            { "$group": { "_id": "$dietaryTags", "count": { "$sum": 1 } } },
-            { "$sort": { "count": -1 } }
-        ]))
-
-        return jsonify(popular_tags)
-
-#Query 3: insert New user
-# Email & Password Validation Patterns
-EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
-PASSWORD_PATTERN = re.compile(r"^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$")
-
-@app.route('/insert_user', methods=['GET','POST'])
-def insert_user():
-    data = request.get_json()
-
-    email = data.get("email", "").strip()
-    password = data.get("password", "").strip()
-
-    # **Validation Checks**
-    if not email or not EMAIL_PATTERN.match(email):
-        return jsonify({"error": "Invalid email format."}), 400
-
-    if not password or not PASSWORD_PATTERN.match(password):
-        return jsonify({
-            "error": "Password must be at least 8 characters, include a number, and a special character."
-        }), 400
-
-    # Extract username from email
-    username = email.split("@")[0]
-
-    # Check if user already exists
-    if users_collection.find_one({"email": email}):
-        return jsonify({"error": "Email is already registered."}), 409
-
-    hashed_password = generate_password_hash(password)  # Secure password storage
-
-    new_user = {
-        "username": username,
-        "email": email,
-        "password": hashed_password,
-        "profile_picture": f"{username}_profile.jpg",
-        "uploaded_recipes": [],
-        "joined_at": datetime.utcnow()
-    }
-
-    users_collection.insert_one(new_user)
-    return jsonify({"message": f"User {username} added successfully!"}), 201
-
-#Query 4: Update user password
-@app.route('/update_password/<username>/<new_password>', methods=['GET', 'PUT'])
-def update_password(username, new_password):
-    hashed_password = generate_password_hash(new_password)  # Securely hash the new password
-
-    result = users_collection.update_one(
-        {"username": username},
-        {"$set": {"password": hashed_password}}
-    )
-
-    if result.matched_count == 0:
-        return jsonify({"message": f"User {username} not found."}), 404
-
-    return jsonify({"message": f"Password updated successfully for {username}."})
-
-#Query 5: Delete All Users Who Never Uploaded a Recipe
-@app.route('/delete_inactive_users', methods=['GET', 'DELETE'])
-def delete_inactive_users():
-    result = users_collection.delete_many({ "uploaded_recipes": { "$size": 0 } })
-    return jsonify({"message": f"{result.deleted_count} inactive users deleted."})
 
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "pages" , "images")
 if not os.path.exists(UPLOAD_FOLDER):
@@ -348,7 +260,8 @@ def post_recipe():
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
     if 'username' not in session:
-        return redirect(url_for('login'))
+        # return redirect(url_for('login'))
+        return jsonify({"error": "User not logged in"}), 401  # Return JSON instead of redirect
 
     user = users_collection.find_one({"username": session['username']})
 
@@ -378,6 +291,11 @@ def edit_profile():
         return redirect(url_for('profile'))  # Redirect to profile after update
 
     return render_template('edit_profile/templates/edit_profile.html', user=user)
+
+
+# @app.route('/edit_profile', methods=['GET'])
+# def edit_profile_page():
+#     return render_template('edit_profile/templates/edit_profile.html')
 
 @app.route('/delete_user')
 def delete_user():
