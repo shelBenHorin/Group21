@@ -33,6 +33,10 @@
                  <strong>@{{ user.username }}</strong> <br>
                 <span>{{ user.email }}</span> <br>
             </div>
+            <!-- Edit Profile Button -->
+            <button onclick="window.location.href='{{ url_for('edit_profile') }}'" class="edit-profile-btn">
+                Edit Profile
+            </button>
         </div>
 
         <!-- Right Section: User Lunchboxes -->

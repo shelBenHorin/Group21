@@ -345,6 +345,49 @@ def post_recipe():
 
         return jsonify({"message": "Recipe posted successfully!", "redirect": "/feed"})
 
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    user = users_collection.find_one({"username": session['username']})
+
+    if request.method == 'POST':
+        new_username = request.form.get('username')
+        new_email = request.form.get('email')
+        new_password = request.form.get('password')
+        uploaded_file = request.files.get('profile-picture')
+
+        update_data = {"username": new_username, "email": new_email}
+
+        # Only update password if a new one is provided
+        if new_password:
+            update_data["password"] = generate_password_hash(new_password)
+
+        # Update profile picture
+        if uploaded_file and uploaded_file.filename:
+            filename = secure_filename(f"{new_username}.jpg")
+            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            uploaded_file.save(image_path)
+            update_data["profile_picture"] = f"images/{filename}"
+
+        # Update user in MongoDB
+        users_collection.update_one({"username": session['username']}, {"$set": update_data})
+        session['username'] = new_username  # Update session if username changed
+
+        return redirect(url_for('profile'))  # Redirect to profile after update
+
+    return render_template('edit_profile/templates/edit_profile.html', user=user)
+
+@app.route('/delete_user')
+def delete_user():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    users_collection.delete_one({"username": session['username']})
+    session.clear()  # Log out user after deleting account
+    return redirect(url_for('signup'))  # Redirect to signup after deletion
+
 if __name__ == '__main__':
  print("\n Flask is starting...\n", flush=True)  # Debug print
  print_database_contents()

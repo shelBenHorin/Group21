@@ -72,7 +72,16 @@ label {
     border: none;
     font-family: 'Palatino Linotype', 'Palatino', serif;
 }
-
+.update-profile-btn, .delete-profile-btn {
+    width: 30%;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+}
 .signup-btn {
     margin-top: 10px;
     background-color: #ffc643;
@@ -85,17 +94,25 @@ label {
     animation: grow 0.5s ease-in-out;
 }
 
-.signin-btn {
+.signin-btn, .update-profile-btn {
     background-color: lightgreen;
     color: #000000;
     cursor: pointer;
 }
 
-.signin-btn:hover {
+.signin-btn:hover, .update-profile-btn:hover {
     background-color: green;
     animation: grow 0.5s ease-in-out;
 }
-
+.delete-profile-btn {
+    background-color: #ff7c7c;
+    color: #000000;
+    cursor: pointer;
+}
+.delete-profile-btn:hover {
+    background-color: #c10000;
+    animation: grow 0.5s ease-in-out;
+}
 .signin-text {
     margin-top: 20px;
     font-size: 14px;
@@ -177,6 +194,49 @@ input[type="file"] {
     padding-top: 20px;
 }
 
+nav {
+    display: flex;
+        font-family: 'Palatino Linotype', 'Palatino', serif;
+
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a5247;
+    padding: 10px 20px;
+    color: antiquewhite;
+}
+
+.nav-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #bfd202;
+    color: black;
+}
+
+.nav-links .logout {
+    background-color: #e7ed76;
+    color: black;
+}
+
+.nav-links .logout:hover {
+    background-color: antiquewhite;
+}
 
 
 .file-feedback {
