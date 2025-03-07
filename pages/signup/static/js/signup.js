@@ -75,11 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 2000);
             } else {
                 console.error("Signup error:", data);
-                formSuccess.textContent = "Signup failed: " + (data.error || "Unknown error");
+                usernameError.textContent = "Signup failed: " + (data.error || "Unknown error");
             }
         } catch (error) {
             console.error("Network error:", error);
-            formSuccess.textContent = "Network error. Please try again.";
+            passwordError.textContent = "Network error. Please try again.";
         }
     });
 });

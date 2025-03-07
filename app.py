@@ -1,4 +1,3 @@
-import io
 
 from flask import Flask, session, redirect, url_for, render_template, jsonify, request
 import os
@@ -7,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db_connector import users_collection, recipes_collection, mydatabase
 from datetime import datetime
 from analyzeDB import print_database_contents
-import re
 
 template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages')
 
@@ -288,14 +286,9 @@ def edit_profile():
         users_collection.update_one({"username": session['username']}, {"$set": update_data})
         session['username'] = new_username  # Update session if username changed
 
-        return redirect(url_for('profile'))  # Redirect to profile after update
+        return jsonify({"message": "Edit successful!", "redirect": "/profile"}), 200
 
     return render_template('edit_profile/templates/edit_profile.html', user=user)
-
-
-# @app.route('/edit_profile', methods=['GET'])
-# def edit_profile_page():
-#     return render_template('edit_profile/templates/edit_profile.html')
 
 @app.route('/delete_user')
 def delete_user():
@@ -304,7 +297,7 @@ def delete_user():
 
     users_collection.delete_one({"username": session['username']})
     session.clear()  # Log out user after deleting account
-    return redirect(url_for('signup'))  # Redirect to signup after deletion
+    return redirect(url_for('login'))  # Redirect to signup after deletion
 
 @app.route('/check_username/<username>', methods=['GET'])
 def check_username(username):

@@ -29,18 +29,21 @@
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="{{ user.username }}" class="input-field" required>
+                <span class="error" id="usernameError"></span>
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="{{ user.email }}" class="input-field" required>
+                <span class="error" id="emailError"></span>
             </div>
 
             <!-- Password -->
             <div class="form-group">
                 <label for="password">New Password (Leave blank to keep current password):</label>
                 <input type="password" id="password" name="password" class="input-field">
+                <span class="error" id="passwordError"></span>
             </div>
 
             <p id="formSuccess" class="success-message"></p>

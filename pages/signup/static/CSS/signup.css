@@ -167,7 +167,8 @@ input[type="file"] {
 .error, .error-message {
     color: red;
     display: block;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 14px;
     font-weight: bold;
     font-family: 'Palatino Linotype', 'Palatino', serif;
